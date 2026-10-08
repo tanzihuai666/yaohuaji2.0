@@ -9,7 +9,7 @@ import { DefaultAvatar } from '../components/Mascots'
 import { useUI } from '../components/ui'
 import { db, uid, type PriceItem } from '../lib/db'
 import { useSettings } from '../lib/settings'
-import { pickImages, deleteImages } from '../lib/images'
+import { pickImagesSafe, deleteImages } from '../lib/images'
 import { saveToDocuments, shareBlob } from '../lib/share'
 import { pad, today } from '../lib/format'
 
@@ -88,7 +88,7 @@ export default function PriceSheet() {
       const act = await ui.confirm({ title: '样图', message: '替换还是移除这张样图？', okText: '替换', cancelText: '移除' })
       if (!act) { const ns = [...p.samples]; await deleteImages([ns[k]]); ns[k] = ''; await db.prices.update(p.id, { samples: ns }); return }
     }
-    const [id] = await pickImages(false); if (!id) return
+    const [id] = await pickImagesSafe(false, ui.toast); if (!id) return
     const ns = [...p.samples]; while (ns.length < 3) ns.push(''); if (ns[k]) await deleteImages([ns[k]]); ns[k] = id
     await db.prices.update(p.id, { samples: ns })
   }

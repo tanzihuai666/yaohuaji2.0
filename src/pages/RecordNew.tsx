@@ -7,7 +7,7 @@ import GroupDialog from '../components/GroupDialog'
 import { Sheet, useUI } from '../components/ui'
 import { Back, Brush, Picture, Camera, Upload, Coin, Calendar, Chevron, FolderY, Note, Save } from '../components/RecordIcons'
 import { db, uid, type CommissionRecord } from '../lib/db'
-import { pickImages, deleteImages } from '../lib/images'
+import { pickImagesSafe, deleteImages } from '../lib/images'
 import { today } from '../lib/format'
 
 const inputCls = 'w-full h-12 bg-white/95 border border-[#e4ded0] rounded-xl px-4 text-base font-normal text-text-main shadow-soft focus:bg-white'
@@ -32,9 +32,9 @@ export default function RecordNew() {
   const set = (p: Partial<CommissionRecord>) => setRec(x => ({ ...x!, ...p }))
   const group = groups.find(g => g.id === rec.groupId)
 
-  const addImgs = async () => { const ids = await pickImages(true); if (ids.length) set({ images: [...rec.images, ...ids] }) }
+  const addImgs = async () => { const ids = await pickImagesSafe(true, ui.toast); if (ids.length) set({ images: [...rec.images, ...ids] }) }
   const startBatch = async () => {
-    const ids = await pickImages(true); if (!ids.length) return
+    const ids = await pickImagesSafe(true, ui.toast); if (!ids.length) return
     setBatch(b => [...(b || []), ...ids.map(image => ({ image, amount: '', title: '' }))]); ui.toast(`已导入 ${ids.length} 张，可逐张填写价格`)
   }
   const createGroup = async (name: string) => {

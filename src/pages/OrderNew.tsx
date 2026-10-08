@@ -6,7 +6,7 @@ import { useUI } from '../components/ui'
 import { db, type Order } from '../lib/db'
 import { blankOrder, saveOrder, PLATFORMS, ORDER_TYPES, CANVAS, LICENSES, REMIND_RULES, COMMON_TAGS, STATUS, nextOrderNo } from '../lib/orders'
 import { cnDate, daysLeft, today } from '../lib/format'
-import { pickImages } from '../lib/images'
+import { pickImagesSafe, deleteImages } from '../lib/images'
 
 const card = 'bg-surface-container-lowest rounded-xl p-space-lg shadow-[0_4px_18px_rgba(74,90,80,0.05),0_1px_3px_rgba(74,90,80,0.03)] flex flex-col'
 const Title = ({ children }: { children: React.ReactNode }) => (
@@ -38,7 +38,10 @@ export default function OrderNew() {
 
   const addImgs = async () => {
     if (o.refImages.length >= 9) return ui.toast('最多上传 9 张参考图')
-    const ids = await pickImages(true); set('refImages', [...o.refImages, ...ids].slice(0, 9))
+    const room = 9 - o.refImages.length
+    const ids = await pickImagesSafe(true, ui.toast)
+    if (ids.length > room) { await deleteImages(ids.slice(room)); ui.toast(`最多 9 张，已添加前 ${room} 张`) }
+    if (ids.length) set('refImages', [...o.refImages, ...ids.slice(0, room)])
   }
   const addPlatform = async () => {
     const v = await ui.prompt({ title: '添加来源平台', placeholder: '如：画加、微博、闲鱼', icon: 'add_link' }); if (!v) return

@@ -29,6 +29,9 @@ function mapColor(ch: string, target: HSL): string {
 }
 
 const STYLE_ID = 'yh-theme'
+/** Canvas/background token names: these follow the palette's light tint so the whole
+ *  page background changes together with the theme (previously only brand accents moved). */
+const BG_KEYS = ['--c-paper', '--c-background', '--c-surface', '--c-page', '--c-parchment', '--c-paper-cream', '--c-surface-bright', '--c-sage-50', '--c-banner-bg']
 type Decl = { sel: string; prop: string; val: string; imp: string }
 let scanned: Decl[] | null = null
 const COLOR_RE = /#([0-9a-f]{6}|[0-9a-f]{3})\b|rgba?\(\s*(\d+)[ ,]+(\d+)[ ,]+(\d+)\s*(?:[,/]\s*([^)]+))?\)/gi
@@ -74,14 +77,17 @@ export function applyTheme(paletteId: string) {
   const p = PALETTES.find(x => x.id === paletteId)
   if (!p || p.id === 'paper') { el.textContent = ''; document.documentElement.dataset.theme = 'paper'; return }
   const target = rgb2hsl(hex2rgb(p.colors[0]))
-  const rootVars = Object.entries(base.root as Record<string, string>).map(([k, v]) => `${k}:${mapColor(v, target)}`).join(';')
+  const tint = hex2rgb(p.colors[2]).join(' ') // palette light tint -> page backgrounds
+  const mapVar = (k: string, v: string) => BG_KEYS.includes(k) ? tint : mapColor(v, target)
+  const rootVars = Object.entries(base.root as Record<string, string>).map(([k, v]) => `${k}:${mapVar(k, v)}`).join(';')
   let css = `:root{${rootVars}}\n`
   for (const [pg, vars] of Object.entries(base.perPage as Record<string, Record<string, string>>))
-    css += `.pg-${pg}{${Object.entries(vars).map(([k, v]) => `${k}:${mapColor(v, target)}`).join(';')}}\n`
+    css += `.pg-${pg}{${Object.entries(vars).map(([k, v]) => `${k}:${mapVar(k, v)}`).join(';')}}\n`
   css += `:root{${Object.entries(brandHex as Record<string, string>).map(([k, v]) => `${k}:${mapColor(v, target)}`).join(';')}}\n`
   // literal hex colors used directly in markup (bottom nav pill, buttons) follow the theme too
   const [r, g, b] = hex2rgb(p.colors[0]); const lt = hsl2rgb([target[0], Math.min(1, target[1] * 0.35), 0.91])
   css += `:root{--yh-primary:${r} ${g} ${b};--yh-primary-light:${lt.join(' ')}}\n`
+  css += `body{background-color:rgb(${tint})}\n` // index.css hardcodes body bg; keep it in sync
   css += literalOverrides(target)
   el.textContent = css; document.documentElement.dataset.theme = p.id
 }

@@ -4,7 +4,7 @@ import Page from '../components/Page'
 import Img from '../components/Img'
 import { useUI } from '../components/ui'
 import { db, uid, type Folder } from '../lib/db'
-import { pickImages, deleteImages } from '../lib/images'
+import { pickImagesSafe, deleteImages } from '../lib/images'
 
 export const FOLDER_COLORS = [
   { name: '鼠尾草绿', cls: 'bg-primary-container', check: 'text-white', v: 'rgb(var(--c-primary-container))' },
@@ -34,7 +34,7 @@ export default function FolderNew() {
   const set = (p: Partial<Folder>) => setF(x => ({ ...x!, ...p }))
   const isArtImage = async (img?: string) => !!img && (await db.artworks.where('folderId').equals(f.id).filter(a => a.image === img).count()) > 0
   const pickCover = async () => {
-    const [i] = await pickImages(false); if (!i) return
+    const [i] = await pickImagesSafe(false, ui.toast); if (!i) return
     if (f.cover && f.cover !== origCover && !(await isArtImage(f.cover))) await deleteImages([f.cover])
     set({ cover: i })
   }

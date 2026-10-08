@@ -6,7 +6,7 @@ import Img from '../components/Img'
 import BottomNav from '../components/BottomNav'
 import { Sheet, useUI } from '../components/ui'
 import { db, uid, type Folder } from '../lib/db'
-import { pickImages, takePhoto } from '../lib/images'
+import { pickImagesSafe, takePhoto } from '../lib/images'
 import { pad, today, yuan } from '../lib/format'
 
 export const Paw = ({ className, eye = 0.8 }: { className: string; eye?: number }) => (
@@ -84,7 +84,7 @@ export default function Gallery() {
               <svg className="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" strokeLinecap="round" strokeLinejoin="round" /><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" strokeLinecap="round" strokeLinejoin="round" /></svg>
               <span className="text-sm font-bold">拍照</span>
             </button>
-            <button onClick={async () => addImages(await pickImages(true))} className="flex items-center justify-center space-x-1.5 py-3 px-2 bg-white/70 hover:bg-white border-2 border-dashed border-[#7AA189] text-[#4F725F] rounded-xl transition-colors active:scale-98">
+            <button onClick={async () => addImages(await pickImagesSafe(true, ui.toast))} className="flex items-center justify-center space-x-1.5 py-3 px-2 bg-white/70 hover:bg-white border-2 border-dashed border-[#7AA189] text-[#4F725F] rounded-xl transition-colors active:scale-98">
               <svg className="w-4 h-4 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect height="18" rx="2" ry="2" width="18" x="3" y="3" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg>
               <span className="text-sm font-bold">导入图片</span>
             </button>

@@ -5,7 +5,7 @@ import Page from '../components/Page'
 import Img from '../components/Img'
 import { Sheet, useUI } from '../components/ui'
 import { db, uid, type Character } from '../lib/db'
-import { pickImages, deleteImages } from '../lib/images'
+import { pickImagesSafe, deleteImages } from '../lib/images'
 import { pad } from '../lib/format'
 
 const SPECIES = ['人类女巫', '精灵族', '古风修仙', '毛茸茸/福瑞', '机甲/赛博']
@@ -37,10 +37,10 @@ export default function CharacterNew() {
   const allSpecies = [...SPECIES, ...customSpecies, ...c.species.filter(s => !SPECIES.includes(s) && !customSpecies.includes(s))]
   const folder = folders.find(f => f.id === c.folderId)
 
-  const pickAvatar = async () => { const [i] = await pickImages(false); if (i) set({ avatar: i }) }
+  const pickAvatar = async () => { const [i] = await pickImagesSafe(false, ui.toast); if (i) set({ avatar: i }) }
   const addRefs = async () => {
     const left = 6 - c.refImages.length; if (left <= 0) return ui.toast('最多支持 6 张')
-    const ids = await pickImages(true); if (ids.length > left) { await deleteImages(ids.slice(left)); ui.toast(`最多 6 张，已添加前 ${left} 张`) }
+    const ids = await pickImagesSafe(true, ui.toast); if (ids.length > left) { await deleteImages(ids.slice(left)); ui.toast(`最多 6 张，已添加前 ${left} 张`) }
     set({ refImages: [...c.refImages, ...ids.slice(0, left)] })
   }
   const addSpecies = async () => {

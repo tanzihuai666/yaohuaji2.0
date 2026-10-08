@@ -7,7 +7,7 @@ import { useUI } from '../components/ui'
 import { useImageUrl } from '../hooks/useImage'
 import { db } from '../lib/db'
 import { DEFAULT_SETTINGS, getSettings, saveSettings, useSettings } from '../lib/settings'
-import { pickImages, deleteImages } from '../lib/images'
+import { pickImagesSafe, deleteImages } from '../lib/images'
 import { daysLeft } from '../lib/format'
 import { PALETTES } from '../theme/palettes'
 import { applyTheme } from '../theme/apply'
@@ -27,7 +27,7 @@ export default function Theme() {
   const set = (p: Partial<Draft>) => setD(x => ({ ...x!, ...p }))
   const pal = PALETTES.find(p => p.id === d.theme) || PALETTES[0]
   const choose = (id: string) => { set({ theme: id }); applyTheme(id) }
-  const pickBg = async () => { const [i] = await pickImages(false); if (!i) return; created.current.add(i); set({ bgImage: i }) }
+  const pickBg = async () => { const [i] = await pickImagesSafe(false, ui.toast); if (!i) return; created.current.add(i); set({ bgImage: i }) }
   const reset = async () => {
     if (!(await ui.confirm({ title: '重置为默认主题？', message: '将恢复「纸间手账」配色、移除自定义背景并开启点阵纸纹。' }))) return
     choose(DEFAULT_SETTINGS.theme); set({ bgImage: undefined, dotGrid: true, bgOpacity: 70 })

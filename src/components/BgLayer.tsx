@@ -13,7 +13,7 @@ export default function BgLayer() {
   }, [url, s.dotGrid])
   if (!url) return null
   return <>
-    <div className="app-bg-layer" style={{ background: '#faf9f3' }} />
+    <div className="app-bg-layer" style={{ background: 'rgb(var(--c-paper))' }} />
     <div className="app-bg-layer" style={{ backgroundImage: `url(${url})`, opacity: s.bgOpacity / 100 }} />
     {s.dotGrid && <div className="app-bg-layer" style={{ backgroundImage: 'radial-gradient(#dfdbce 0.85px, transparent 0.85px)', backgroundSize: '16px 16px', opacity: .7 }} />}
   </>

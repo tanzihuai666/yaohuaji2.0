@@ -9,7 +9,7 @@ import { useUI } from '../components/ui'
 import { db } from '../lib/db'
 import { STATUS, advanceOrder, deleteOrder, nextStatus, saveOrder, statusLabel } from '../lib/orders'
 import { cnDate, daysLeft, yuan } from '../lib/format'
-import { pickImages } from '../lib/images'
+import { pickImagesSafe } from '../lib/images'
 import { copyText } from '../lib/share'
 
 const SUB = ['', '绘制中', '线稿/色块', '终稿交付']
@@ -30,7 +30,7 @@ export default function OrderDetail() {
     if (!(await ui.confirm({ title: `推进到「${statusLabel(nx)}」？`, message: tip }))) return
     await advanceOrder(o); ui.toast(`已推进：${statusLabel(nx)}`)
   }
-  const addDeliver = async () => { const ids = await pickImages(true); if (ids.length) { await saveOrder({ ...o, deliverImages: [...o.deliverImages, ...ids] }); ui.toast(`已上传 ${ids.length} 张`) } }
+  const addDeliver = async () => { const ids = await pickImagesSafe(true, ui.toast); if (ids.length) { await saveOrder({ ...o, deliverImages: [...o.deliverImages, ...ids] }); ui.toast(`已上传 ${ids.length} 张`) } }
   const editNote = async () => { const v = await ui.prompt({ title: '客户沟通备注', defaultValue: o.contact, placeholder: '联系方式、沟通进展等', icon: 'chat' }); if (v !== null) await saveOrder({ ...o, contact: v }) }
   const remove = async () => {
     if (!(await ui.confirm({ title: '删除此稿单', message: '稿单、交付图与相关收支记录将一并删除，无法恢复。', danger: true, okText: '删除' }))) return

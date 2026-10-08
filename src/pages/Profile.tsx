@@ -6,7 +6,7 @@ import BottomNav from '../components/BottomNav'
 import { DefaultAvatar } from '../components/Mascots'
 import { Modal, Sheet, useUI } from '../components/ui'
 import { saveSettings, useSettings } from '../lib/settings'
-import { pickImages, deleteImages } from '../lib/images'
+import { pickImagesSafe, deleteImages } from '../lib/images'
 import pkg from '../../package.json'
 
 const ic = 'w-5 h-5 stroke-[#4D7162] fill-none stroke-[2] stroke-linecap-round stroke-linejoin-round'
@@ -23,7 +23,7 @@ export default function Profile() {
   const [edit, setEdit] = useState(false); const [about, setAbout] = useState(false)
   const [form, setForm] = useState({ nickname: '', motto: '' }); const [avatar, setAvatar] = useState<string | undefined>()
   const openEdit = () => { setForm({ nickname: s.nickname, motto: s.motto }); setAvatar(s.avatar); setEdit(true) }
-  const pickAvatar = async () => { const [i] = await pickImages(false); if (i) { if (avatar && avatar !== s.avatar) await deleteImages([avatar]); setAvatar(i) } }
+  const pickAvatar = async () => { const [i] = await pickImagesSafe(false, ui.toast); if (i) { if (avatar && avatar !== s.avatar) await deleteImages([avatar]); setAvatar(i) } }
   const save = async () => {
     if (!form.nickname.trim()) return ui.toast('昵称不能为空')
     if (s.avatar && s.avatar !== avatar) await deleteImages([s.avatar])

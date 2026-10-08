@@ -7,7 +7,7 @@ import Viewer from '../components/Viewer'
 import FormSheet from '../components/FormSheet'
 import { Sheet, useUI } from '../components/ui'
 import { db, uid, type Artwork } from '../lib/db'
-import { pickImages, takePhoto, deleteImages } from '../lib/images'
+import { pickImagesSafe, takePhoto, deleteImages } from '../lib/images'
 import { shareBlob } from '../lib/share'
 import { bytes, mdDate, today } from '../lib/format'
 import { FOLDER_COLORS } from './FolderNew'
@@ -140,7 +140,7 @@ export default function Folder() {
               })}
             </div>
             <div className="grid grid-cols-2 gap-space-sm pt-0.5">
-              <button onClick={async () => add(await pickImages(true))} className="dashed-craft-border flex h-11 items-center justify-center gap-1.5 rounded-full bg-surface-container-lowest font-label-lg text-label-lg text-primary transition-all hover:bg-surface-container-low active:scale-95" type="button">
+              <button onClick={async () => add(await pickImagesSafe(true, ui.toast))} className="dashed-craft-border flex h-11 items-center justify-center gap-1.5 rounded-full bg-surface-container-lowest font-label-lg text-label-lg text-primary transition-all hover:bg-surface-container-low active:scale-95" type="button">
                 <span className="material-symbols-outlined text-[18px]">add_photo_alternate</span><span>+ 导入画作</span>
               </button>
               <button onClick={async () => { const i = await takePhoto(); if (i) add([i]) }} className="dashed-craft-border flex h-11 items-center justify-center gap-1.5 rounded-full bg-surface-container-lowest font-label-lg text-label-lg text-primary transition-all hover:bg-surface-container-low active:scale-95" type="button">
