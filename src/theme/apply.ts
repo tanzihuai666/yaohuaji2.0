@@ -71,11 +71,53 @@ function literalOverrides(target: HSL) {
     return `${d.sel}{${d.prop}:${v}${d.imp ? ' !important' : ''}}`
   }).join('\n')
 }
+/** 暗色毛玻璃主题（冰晶琉璃）：深色底 + 文字反白 + 卡片亚克力化。
+ * 浅色主题走 HSL 色相偏移；暗色主题需要独立分支——底色、文字、卡片质感全换。
+ * 策略：CSS 变量覆盖文字/强调色（自动全局生效）+ 玻璃拟态规则处理卡片底。 */
+function darkGlassCSS(p: { colors: [string, string, string] }): string {
+  const T = 'html[data-theme="glassdark"]'
+  const [pr, pg, pb] = hex2rgb(p.colors[0]) // 品牌青 #3A7D69
+  const css: string[] = []
+  // 1. 深色底（取自 Stitch 设计稿）+ 页面透明
+  css.push(`${T}{background:rgb(13,14,18) !important}`)
+  css.push(`${T} body{background:radial-gradient(120% 120% at 50% 10%, rgb(47,53,66) 0%, rgb(26,28,35) 50%, rgb(13,14,18) 100%) fixed !important;color:#fff}`)
+  css.push(`${T} [class^="pg-"],${T} [class*=" pg-"],${T} [class*="bg-dotted-journal"]{background-color:transparent !important;background-image:none !important}`)
+  // 2. CSS 变量覆盖：文字反白、强调色变青（所有用变量的类自动跟随）
+  css.push(`${T}{--c-on-surface:255 255 255;--c-on-surface-variant:200 205 200;--c-text-main:255 255 255;--c-text-muted:190 195 190;--c-text-sub:170 178 170;--c-charcoal-title:255 255 255;--c-darkCharcoal:255 255 255;--c-textGray:190 195 190;--c-on-background:255 255 255;--c-primary:${pr} ${pg} ${pb};--c-theme-primary:${pr} ${pg} ${pb};--c-accentGreen:${pr} ${pg} ${pb};--c-sage-primary:${pr} ${pg} ${pb};--yh-primary:${pr} ${pg} ${pb};--yh-primary-light:58 125 105;--c-outline-variant:255 255 255;--c-outline:200 205 200}`)
+  // 3. 卡片亚克力化：浅色底 -> 半透明白 + blur（变量类 + 白底类 + 浅色 hex 全系 + 自定义卡片类）
+  const glassSel = [
+    `${T} [class*="bg-surface"]`, `${T} [class*="bg-cardBg"]`, `${T} [class*="bg-white"]`,
+    `${T} [class*="bg-[#f" i]`, `${T} [class*="bg-[#e" i]:not([class*="bg-[#e06d63" i])`,
+    `${T} [class*="bg-[#d" i]`, `${T} [class*="bg-[#c" i]`,
+    `${T} .journal-card`,
+  ].join(',')
+  css.push(`${glassSel}{background-color:rgba(255,255,255,0.12) !important;backdrop-filter:blur(20px) saturate(160%) !important;-webkit-backdrop-filter:blur(20px) saturate(160%) !important;border-color:rgba(255,255,255,0.22) !important;box-shadow:0 8px 28px rgba(0,0,0,0.28), inset 0 1px 1px rgba(255,255,255,0.25) !important}`)
+  // 4. 品牌绿实心按钮 -> 青色
+  const brandSel = [
+    `${T} [class*="bg-[#3c6a58" i]`, `${T} [class*="bg-[#3C6A58" i]`,
+    `${T} [class*="bg-[#3e6b57" i]`, `${T} [class*="bg-[#4f725f" i]`,
+    `${T} [class*="bg-[#4F725F" i]`, `${T} [class*="bg-[#436a5b" i]`,
+    `${T} [class*="bg-[#426a5a" i]`, `${T} [class*="bg-[#345b49" i]`,
+    `${T} [class*="bg-[#235241" i]`,
+  ].join(',')
+  css.push(`${brandSel}{background-color:rgb(${pr},${pg},${pb}) !important}`)
+  // 5. 硬编码深色文字（非变量类）-> 白；次级 -> 白 65%
+  css.push(`${T} [class*="text-stone-900"],${T} [class*="text-stone-800"],${T} [class*="text-stone-700"],${T} [class*="text-[#2d332f" i],${T} [class*="text-[#213028" i],${T} [class*="text-[#2a2e2b" i],${T} [class*="text-[#2f3430" i],${T} [class*="text-[#303d36" i],${T} [class*="text-[#3b4943" i]{color:#fff !important}`)
+  css.push(`${T} [class*="text-stone-600"],${T} [class*="text-stone-500"],${T} [class*="text-stone-400"],${T} [class*="text-[#656e67" i],${T} [class*="text-[#7c9487" i],${T} [class*="text-[#889d92" i],${T} [class*="text-[#556b5e" i],${T} [class*="text-[#6b7a6e" i],${T} [class*="text-[#557766" i],${T} [class*="text-[#6b726d" i],${T} [class*="text-[#537363" i],${T} [class*="text-[#5f6f67" i],${T} [class*="text-[#91a098" i]{color:rgba(255,255,255,0.65) !important}`)
+  css.push(`${T} [class*="text-[#3c6a58" i],${T} [class*="text-[#3C6A58" i],${T} [class*="text-[#3e6b57" i],${T} [class*="text-[#4f725f" i],${T} [class*="text-[#4F725F" i],${T} [class*="text-[#4b6f5a" i],${T} [class*="text-[#4B6F5A" i]{color:rgb(127,181,163) !important}`)
+  // 6. 输入框
+  css.push(`${T} input,${T} textarea,${T} select{background-color:rgba(255,255,255,0.1) !important;color:#fff !important;border-color:rgba(255,255,255,0.2) !important}`)
+  css.push(`${T} input::placeholder,${T} textarea::placeholder{color:rgba(255,255,255,0.4) !important}`)
+  // 7. 样式表里写死的品牌绿 -> 青色（复用扫描机制）
+  css.push(literalOverrides(rgb2hsl(hex2rgb(p.colors[0]))))
+  return css.join('\n')
+}
 export function applyTheme(paletteId: string) {
   let el = document.getElementById(STYLE_ID) as HTMLStyleElement | null
   if (!el) { el = document.createElement('style'); el.id = STYLE_ID; document.head.appendChild(el) }
   const p = PALETTES.find(x => x.id === paletteId)
   if (!p || p.id === 'paper') { el.textContent = ''; document.documentElement.dataset.theme = 'paper'; return }
+  if (p.dark) { el.textContent = darkGlassCSS(p); document.documentElement.dataset.theme = p.id; return }
   const target = rgb2hsl(hex2rgb(p.colors[0]))
   const tint = hex2rgb(p.colors[2]).join(' ') // palette light tint -> page backgrounds
   const mapVar = (k: string, v: string) => BG_KEYS.includes(k) ? tint : mapColor(v, target)

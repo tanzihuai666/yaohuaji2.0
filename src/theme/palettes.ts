@@ -1,4 +1,4 @@
-export interface Palette { id: string; name: string; sub: string; colors: [string, string, string] }
+export interface Palette { id: string; name: string; sub: string; colors: [string, string, string]; dark?: boolean }
 export const PALETTES: Palette[] = [
   { id: 'paper', name: '纸间手账', sub: '默认森绿', colors: ['#3C6A58', '#E1E9DF', '#E8A87C'] },
   { id: 'nightpink', name: '黑粉夜色', sub: '甜酷暗夜', colors: ['#2D2833', '#F28C9F', '#FCE8EE'] },
@@ -9,4 +9,5 @@ export const PALETTES: Palette[] = [
   { id: 'sakura', name: '樱花奶冻卷', sub: '软糯春风', colors: ['#944E63', '#F8B4C8', '#FDF0F4'] },
   { id: 'mint', name: '薄荷气泡水', sub: '解暑薄荷', colors: ['#2D6A5D', '#84CFBE', '#E9F7F4'] },
   { id: 'ink', name: '纸墨素雅', sub: '极简水墨', colors: ['#3B3B3B', '#A5A5A5', '#F5F5F0'] },
+  { id: 'glassdark', name: '冰晶琉璃', sub: '暗色琉璃', colors: ['#3A7D69', '#7FB5A3', '#1A1C23'], dark: true },
 ]
