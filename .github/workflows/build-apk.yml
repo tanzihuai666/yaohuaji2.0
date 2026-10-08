@@ -27,6 +27,8 @@ jobs:
     timeout-minutes: 30
     env:
       IS_RELEASE: ${{ startsWith(github.ref, 'refs/tags/v') || inputs.release == true }}
+      # main 分支推送也打 release 包并更新公开下载链接
+      PUBLISH_LATEST: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v5
 
@@ -43,6 +45,13 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+
+      # 未配置正式签名时，复用缓存的 debug keystore，保证每次构建签名一致、可覆盖安装
+      - name: Cache fallback signing key
+        uses: actions/cache@v4
+        with:
+          path: ~/.android/debug.keystore
+          key: yaohuaji-debug-keystore-v1
 
       - name: Install dependencies
         run: npm ci
@@ -91,11 +100,11 @@ jobs:
           YH_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
           chmod +x gradlew
-          if [ "$IS_RELEASE" = "true" ]; then TASK=assembleRelease; else TASK=assembleDebug; fi
+          if [ "$IS_RELEASE" = "true" ] || [ "$PUBLISH_LATEST" = "true" ]; then TASK=assembleRelease; else TASK=assembleDebug; fi
           ./gradlew "$TASK" --no-daemon --stacktrace -Dorg.gradle.jvmargs=-Xmx3g
           mkdir -p ../out
           V=${{ steps.ver.outputs.version }}
-          if [ "$IS_RELEASE" = "true" ]; then
+          if [ "$TASK" = "assembleRelease" ]; then
             cp app/build/outputs/apk/release/app-release.apk "../out/yaohuaji-v$V.apk"
           else
             cp app/build/outputs/apk/debug/app-debug.apk "../out/yaohuaji-v$V-${{ steps.ver.outputs.short_sha }}-debug.apk"
@@ -118,3 +127,16 @@ jobs:
           files: out/*.apk
           generate_release_notes: true
           make_latest: true
+
+      - name: Update public download link (latest)
+        if: env.PUBLISH_LATEST == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          V=${{ steps.ver.outputs.version }}
+          cp "out/yaohuaji-v$V.apk" out/yaohuaji.apk
+          gh release delete latest --cleanup-tag -y || true
+          gh release create latest out/yaohuaji.apk "out/yaohuaji-v$V.apk" \
+            --target "$GITHUB_SHA" --latest \
+            --title "妖画集 v$V（最新构建 ${{ steps.ver.outputs.short_sha }}）" \
+            --notes "main 分支最新自动构建，点击即可下载安装：https://github.com/${{ github.repository }}/releases/download/latest/yaohuaji.apk"
