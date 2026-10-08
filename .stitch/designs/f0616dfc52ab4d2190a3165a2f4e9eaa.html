@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="zh-CN" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>妖画集 - 首页</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#faf9f3',
+            'paper-card': '#ffffff',
+            primary: '#3b6852',
+            'primary-light': '#ecf3eb',
+            'banner-bg': '#f4f6ee',
+            'text-main': '#2d332f',
+            'text-muted': '#8e968f',
+            'text-sub': '#656e67',
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"PingFang SC"', '"Hiragino Sans GB"', '"Microsoft YaHei"', 'Nunito', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Paper Dot Grid & Refined Styling -->
+<style data-purpose="background-texture">
+    body {
+      background-color: #faf9f3;
+      background-image: radial-gradient(#dfdbce 0.85px, transparent 0.85px);
+      background-size: 16px 16px;
+      color: #2d332f;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+  </style>
+<style data-purpose="card-shadows">
+    .journal-card {
+      background: #ffffff;
+      border: 1px solid rgba(226, 230, 222, 0.6);
+      box-shadow: 0 4px 16px -2px rgba(60, 80, 65, 0.03), 0 2px 6px -1px rgba(0, 0, 0, 0.015);
+      border-radius: 18px;
+    }
+    .banner-bubble {
+      background: linear-gradient(135deg, #f5f8f0 0%, #edf2e8 100%);
+      border: 1px solid rgba(215, 226, 214, 0.5);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex justify-center items-start text-text-main font-sans antialiased selection:bg-primary-light">
+<!-- Mobile App Frame Container -->
+<div class="w-full max-w-md min-h-screen flex flex-col justify-between relative pb-24">
+<!-- BEGIN: SystemStatusBar -->
+
+<!-- END: SystemStatusBar -->
+<!-- Main Content Area -->
+<main class="px-4.5 flex-1 flex flex-col gap-3.5 px-4 pt-1">
+<!-- BEGIN: AppHeader -->
+<section class="flex justify-between items-center py-2 px-1" data-purpose="top-navigation">
+<!-- Logo and App Title -->
+<div class="flex items-center gap-2">
+<!-- Mascot Icon -->
+<div class="w-9 h-9 relative flex items-center justify-center">
+<svg class="w-8 h-8 drop-shadow-sm" fill="none" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#a7d89b" height="23" rx="10" stroke="#335943" stroke-width="1.6" width="26" x="5" y="7"></rect>
+<ellipse cx="10" cy="5" fill="#8ec980" rx="3" ry="3.5" stroke="#335943" stroke-width="1.4"></ellipse>
+<ellipse cx="26" cy="5" fill="#8ec980" rx="3" ry="3.5" stroke="#335943" stroke-width="1.4"></ellipse>
+<circle cx="10" cy="5" fill="#fff" r="1.2"></circle>
+<circle cx="26" cy="5" fill="#fff" r="1.2"></circle>
+<!-- Head Face Details -->
+<circle cx="12.5" cy="18" fill="#2d332f" r="2.2"></circle>
+<circle cx="23.5" cy="18" fill="#2d332f" r="2.2"></circle>
+<ellipse cx="9" cy="21" fill="#f8b6b6" rx="2" ry="1.2"></ellipse>
+<ellipse cx="27" cy="21" fill="#f8b6b6" rx="2" ry="1.2"></ellipse>
+<!-- Cute Fringe/Bangs -->
+<path d="M12 12c2 3 5 4 6 4s4-1 6-4" fill="none" stroke="#ffde9e" stroke-linecap="round" stroke-width="2"></path>
+<path d="M16 21c1 1.2 3 1.2 4 0" stroke="#335943" stroke-linecap="round" stroke-width="1.4"></path>
+</svg>
+</div>
+<h1 class="text-2xl font-bold tracking-tight text-primary font-sans">妖画集</h1>
+</div>
+<!-- User Profile Pill Button -->
+<div class="flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-stone-200/80 rounded-full py-1 pl-3.5 pr-1 shadow-sm">
+<span class="text-xs font-bold text-stone-700 tracking-wide">妖芝</span>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-amber-100 ring-1 ring-amber-200/60 flex items-center justify-center">
+<!-- Anime Character Avatar Placeholder Representation -->
+<svg class="w-full h-full" fill="none" viewBox="0 0 40 40">
+<rect fill="#fcedda" height="40" width="40"></rect>
+<!-- Golden Hair -->
+<circle cx="20" cy="18" fill="#fcd36c" r="11"></circle>
+<path d="M10 20c0 8 3 14 10 14s10-6 10-14c0-4-3-10-10-10s-10 6-10 10z" fill="#f7ba43"></path>
+<!-- Face Skin -->
+<ellipse cx="20" cy="20" fill="#fff5ea" rx="7.5" ry="8"></ellipse>
+<!-- Hair Fringe Strands -->
+<path d="M14 15c2 4 4 6 6 6s4-2 6-6c-3-2-9-2-12 0z" fill="#fde59b"></path>
+<path d="M12 21c2 5 1 9 1 12" stroke="#ea9f1a" stroke-linecap="round" stroke-width="1.5"></path>
+<path d="M28 21c-2 5-1 9-1 12" stroke="#ea9f1a" stroke-linecap="round" stroke-width="1.5"></path>
+<!-- Eyes with Red Tone -->
+<ellipse cx="17.5" cy="20.5" fill="#c0392b" rx="1.3" ry="2"></ellipse>
+<ellipse cx="22.5" cy="20.5" fill="#c0392b" rx="1.3" ry="2"></ellipse>
+<circle cx="17" cy="19.8" fill="#ffffff" r="0.6"></circle>
+<circle cx="22" cy="19.8" fill="#ffffff" r="0.6"></circle>
+<!-- Red ribbon / hairpin -->
+<rect fill="#e74c3c" height="3" rx="1" transform="rotate(25 25 13)" width="3" x="25" y="13"></rect>
+</svg>
+</div>
+</div>
+</section>
+<!-- END: AppHeader -->
+<!-- BEGIN: DateIndicator -->
+<section class="flex items-center gap-1.5 px-1.5 pt-0.5" data-purpose="date-display">
+<span class="inline-block w-2 h-2 rounded-full bg-primary/75"></span>
+<span class="text-xs font-medium text-stone-600 tracking-tight">2026年9月26日 · 周六</span>
+</section>
+<!-- END: DateIndicator -->
+<!-- BEGIN: GreetingBanner -->
+<section class="banner-bubble p-5 relative" data-purpose="greeting-banner">
+<div class="relative z-10 max-w-[85%]">
+<h2 class="text-lg font-bold text-text-main tracking-tight leading-snug">
+            妖芝，一纸一笔，皆是山河
+          </h2>
+<p class="text-xs text-stone-500 mt-2 font-normal leading-relaxed tracking-normal">
+            还没有稿件在手，妖芝，来创建第一单吧～
+          </p>
+</div>
+<!-- Decorative Background Rings & Leaves Accent -->
+<div class="absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-emerald-100/40 pointer-events-none"></div>
+<div class="absolute right-4 bottom-2 w-20 h-20 rounded-full border-[6px] border-amber-300/35 pointer-events-none"></div>
+</section>
+<!-- END: GreetingBanner -->
+<!-- BEGIN: StatCardsGrid -->
+<section class="grid grid-cols-2 gap-3.5" data-purpose="statistics-grid">
+<!-- Card 1: 总接单 -->
+<div class="journal-card p-4.5 flex flex-col items-center justify-center text-center">
+<div class="flex items-center gap-1.5 text-stone-500 text-xs font-medium mb-1">
+<!-- Gift / Package Icon -->
+<svg class="w-3.5 h-3.5 stroke-stone-500 stroke-[1.8] fill-none" viewBox="0 0 24 24">
+<path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
+<path d="m3.3 7 8.7 5 8.7-5"></path>
+<path d="M12 22V12"></path>
+</svg>
+<span class="">总接单</span>
+</div>
+<div class="text-3xl font-extrabold text-text-main my-1 font-sans">0</div>
+<div class="text-[11px] text-text-muted">累计接下 0 单</div>
+</div>
+<!-- Card 2: 钱包 -->
+<div class="journal-card p-4.5 flex flex-col items-center justify-center text-center">
+<div class="flex items-center gap-1.5 text-stone-500 text-xs font-medium mb-1">
+<!-- Wallet Icon -->
+<svg class="w-3.5 h-3.5 stroke-stone-500 stroke-[1.8] fill-none" viewBox="0 0 24 24">
+<rect height="13" rx="2.5" width="18" x="3" y="6"></rect>
+<path d="M17 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>
+<path d="M7 6V4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"></path>
+</svg>
+<span class="">钱包</span>
+</div>
+<div class="text-3xl font-extrabold text-text-main my-1 font-sans">¥0</div>
+<div class="text-[11px] text-text-muted">本月 ¥0</div>
+</div>
+<!-- Card 3: 已完成 -->
+<div class="journal-card p-4.5 flex flex-col items-center justify-center text-center">
+<div class="flex items-center gap-1.5 text-stone-500 text-xs font-medium mb-1">
+<!-- Ribbon / Medal Icon -->
+<svg class="w-3.5 h-3.5 stroke-stone-500 stroke-[1.8] fill-none" viewBox="0 0 24 24">
+<circle cx="12" cy="8" r="6"></circle>
+<path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+</svg>
+<span class="">已完成</span>
+</div>
+<div class="text-3xl font-extrabold text-text-main my-1 font-sans">0</div>
+<div class="text-[11px] text-text-muted">还有 0 单在途</div>
+</div>
+<!-- Card 4: 稿条 -->
+<div class="journal-card p-4.5 flex flex-col items-center justify-center text-center">
+<div class="flex items-center gap-1.5 text-stone-500 text-xs font-medium mb-1">
+<!-- Note / Sheet Icon -->
+<svg class="w-3.5 h-3.5 stroke-stone-500 stroke-[1.8] fill-none" viewBox="0 0 24 24">
+<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+<line x1="8" x2="16" y1="13" y2="13"></line>
+<line x1="8" x2="12" y1="17" y2="17"></line>
+</svg>
+<span class="">稿条</span>
+</div>
+<div class="text-3xl font-extrabold text-text-main my-1 font-sans">1</div>
+<div class="text-[11px] text-text-muted">我的接单价目</div>
+</div>
+</section>
+<!-- END: StatCardsGrid -->
+<!-- BEGIN: ActiveCommissionNote -->
+<section class="journal-card p-4" data-purpose="quick-access-strip">
+<div class="flex justify-between items-center mb-3">
+<div class="flex items-center gap-2 text-stone-800 font-bold text-sm">
+<!-- Pencil Drawing Icon -->
+<svg class="w-4 h-4 text-stone-500 stroke-[2] fill-none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+<path d="m15 5 4 4"></path>
+</svg>
+<span class="">手边的稿子</span>
+</div>
+<div class="text-xs font-semibold text-primary flex items-center gap-0.5 cursor-pointer hover:opacity-80">
+<span class="">查看 0 单</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewBox="0 0 24 24">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</div>
+</div>
+<p class="text-xs text-stone-500 font-normal">手上暂时没有稿件，去稿单页创建一单吧～</p>
+</section>
+<!-- END: ActiveCommissionNote -->
+<!-- BEGIN: EmptyStateIllustration -->
+<section class="flex flex-col items-center justify-center pt-8 pb-4 text-center" data-purpose="empty-state">
+<!-- Cute Mascot Character (Prone/Lying down) -->
+<div class="w-24 h-24 relative mb-2 flex items-center justify-center">
+<svg class="w-20 h-20 filter drop-shadow-sm" fill="none" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+<!-- Antennae / Leaves -->
+<circle cx="28" cy="18" fill="#71b764" r="4.5" stroke="#2a4732" stroke-width="2"></circle>
+<path d="M28 22v6" stroke="#2a4732" stroke-width="2"></path>
+<circle cx="52" cy="18" fill="#71b764" r="4.5" stroke="#2a4732" stroke-width="2"></circle>
+<path d="M52 22v6" stroke="#2a4732" stroke-width="2"></path>
+<!-- Main Hood Head -->
+<rect fill="#8ed07c" height="38" rx="18" stroke="#2a4732" stroke-width="2.2" width="44" x="18" y="24"></rect>
+<!-- Face Area Inner -->
+<rect fill="#fff5ea" height="25" rx="12" width="30" x="25" y="32"></rect>
+<!-- Hair bangs and face -->
+<path d="M26 38c3 4 8 4 10 2 2 3 8 3 10-2" fill="#fed289"></path>
+<!-- Eyes -->
+<circle cx="34" cy="42" fill="#3a251e" r="2.2"></circle>
+<circle cx="46" cy="42" fill="#3a251e" r="2.2"></circle>
+<!-- Blush -->
+<ellipse cx="29" cy="46" fill="#f8abab" rx="2.5" ry="1.5"></ellipse>
+<ellipse cx="51" cy="46" fill="#f8abab" rx="2.5" ry="1.5"></ellipse>
+<!-- Small mouth -->
+<path d="M38 46c1 1 3 1 4 0" stroke="#3a251e" stroke-linecap="round" stroke-width="1.4"></path>
+<!-- Little Paws in front -->
+<circle cx="31" cy="62" fill="#8ed07c" r="4" stroke="#2a4732" stroke-width="2"></circle>
+<circle cx="49" cy="62" fill="#8ed07c" r="4" stroke="#2a4732" stroke-width="2"></circle>
+<!-- Curled tail/back -->
+<path d="M62 48c4 0 6 3 6 7s-3 6-7 6" fill="none" stroke="#2a4732" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<p class="text-sm font-semibold text-stone-600 tracking-wide">还没有稿单哦～</p>
+<p class="text-xs text-stone-400 mt-1.5 flex items-center justify-center gap-1 font-medium">
+          点击右下角 <span class="font-bold text-stone-600 text-sm leading-none">+</span> 创建第一单吧！
+        </p>
+</section>
+<!-- END: EmptyStateIllustration -->
+</main>
+<!-- BEGIN: BottomNavigationBar -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/95 backdrop-blur-md border-t border-stone-200/70 pt-2 pb-5 px-6 flex justify-around items-center z-50" data-purpose="tab-bar">
+<!-- Tab 1: 首页 (Active) -->
+<a class="flex flex-col items-center justify-center gap-1 group" href="#">
+<div class="px-5 py-1.5 rounded-full bg-primary-light transition-all flex items-center justify-center">
+<!-- House Icon -->
+<svg class="w-5 h-5 text-primary stroke-[2.2] fill-none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="m3 9.5 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M9 22V12h6v10" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-[11px] font-bold text-primary tracking-tight">首页</span>
+</a>
+<!-- Tab 2: 稿单 -->
+<a class="flex flex-col items-center justify-center gap-1 text-stone-400 hover:text-stone-600 transition-colors" href="#">
+<div class="p-1.5 flex items-center justify-center">
+<!-- Clipboard / Task Icon -->
+<svg class="w-5 h-5 stroke-[1.8] fill-none" stroke="currentColor" viewBox="0 0 24 24">
+<rect height="18" rx="2" width="14" x="5" y="4"></rect>
+<path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M9 10h6" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M9 14h6" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-[11px] font-medium tracking-tight">稿单</span>
+</a>
+<!-- Tab 3: 画库 -->
+<a class="flex flex-col items-center justify-center gap-1 text-stone-400 hover:text-stone-600 transition-colors" href="#">
+<div class="p-1.5 flex items-center justify-center">
+<!-- Bear / Mascot / Gallery Icon -->
+<svg class="w-5 h-5 stroke-[1.8] fill-none" stroke="currentColor" viewBox="0 0 24 24">
+<circle cx="12" cy="13" r="8"></circle>
+<circle cx="6" cy="6" r="2.5"></circle>
+<circle cx="18" cy="6" r="2.5"></circle>
+<path d="M10 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>
+<path d="M14 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>
+<circle cx="12" cy="15" r="1"></circle>
+</svg>
+</div>
+<span class="text-[11px] font-medium tracking-tight">画库</span>
+</a>
+<!-- Tab 4: 我的 -->
+<a class="flex flex-col items-center justify-center gap-1 text-stone-400 hover:text-stone-600 transition-colors" href="#">
+<div class="p-1.5 flex items-center justify-center">
+<!-- User / Profile Icon -->
+<svg class="w-5 h-5 stroke-[1.8] fill-none" stroke="currentColor" viewBox="0 0 24 24">
+<circle cx="12" cy="8" r="4.5"></circle>
+<path d="M6 21v-2a5 5 0 0 1 12 0v2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-[11px] font-medium tracking-tight">我的</span>
+</a>
+</nav>
+<!-- END: BottomNavigationBar -->
+<!-- Mobile Home Bar Indicator (iOS Safe Area) -->
+<div class="fixed bottom-1 left-0 right-0 flex justify-center pointer-events-none z-50">
+<div class="w-32 h-1 bg-stone-800/60 rounded-full"></div>
+</div>
+</div>
+
+
+</body></html>

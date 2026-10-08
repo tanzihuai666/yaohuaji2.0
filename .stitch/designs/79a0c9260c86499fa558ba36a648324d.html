@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="zh-CN" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_stack" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "tertiary-container": "#b8ab7e", "tertiary-fixed-dim": "#d4c697", "secondary": "#a13e37", "surface-variant": "#e0e3df", "on-surface-variant": "#414944", "on-secondary-container": "#751d19", "background": "#f7faf5", "surface-container-highest": "#e0e3df", "error": "#ba1a1a", "tertiary": "#685e38", "primary-container": "#3c6a58", "on-tertiary-fixed": "#221b00", "surface-dim": "#d8dbd6", "inverse-primary": "#a0d1bb", "surface-container": "#ecefea", "error-container": "#ffdad6", "tertiary-fixed": "#f1e2b2", "surface-container-lowest": "#ffffff", "secondary-container": "#ff857a", "on-tertiary-fixed-variant": "#4f4622", "on-error-container": "#93000a", "on-primary-fixed-variant": "#204f3e", "surface": "#f7faf5", "surface-bright": "#f7faf5", "surface-tint": "#396755", "on-secondary-fixed": "#410002", "on-secondary-fixed-variant": "#822622", "on-tertiary-container": "#483f1c", "secondary-fixed": "#ffdad6", "outline": "#717974", "outline-variant": "#c0c8c3", "on-surface": "#191c1a", "primary-fixed": "#bbedd7", "on-primary-container": "#b6e8d1", "surface-container-low": "#f1f4f0", "inverse-surface": "#2d312e", "on-error": "#ffffff", "on-background": "#191c1a", "primary-fixed-dim": "#a0d1bb", "on-tertiary": "#ffffff", "primary": "#235241", "secondary-fixed-dim": "#ffb4ab", "on-secondary": "#ffffff", "surface-container-high": "#e6e9e4", "on-primary-fixed": "#002116", "inverse-on-surface": "eff2ed", "on-primary": "#ffffff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "gutter": "0.75rem", "space-sm": "0.5rem", "space-xl": "1.5rem", "margin": "1rem", "space-md": "0.75rem", "space-lg": "1rem" }, fontFamily: { "title-md": ["Nunito Sans"], "headline-md": ["Nunito Sans"], "stat-counter": ["Nunito Sans"], "body-lg": ["Nunito Sans"], "label-md": ["Nunito Sans"], "body-md": ["Nunito Sans"], "label-lg": ["Nunito Sans"], "display-lg": ["Nunito Sans"], "headline-lg": ["Nunito Sans"] }, fontSize: { "title-md": ["16px", { lineHeight: "22px", fontWeight: "700" }], "headline-md": ["18px", { lineHeight: "26px", fontWeight: "700" }], "stat-counter": ["26px", { lineHeight: "32px", fontWeight: "800" }], "body-lg": ["15px", { lineHeight: "22px", fontWeight: "600" }], "label-md": ["11px", { lineHeight: "14px", fontWeight: "600" }], "body-md": ["13px", { lineHeight: "18px", fontWeight: "500" }], "label-lg": ["13px", { lineHeight: "18px", fontWeight: "700" }], "display-lg": ["32px", { lineHeight: "40px", fontWeight: "800" }], "headline-lg": ["22px", { lineHeight: "30px", fontWeight: "800" }] } } } }</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;background-image:radial-gradient(circle,#c0c8c3 0.8px,transparent 0.8px);background-size:16px 16px;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen" style="background-color: rgb(247, 250, 245); background-image: radial-gradient(rgb(211, 219, 209) 1.2px, transparent 1.2px); background-size: 20px 20px;"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(60,106,88,0.06)]"><div class="h-14 px-margin flex items-center justify-between"><button aria-label="返回" class="w-11 h-11 rounded-full flex items-center justify-center text-primary hover:bg-surface-container active:scale-95 transition-transform" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><h1 class="font-headline-md text-headline-md text-primary tracking-tight text-center truncate flex-1 px-space-sm">新建角色</h1><div class="flex items-center justify-end gap-space-xs"><button class="min-h-[44px] px-space-md py-space-xs rounded-full bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg shadow-[0_4px_12px_rgba(60,106,88,0.18)] active:scale-95 transition-all flex items-center gap-space-xs" type="button"><span class="material-symbols-outlined text-[18px]">check</span><span class="">保存</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-14 pb-safe bg-transparent min-h-screen"><div class="flex flex-col w-full px-margin pb-space-xl space-y-space-lg">
+<!-- Header Banner / Mascot Note -->
+<div class="bg-surface-container rounded-xl p-space-md shadow-sm relative overflow-hidden flex items-center justify-between">
+<div class="flex items-center gap-space-sm z-10">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: &quot;FILL&quot; 1;">auto_stories</span>
+</div>
+<div>
+<div class="font-title-md text-title-md text-primary flex items-center gap-space-xs">
+<span class="">设子档案录入</span>
+<span class="text-label-md font-label-md bg-secondary text-on-secondary px-space-xs py-0.5 rounded-full">New OC</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">给新崽崽建立专属的手账画库档案吧~</p>
+</div>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-highest/60 flex items-center justify-center text-primary/30 -mr-2">
+<span class="material-symbols-outlined text-[36px]">pets</span>
+</div>
+</div>
+<!-- 1. 核心形象与立绘设定卡片 (设子橱窗) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_4px_18px_rgba(74,90,80,0.05)] space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-primary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">palette</span>
+<span class="">设子橱窗与色卡</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container-low px-space-xs py-0.5 rounded-full">最多支持6张</span>
+</div>
+<!-- 主头像与主要视觉 -->
+<div class="flex items-center gap-space-md bg-surface-container-low p-space-md rounded-xl">
+<div class="relative group cursor-pointer">
+<div class="w-20 h-20 rounded-xl overflow-hidden bg-surface-container-highest flex flex-col items-center justify-center relative shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Cute pastel anime character bust illustration with golden hair and a blue hairband, hand-drawn warm watercolor style on soft cream paper texture with gentle blush cheeks and sparkling eyes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCarPtDRu717tPWfzy-XJNPshnNmjUB3Sj3lVD6-059-l0t66_a8MohrwHZUoVSe_COtAXd5yoW9MxdR26Q-7dR9jo6DF2abKGd9z9DbMhLb8d2yiEthEBRIfyl8jufrzIOsKpK9phGrNlUgnq6Ir8u2eRX3ujMZ-e273WEoV_nJb-KF7u9zNSTN0DI8zGo3zPD2dWnE7nZMLRtAq5T0OwKP04WDxJuZ6JNXMibaAdltJcfZt7QbTBP">
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-on-primary text-[20px]">photo_camera</span>
+</div>
+</div>
+<div class="absolute -bottom-1.5 -right-1.5 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[14px]">edit</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="font-title-md text-title-md text-on-surface truncate">主设封面头像</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5 line-clamp-1">将在角色列表中以手账贴纸形式优先展示</p>
+<div class="mt-space-xs flex items-center gap-space-xs">
+<span class="font-label-md text-label-md px-space-xs py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed">主设定</span>
+<span class="font-label-md text-label-md px-space-xs py-0.5 rounded-full bg-surface-container text-on-surface-variant">正比半身</span>
+</div>
+</div>
+</div>
+<!-- 设子立绘 / 三视图 / 色卡轮播栏 -->
+<div>
+<div class="font-label-lg text-label-lg text-on-surface mb-space-xs flex items-center justify-between">
+<span class="">立绘 / 细节参考 / 色卡</span>
+<span class="font-label-md text-label-md text-primary font-bold">2/6 已添加</span>
+</div>
+<div class="grid grid-cols-3 gap-space-sm">
+<!-- 现有缩略图 1 -->
+<div class="relative aspect-square rounded-lg overflow-hidden bg-surface-container-high group">
+<img class="w-full h-full object-cover" data-alt="Full body concept art of an anime magical girl wearing a soft lavender dress holding a floral staff, warm pastel watercolor illustration on vintage cream paper texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF8mOovK-Cq0dUCBOLwuM7J3xsgavk165JmW37iS12kQMJRzESTD8_bkJcu9kwLF_iGYAmZA5g7bJscQgqqgU2dOqRWOOSJ7NTIJFw5pRkoSU0afsQkf1QTy1CWP74jZBo77F0SW_qJ2vNreqdeSkiQKPmA7KbNu2pPMQjn5U7nTtDKb4khEbmgoPxuN9SMkBZaJEzbAhw3QZ5-5PnIVXpRd4vSFyIdh6d03By91pGOjMEeuWXwRzi">
+<div class="absolute top-1 left-1 bg-on-surface/60 backdrop-blur-sm text-surface-container-lowest text-label-md font-label-md px-1.5 py-0.5 rounded">
+            立绘 01
+          </div>
+<button aria-label="删除图片" class="absolute top-1 right-1 w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center opacity-80 active:scale-90" type="button">
+<span class="material-symbols-outlined text-[12px]">close</span>
+</button>
+</div>
+<!-- 现有缩略图 2 (Sample水印参考) -->
+<div class="relative aspect-square rounded-lg overflow-hidden bg-surface-container-high group">
+<img class="w-full h-full object-cover" data-alt="Detailed anime character sheet showing color swatches and facial expression sheet with sample watermark, soft muted pastel colors on dot grid paper background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1cC_K56EHV8StFa2wdKs9zzlnbYe_fXbQ8ta2ecZpKkvFRKCs0_HE1bG6r4PifGHKYRSAUjpVycWqvdnZJtc5JUOwgWjKhwTuDxji3ernqm_EphWI9hkbFdzXBfxxJ0bsZbfNBcvM7X7ork68fGkN9aO6vPOTz4A1NmE3zLu2qs6r1lE5oI0BCLMKNVGCx7Nvk34kh2WFcF3iq6w6xCVR_cm6R1GyDpSKqHkzRVTLlwjhFMw-TZUu">
+<div class="absolute top-1 left-1 bg-on-surface/60 backdrop-blur-sm text-surface-container-lowest text-label-md font-label-md px-1.5 py-0.5 rounded">
+            色卡 02
+          </div>
+<button aria-label="删除图片" class="absolute top-1 right-1 w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center opacity-80 active:scale-90" type="button">
+<span class="material-symbols-outlined text-[12px]">close</span>
+</button>
+</div>
+<!-- 添加更多卡片 -->
+<button class="aspect-square rounded-lg bg-surface-container flex flex-col items-center justify-center text-primary hover:bg-surface-container-high active:scale-95 transition-all" type="button">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center mb-1">
+<span class="material-symbols-outlined text-primary text-[20px]">add</span>
+</div>
+<span class="font-label-md text-label-md font-bold">添加画稿</span>
+<span class="font-label-md text-label-md text-on-surface-variant text-[10px]">立绘/色卡</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 2. 角色基本档案 (信息卡片) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_4px_18px_rgba(74,90,80,0.05)] space-y-space-md">
+<div class="flex items-center gap-space-xs text-primary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">badge</span>
+<span class="">基础档案</span>
+</div>
+<!-- 角色名 & 编号 -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface" for="char-name">角色名字 / 昵称 <span class="text-secondary">*</span></label>
+<span class="font-label-md text-label-md text-on-surface-variant">手账卡片标题</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex-1 bg-surface-container-low rounded-lg px-space-md py-space-xs flex items-center">
+<input class="w-full bg-transparent font-title-md text-title-md text-on-surface outline-none placeholder:text-outline-variant" id="char-name" placeholder="给你的设子起个名字吧..." type="text" value="小令民">
+</div>
+<div class="bg-primary-fixed px-space-md py-space-xs rounded-lg flex items-center gap-1 shadow-sm shrink-0">
+<span class="font-label-md text-label-md text-on-primary-fixed">编号</span>
+<span class="font-title-md text-title-md text-primary font-extrabold">#02</span>
+</div>
+</div>
+</div>
+<!-- 种族 / 身份标签选择 -->
+<div class="space-y-space-xs">
+<label class="font-label-lg text-label-lg text-on-surface">种族 / 身份属性</label>
+<div class="flex flex-wrap gap-space-xs">
+<button class="px-space-md py-1 rounded-full font-label-md text-label-md bg-primary text-on-primary shadow-sm active:scale-95 transition-all" type="button">人类女巫</button>
+<button class="px-space-md py-1 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all" type="button">精灵族</button>
+<button class="px-space-md py-1 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all" type="button">古风修仙</button>
+<button class="px-space-md py-1 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all" type="button">毛茸茸/福瑞</button>
+<button class="px-space-md py-1 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all" type="button">机甲/赛博</button>
+<button class="w-7 h-7 rounded-full bg-surface-container text-primary flex items-center justify-center active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div><div class="grid grid-cols-3 gap-space-sm"><div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col justify-center"><label class="font-label-md text-label-md text-on-surface-variant" for="char-gender">性别</label><input class="w-full bg-transparent font-title-md text-title-md text-on-surface outline-none mt-0.5" id="char-gender" placeholder="例: 女 / 少女" type="text" value="女"></div><div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col justify-center"><label class="font-label-md text-label-md text-on-surface-variant" for="char-height">身高</label><input class="w-full bg-transparent font-title-md text-title-md text-on-surface outline-none mt-0.5" id="char-height" placeholder="例: 162 cm" type="text" value="158 cm"></div><div class="bg-surface-container-low p-space-sm rounded-lg flex flex-col justify-center"><label class="font-label-md text-label-md text-on-surface-variant" for="char-birthday">生日</label><input class="w-full bg-transparent font-title-md text-title-md text-on-surface outline-none mt-0.5" id="char-birthday" placeholder="例: 04月18日" type="text" value="04月18日"></div></div>
+<!-- 设子个性短签 / 口头禅 -->
+<div class="space-y-space-xs">
+<label class="font-label-lg text-label-lg text-on-surface" for="char-motto">一句话台词 / 性格特征</label>
+<div class="bg-surface-container-low rounded-lg p-space-sm flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px] mt-0.5">format_quote</span>
+<textarea class="w-full bg-transparent font-body-md text-body-md text-on-surface outline-none resize-none placeholder:text-outline-variant" id="char-motto" placeholder="如：'今天也是元气满满的见习炼金术士！' / 傲娇温和、天然呆..." rows="2">今天也是努力调配新药水的见习小魔女 (≧∇≦)/</textarea>
+</div>
+</div>
+</div>
+<!-- 3. 约稿与预算管理 (画库特色看板) -->
+
+<!-- 4. 设子特征备忘录 (手账便签卡片) -->
+<!-- 3. 角色背景与故事模块 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_4px_18px_rgba(74,90,80,0.05)] space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-primary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">menu_book</span>
+<span class="">角色背景</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container-low px-space-xs py-0.5 rounded-full">世界观 / 生平故事</span>
+</div>
+<div class="space-y-space-xs">
+<div class="bg-surface-container-low rounded-xl p-space-md space-y-space-xs">
+<textarea class="w-full bg-transparent font-body-md text-body-md text-on-surface outline-none resize-none leading-relaxed placeholder:text-outline-variant" id="char-background" placeholder="写一写 Ta 的出身背景、世界观设定、经历、与他人的羁绊或日常趣事...（支持自由分段与排版）" rows="4"></textarea>
+<div class="flex items-center justify-between text-on-surface-variant pt-space-xs border-t border-surface-container">
+<span class="font-label-md text-label-md text-[10px] flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">ink_pen</span>支持手账风图文排版</span>
+<span class="font-label-md text-label-md text-[10px]">0 / 800 字</span>
+</div>
+</div>
+<div class="pt-space-xs">
+<div class="font-label-md text-label-md text-on-surface-variant mb-space-xs">灵感速添词条：</div>
+<div class="flex flex-wrap gap-space-xs">
+<button class="px-space-xs py-1 rounded-lg font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all flex items-center gap-0.5" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary">add</span>出身阵营
+</button>
+<button class="px-space-xs py-1 rounded-lg font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all flex items-center gap-0.5" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary">add</span>核心经历
+</button>
+<button class="px-space-xs py-1 rounded-lg font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all flex items-center gap-0.5" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary">add</span>羁绊关系
+</button>
+<button class="px-space-xs py-1 rounded-lg font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all flex items-center gap-0.5" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary">add</span>隐藏秘密
+</button>
+</div>
+</div>
+</div>
+</div><div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_4px_18px_rgba(74,90,80,0.05)] space-y-space-md">
+<div class="flex items-center gap-space-xs text-primary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">sticky_note_2</span>
+<span class="">设子特征备忘与雷点</span>
+</div>
+<!-- 关键外观速查 -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-md text-label-md text-on-surface-variant">发型发色</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface outline-none mt-0.5 font-bold" type="text" value="浅金色双马尾 + 蓝色发带">
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-md text-label-md text-on-surface-variant">瞳色/瞳孔细节</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface outline-none mt-0.5 font-bold" type="text" value="青金石蓝宝石眼">
+</div>
+</div>
+<!-- 画师对接注意事项 / 雷点便签 -->
+<div class="bg-error-container/40 p-space-md rounded-xl space-y-space-xs">
+<div class="flex items-center gap-space-xs text-error font-label-lg text-label-lg">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span class="">画师注意事项 / 作画雷点 (给太太看的Tips)</span>
+</div>
+<textarea class="w-full bg-transparent font-body-md text-body-md text-on-error-container outline-none resize-none leading-relaxed" placeholder="如：左右手手环不对称、请勿画错呆毛方向、不要画过于阴暗的表情..." rows="3">1. 蓝发带上的金色齿轮饰品一定在左侧；
+2. 眼神要有小高光，整体是阳光治愈路线；
+3. 不接受私自改变服饰配色。</textarea>
+</div>
+</div>
+<!-- 5. 画库归档与展示权限 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-[0_4px_18px_rgba(74,90,80,0.05)] space-y-space-md">
+<div class="flex items-center gap-space-xs text-primary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">folder_shared</span>
+<span class="">归档与展示设置</span>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low p-space-md rounded-xl">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">folder</span>
+</div>
+<div>
+<div class="font-title-md text-title-md text-on-surface">归档文件夹</div>
+<div class="font-body-md text-body-md text-on-surface-variant">默认画库 / 主世界观企划</div>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant" type="button">
+<span class="material-symbols-outlined text-[18px]">keyboard_arrow_right</span>
+</button>
+</div>
+<!-- 置顶开关与隐私 -->
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">push_pin</span>
+<span class="font-body-lg text-body-lg text-on-surface">设子置顶展示</span>
+</div>
+<!-- Switch Active -->
+<button aria-label="切换置顶" class="w-12 h-7 bg-primary rounded-full relative p-0.5 flex items-center transition-colors" type="button">
+<div class="w-6 h-6 rounded-full bg-surface shadow-sm translate-x-5 transition-transform"></div>
+</button>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">visibility</span>
+<div>
+<span class="font-body-lg text-body-lg text-on-surface">橱窗公开给约稿画师</span>
+<p class="font-label-md text-label-md text-on-surface-variant">允许画师通过扫码/直链查看高清三视图</p>
+</div>
+</div>
+<!-- Switch Active -->
+<button aria-label="切换公开" class="w-12 h-7 bg-primary rounded-full relative p-0.5 flex items-center transition-colors" type="button">
+<div class="w-6 h-6 rounded-full bg-surface shadow-sm translate-x-5 transition-transform"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- 6. 底部操作按钮栏 -->
+<div class="flex items-center gap-space-sm pt-space-xs">
+<button class="flex-1 min-h-[48px] rounded-full bg-surface-container font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all flex items-center justify-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[20px]">archive</span>
+<span class="">存为草稿</span>
+</button>
+<button class="flex-[2] min-h-[48px] rounded-full bg-primary font-label-lg text-label-lg text-on-primary shadow-[0_6px_16px_rgba(60,106,88,0.22)] active:scale-95 transition-all flex items-center justify-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span class="">生成手账角色卡</span>
+</button>
+</div>
+</div>
+<script>
+  // Micro-interactions for chip toggles and feedback
+  document.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      // Gentle tactile vibration if available
+      if (window.navigator && window.navigator.vibrate) {
+        window.navigator.vibrate(12);
+      }
+    });
+  });
+</script></main>
+
+
+
+</body></html>

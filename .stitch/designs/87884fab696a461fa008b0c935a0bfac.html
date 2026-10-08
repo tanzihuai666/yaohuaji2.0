@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>妖画集 - 稿单详情</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-bright": "#f7faf5",
+            "tertiary-container": "#b8ab7e",
+            "on-primary-container": "#b6e8d1",
+            "secondary-fixed-dim": "#ffb4ab",
+            "secondary-container": "#ff857a",
+            "on-surface": "#191c1a",
+            "primary-container": "#3c6a58",
+            "surface-container": "#ecefea",
+            "error": "#ba1a1a",
+            "surface": "#f7faf5",
+            "on-secondary-fixed": "#410002",
+            "on-error-container": "#93000a",
+            "secondary": "#a13e37",
+            "surface-container-high": "#e6e9e4",
+            "on-tertiary-fixed": "#221b00",
+            "primary": "#235241",
+            "on-tertiary-fixed-variant": "#4f4622",
+            "inverse-on-surface": "#eff2ed",
+            "error-container": "#ffdad6",
+            "tertiary": "#685e38",
+            "secondary-fixed": "#ffdad6",
+            "inverse-surface": "#2d312e",
+            "on-tertiary-container": "#483f1c",
+            "on-primary-fixed": "#002116",
+            "surface-tint": "#396755",
+            "outline-variant": "#c0c8c3",
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#a0d1bb",
+            "on-secondary-container": "#751d19",
+            "on-primary": "#ffffff",
+            "surface-variant": "#e0e3df",
+            "surface-container-highest": "#e0e3df",
+            "on-tertiary": "#ffffff",
+            "on-background": "#191c1a",
+            "primary-fixed-dim": "#a0d1bb",
+            "primary-fixed": "#bbedd7",
+            "on-secondary-fixed-variant": "#822622",
+            "tertiary-fixed": "#f1e2b2",
+            "outline": "#717974",
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#d4c697",
+            "surface-dim": "#d8dbd6",
+            "on-primary-fixed-variant": "#204f3e",
+            "background": "#f7faf5",
+            "on-surface-variant": "#414944",
+            "on-secondary": "#ffffff",
+            "surface-container-low": "#f1f4f0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-xl": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1rem",
+            "space-md": "0.75rem",
+            "gutter": "0.75rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "display-lg": ["Nunito Sans"],
+            "body-md": ["Nunito Sans"],
+            "title-md": ["Nunito Sans"],
+            "stat-counter": ["Nunito Sans"],
+            "body-lg": ["Nunito Sans"],
+            "headline-lg": ["Nunito Sans"],
+            "label-lg": ["Nunito Sans"],
+            "label-md": ["Nunito Sans"],
+            "headline-md": ["Nunito Sans"]
+          },
+          "fontSize": {
+            "display-lg": ["32px", { "lineHeight": "40px", "fontWeight": "800" }],
+            "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "700" }],
+            "stat-counter": ["26px", { "lineHeight": "32px", "fontWeight": "800" }],
+            "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "headline-lg": ["22px", { "lineHeight": "30px", "fontWeight": "800" }],
+            "label-lg": ["13px", { "lineHeight": "18px", "fontWeight": "700" }],
+            "label-md": ["11px", { "lineHeight": "14px", "fontWeight": "600" }],
+            "headline-md": ["18px", { "lineHeight": "26px", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .notebook-dots {
+      background-color: #f7faf5;
+      background-image: radial-gradient(#d3dbd1 1.2px, transparent 1.2px);
+      background-size: 20px 20px;
+    }
+    .card-shadow {
+      box-shadow: 0 4px 18px rgba(74, 90, 80, 0.05), 0 1px 3px rgba(74, 90, 80, 0.03);
+    }
+    .stamp-badge {
+      box-shadow: 0 4px 14px rgba(60, 106, 88, 0.18);
+    }
+    .dashed-craft-border {
+      border: 1.5px dashed rgba(60, 106, 88, 0.45);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface notebook-dots min-h-screen antialiased flex flex-col justify-between selection:bg-primary-fixed">
+<!-- Mobile Viewport Container -->
+<div class="w-full max-w-md mx-auto min-h-screen flex flex-col relative pb-32">
+<!-- 1. Header (Shared TopAppBar Execution) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin max-w-md mx-auto bg-surface shadow-sm h-14">
+<button aria-label="返回" class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-low text-primary active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+</button>
+<h1 class="text-headline-md font-headline-md font-bold text-on-surface tracking-tight">稿单详情</h1>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-high text-primary hover:bg-surface-container active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+<span class="text-label-lg font-label-lg">编辑</span>
+</button>
+</header>
+<!-- Spacer for fixed TopBar -->
+<div class="h-14"></div>
+<!-- Main Content Area -->
+<main class="px-margin pt-space-lg flex flex-col gap-space-lg">
+<!-- 2. Order Status Stepper Card (手账风便签) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg card-shadow relative overflow-hidden">
+<!-- Cute decorative washi tape on top right corner -->
+<div class="absolute -top-3 right-6 w-16 h-7 bg-primary-fixed/60 -rotate-3 rounded-sm pointer-events-none backdrop-blur-sm border-b border-surface-variant"></div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="text-title-md font-title-md text-on-surface">制作流程节点</span>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-primary-fixed text-primary text-label-md font-label-md">
+            工序进行中 · 色块已定
+          </span>
+</div>
+<!-- 4-Stage Horizontal Stepper -->
+<div class="py-space-md relative">
+<!-- Connector line -->
+<div class="absolute top-7 left-7 right-7 h-[2px] border-t-2 border-dashed border-outline-variant -z-0"></div>
+<div class="grid grid-cols-4 gap-1 relative z-10 text-center">
+<!-- Stage 1: Done -->
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-primary flex items-center justify-center text-label-md font-label-md border-2 border-primary-container/20">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="text-label-md font-label-md mt-1.5 text-on-surface-variant">待接单</span>
+<span class="text-[10px] text-outline mt-0.5">09/24已接</span>
+</div>
+<!-- Stage 2: Active Current -->
+<div class="flex flex-col items-center scale-105">
+<div class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-label-md font-label-md stamp-badge ring-4 ring-primary-fixed/50">
+<span class="material-symbols-outlined text-[18px]">brush</span>
+</div>
+<span class="text-label-lg font-label-lg mt-1 text-primary font-bold">进行中</span>
+<span class="text-[10px] font-bold text-primary-container mt-0.5 bg-primary-fixed/60 px-1.5 rounded-full">铺色中</span>
+</div>
+<!-- Stage 3: Pending -->
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-lowest border-2 border-outline-variant text-outline flex items-center justify-center text-label-md font-label-md">
+                3
+              </div>
+<span class="text-label-md font-label-md mt-1.5 text-outline">待验收</span>
+<span class="text-[10px] text-outline mt-0.5">线稿/色块</span>
+</div>
+<!-- Stage 4: Finished -->
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-lowest border-2 border-outline-variant text-outline flex items-center justify-center text-label-md font-label-md">
+                4
+              </div>
+<span class="text-label-md font-label-md mt-1.5 text-outline">已完成</span>
+<span class="text-[10px] text-outline mt-0.5">终稿交付</span>
+</div>
+</div>
+</div>
+<!-- Quick Progression CTA -->
+<button class="mt-space-sm w-full py-2.5 px-space-md bg-primary-container hover:bg-primary text-on-primary rounded-full flex items-center justify-center gap-2 active:scale-95 transition-transform duration-150 shadow-sm">
+<span class="text-label-lg font-label-lg">推进工序：待验收</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</section>
+<!-- 3. Order Overview & Countdown Card -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg card-shadow flex flex-col gap-space-md">
+<!-- Prominent cute countdown banner -->
+<div class="p-space-md rounded-xl bg-surface-container-low border border-primary-fixed flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">calendar_clock</span>
+</div>
+<div>
+<p class="text-label-lg font-label-lg text-primary">截稿日：2026年10月15日</p>
+<p class="text-body-md font-body-md text-on-surface-variant">剩余周期充足 · 准时交稿印章</p>
+</div>
+</div>
+<div class="px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-lg font-label-lg font-bold">
+            剩 19 天
+          </div>
+</div>
+<!-- Commission Specification Chips -->
+<div>
+<h2 class="text-label-lg font-label-lg text-outline mb-2">规格与授权</h2>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-label-md font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">face</span>
+              头像 · 正比半身
+            </span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-label-md font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">aspect_ratio</span>
+              3000 x 3000 px · 300DPI
+            </span>
+<span class="px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-label-md font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified_user</span>
+              个人收藏 / 社交头像
+            </span>
+</div>
+</div>
+</section>
+<!-- 4. Financial / Price Card (2x2 Balanced Craft Breakdown) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg card-shadow">
+<div class="flex items-center justify-between mb-space-md pb-2 border-b border-surface-container-high">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">payments</span>
+<h2 class="text-title-md font-title-md text-on-surface">稿费结算清单</h2>
+</div>
+<div class="text-right">
+<span class="text-label-md font-label-md text-outline">总计酬劳</span>
+<span class="text-stat-counter font-stat-counter text-primary ml-1 font-bold">¥800</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<!-- Deposit Paid Card -->
+<div class="p-3 bg-surface-container-low rounded-xl border border-primary-fixed flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-label-md text-primary font-bold">已收定金</span>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+<div class="mt-2">
+<p class="text-headline-md font-headline-md text-primary font-bold">¥400</p>
+<p class="text-[11px] text-on-surface-variant mt-0.5">50% 定金已到账 (09/24)</p>
+</div>
+</div>
+<!-- Balance Pending Card -->
+<div class="p-3 bg-surface-container-low rounded-xl border border-outline-variant flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-label-md text-on-surface-variant font-bold">待收尾款</span>
+<span class="material-symbols-outlined text-outline text-[18px]">pending</span>
+</div>
+<div class="mt-2">
+<p class="text-headline-md font-headline-md text-on-surface font-bold">¥400</p>
+<p class="text-[11px] text-outline mt-0.5">待最终验收后付清</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Client & Platform Card -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg card-shadow">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full ring-2 ring-primary-fixed bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A delicate soft watercolor anime girl portrait with pastel pink bubble hairstyle, round sparkling blue eyes, cozy blush cheeks, hand-drawn paper sticker aesthetic, clean white background, soft stationery art style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAVvAMAdVwSJDYkWLDPoWqUL00SMpO7RlNtPBu9ozkWSlTG_m-IVAklWnaJclPN-99Kip7N2jZg22-aTS3TZmOw099RjxIR2B2qygyuuCJdiZVngLbM5DuFscOJIsV6txBwSVIfdnOksl1zZvRUc5pZJAEvSZxQpSY-5vIrDfUmrXvfHA6U_6fIf4pIF22ScNs00K3_CD9CgWvq4FwWVanMMbkW9lw6oGKlcBRMs_6oiM1Q2snlQsQV3qjSeu-B3yNBlZ3eZdRo0M"/>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-title-md font-title-md text-on-surface">桃桃气泡水</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold">金主妈咪</span>
+</div>
+<p class="text-body-md font-body-md text-outline mt-0.5">合作次数：第 2 次合作 · 信用极佳</p>
+</div>
+</div>
+<!-- Platform Badge -->
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface text-label-md font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">storefront</span>
+            米画师
+          </span>
+</div>
+<div class="mt-space-md p-3 rounded-xl bg-surface-container-low text-body-md font-body-md text-on-surface-variant flex items-center justify-between">
+<p class="truncate pr-2">通过米画师企划合作，沟通顺畅，已确认草图。</p>
+<button class="text-primary hover:text-primary-container flex items-center shrink-0" title="复制备注">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</section>
+<!-- 6. Reference & Delivery Artworks Showcase -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg card-shadow">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">palette</span>
+<h2 class="text-title-md font-title-md text-on-surface">参考图与交付画作</h2>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-outline text-label-md font-label-md">
+            2张参考图 · 1张草稿
+          </span>
+</div>
+<div class="grid grid-cols-3 gap-2.5">
+<!-- Artwork 1: Main Ref using https://lh3.googleusercontent.com/aida-public/AB6AXuAMW3Y5CKnjBFkwE3QTfJbu_QD1oItuLBY1aRz-waxmxiGqM1IUlj0HB4M4zuepB8RDeLQxILrbHnWvA5LpdaqSqhfFfOoasnbuBbC3Tnw3x-aFajeKjf4NhgsEdsYAPTmIeyp3Hop7UC_x5_TpUpMCRqWNTqLebGr_bRtR0Dr35eTjVAfUl_t_pmzVIfn-jHa0lANtzqjYdsHPV5p1C7IRI_YQuW4bsNM5i8Zo5CSZZNDdDMQiYN-Bdhic0heABjAx03IF2oC_FWM -->
+<div class="flex flex-col">
+<div class="aspect-[3/4] rounded-lg overflow-hidden border border-outline-variant relative group">
+<img alt="设子主参考图" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMW3Y5CKnjBFkwE3QTfJbu_QD1oItuLBY1aRz-waxmxiGqM1IUlj0HB4M4zuepB8RDeLQxILrbHnWvA5LpdaqSqhfFfOoasnbuBbC3Tnw3x-aFajeKjf4NhgsEdsYAPTmIeyp3Hop7UC_x5_TpUpMCRqWNTqLebGr_bRtR0Dr35eTjVAfUl_t_pmzVIfn-jHa0lANtzqjYdsHPV5p1C7IRI_YQuW4bsNM5i8Zo5CSZZNDdDMQiYN-Bdhic0heABjAx03IF2oC_FWM"/>
+<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-on-surface/70 text-on-primary text-[10px] backdrop-blur-sm">设定原画</span>
+</div>
+<span class="text-[11px] text-center text-outline mt-1 truncate">设定全图.jpg</span>
+</div>
+<!-- Artwork 2: Expression Ref -->
+<div class="flex flex-col">
+<div class="aspect-[3/4] rounded-lg overflow-hidden border border-outline-variant relative group bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="Chibi character expression reference sheet showing cheerful smiling expressions with blue eyes and gold twin tails on vintage cream handmade paper texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7uY0IHTVSF8X9ZkX4FUm2EocATt0KwvLPvcNPN5a05WRu0jr-4VYM4NjiRsT9KoLxPZgxrZfFXDSPAHStpUy_IPmqkIxD6QsNJDf5eM3W9II51HL5rn9hmXgH60hvm_AZBXD5vH4DZY0IwN1Rc3Y9WyW09YNxCkfWnxvD4r2Vl0P--gAT8iQAxc5NyPAIUnR4kE__BDiEWdSQ9h5x3UgnBOTrYu4X8UcaBde9vDoDSLe8-2tKRkgfjfYrM0iV1SAo2EU6o2YEFHE"/>
+<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-on-surface/70 text-on-primary text-[10px] backdrop-blur-sm">表情参考</span>
+</div>
+<span class="text-[11px] text-center text-outline mt-1 truncate">药水手势.png</span>
+</div>
+<!-- Artwork 3: Current Stage Draft -->
+<div class="flex flex-col">
+<div class="aspect-[3/4] rounded-lg overflow-hidden border-2 border-primary-container relative group bg-surface-container-low">
+<img class="w-full h-full object-cover opacity-90" data-alt="Digital art commission rough color block sketch stage with anime girl holding glowing magical potion flask in warm mint and sage green tones on paper." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHB1d3a-SaTNKM8Bs3QVtv8licbwVc2igRAQuQdUKvopNhCEv2I9bAQCkOEsmDt563bi_rOt4xgYciiYX-y_7gwajEGd-FEat5BrmT1EtkNWDwxfEloA7LEW3IxOfBPqfEZAJlJkUAWhG4nuiGestvYvCG_sXvN7pej18aF-sHNH2YWax4jbe7lpdg9GjcgOs7_S8X8Gpt5kR_I7PjuzN6lL2FbxOP8SeKTj-WX8dpLfpHPzVvhVrExqCQjSqTJZGMQlz4VvtNkBw"/>
+<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-primary text-on-primary text-[10px]">阶段色草</span>
+</div>
+<span class="text-[11px] text-center text-primary font-bold mt-1 truncate">色块稿_v2.clip</span>
+</div>
+</div>
+<!-- Dashed Cut-Out Button for Artwork Upload -->
+<button class="mt-space-md w-full py-3 dashed-craft-border rounded-xl bg-surface-container-lowest text-primary hover:bg-surface-container-low flex items-center justify-center gap-1.5 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[20px]">add_photo_alternate</span>
+<span class="text-label-lg font-label-lg">+ 上传阶段草稿 / 终稿</span>
+</button>
+</section>
+<!-- 7. Detailed Requirement & Notes Card (手账便签风格) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg card-shadow relative">
+<!-- Cute hand-drawn paperclip pin -->
+<div class="absolute -top-3 left-6 flex items-center text-outline pointer-events-none">
+<span class="material-symbols-outlined text-[24px] rotate-45 text-primary-container">attach_file</span>
+</div>
+<div class="flex items-center justify-between mb-space-sm pl-4">
+<h2 class="text-title-md font-title-md text-on-surface">企划详细要求与备忘</h2>
+<span class="material-symbols-outlined text-outline text-[18px]">push_pin</span>
+</div>
+<div class="p-3.5 bg-surface-container-low/80 rounded-xl border border-surface-variant font-body-lg text-body-lg text-on-surface leading-relaxed">
+          要求浅金色双马尾，青金石蓝宝石大眼睛，微笑着拿魔法药水瓶。眼神要清透有高光，配饰请参考设子设定。
+        </div>
+<!-- Hand-drawn tags -->
+<div class="mt-space-md flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded-md bg-surface-container-high text-primary text-label-md font-label-md border border-outline-variant/60">
+            #允许公开展示
+          </span>
+<span class="px-2.5 py-1 rounded-md bg-surface-container-high text-primary text-label-md font-label-md border border-outline-variant/60">
+            #需分层PSD
+          </span>
+<span class="px-2.5 py-1 rounded-md bg-secondary-fixed text-on-secondary-fixed text-label-md font-label-md border border-secondary-container/40">
+            #商用加急
+          </span>
+</div>
+</section>
+<!-- 8. Action Footer / Danger Zone -->
+<section class="flex flex-col gap-space-sm pt-space-sm mb-4">
+<!-- Contact Client CTA -->
+<button class="w-full py-3 rounded-full bg-primary-fixed text-on-primary-fixed font-title-md text-title-md flex items-center justify-center gap-2 hover:bg-primary-fixed-dim active:scale-95 transition-transform duration-150 shadow-sm">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+          联系客户
+        </button>
+<!-- Danger Ghost Button -->
+<button class="w-full py-2.5 rounded-full text-error hover:bg-error-container/30 flex items-center justify-center gap-1.5 active:scale-95 transition-transform duration-150 text-label-lg font-label-lg">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+          删除此稿单
+        </button>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Shared Component Execution, Active on "稿单") -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-sm pb-safe max-w-md mx-auto bg-surface-container-lowest shadow-md h-16">
+<!-- Nav Item 1: 首页 (Inactive) -->
+<a class="flex flex-col items-center justify-center text-outline px-3 py-1 hover:bg-surface-container-low transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">home</span>
+<span class="text-label-md font-label-md mt-0.5">首页</span>
+</a>
+<!-- Nav Item 2: 稿单 (Active Match) -->
+<a class="flex flex-col items-center justify-center bg-surface-container-high text-primary rounded-full px-3 py-1" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span class="text-label-md font-label-md mt-0.5 font-bold">稿单</span>
+</a>
+<!-- Nav Item 3: 画库 (Inactive) -->
+<a class="flex flex-col items-center justify-center text-outline px-3 py-1 hover:bg-surface-container-low transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">palette</span>
+<span class="text-label-md font-label-md mt-0.5">画库</span>
+</a>
+<!-- Nav Item 4: 我的 (Inactive) -->
+<a class="flex flex-col items-center justify-center text-outline px-3 py-1 hover:bg-surface-container-low transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="text-label-md font-label-md mt-0.5">我的</span>
+</a>
+</nav>
+</div>
+</body></html>

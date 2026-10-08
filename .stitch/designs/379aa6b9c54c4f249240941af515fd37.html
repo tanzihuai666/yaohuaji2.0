@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>妖画集 - 文件夹画作相册与浏览</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-low": "#f1f4f0",
+            "on-primary-container": "#b6e8d1",
+            "surface-container": "#ecefea",
+            "surface-tint": "#396755",
+            "surface-container-highest": "#e0e3df",
+            "on-primary-fixed": "#002116",
+            "inverse-surface": "#2d312e",
+            "outline-variant": "#c0c8c3",
+            "on-secondary-fixed": "#410002",
+            "secondary-fixed-dim": "#ffb4ab",
+            "secondary": "#a13e37",
+            "outline": "#717974",
+            "on-background": "#191c1a",
+            "on-surface-variant": "#414944",
+            "tertiary-container": "#b8ab7e",
+            "surface-variant": "#e0e3df",
+            "secondary-container": "#ff857a",
+            "surface-dim": "#d8dbd6",
+            "on-primary": "#ffffff",
+            "secondary-fixed": "#ffdad6",
+            "on-secondary-container": "#751d19",
+            "error-container": "#ffdad6",
+            "on-surface": "#191c1a",
+            "on-secondary-fixed-variant": "#822622",
+            "on-tertiary-fixed-variant": "#4f4622",
+            "tertiary": "#685e38",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#f1e2b2",
+            "primary-fixed": "#bbedd7",
+            "on-secondary": "#ffffff",
+            "primary-fixed-dim": "#a0d1bb",
+            "on-error": "#ffffff",
+            "surface-container-high": "#e6e9e4",
+            "error": "#ba1a1a",
+            "tertiary-fixed-dim": "#d4c697",
+            "surface": "#f7faf5",
+            "surface-bright": "#f7faf5",
+            "primary-container": "#3c6a58",
+            "background": "#f7faf5",
+            "on-tertiary-fixed": "#221b00",
+            "on-error-container": "#93000a",
+            "on-tertiary-container": "#483f1c",
+            "inverse-primary": "#a0d1bb",
+            "on-tertiary": "#ffffff",
+            "primary": "#235241",
+            "inverse-on-surface": "#eff2ed",
+            "on-primary-fixed-variant": "#204f3e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.25rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "0.75rem",
+            "gutter": "0.75rem",
+            "space-lg": "1rem",
+            "margin": "1rem",
+            "space-xl": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "headline-md": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "title-md": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "body-lg": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "body-md": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "label-lg": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "label-md": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "stat-counter": ["Nunito Sans", "Noto Sans SC", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-lg": ["22px", { "lineHeight": "30px", "fontWeight": "800" }],
+            "headline-md": ["18px", { "lineHeight": "26px", "fontWeight": "700" }],
+            "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "700" }],
+            "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "label-lg": ["13px", { "lineHeight": "18px", "fontWeight": "700" }],
+            "label-md": ["11px", { "lineHeight": "14px", "fontWeight": "600" }],
+            "stat-counter": ["26px", { "lineHeight": "32px", "fontWeight": "800" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Tactile Micro-dot stationery grid */
+    .stationery-dot-bg {
+      background-color: #f7faf5;
+      background-image: radial-gradient(#cbd4cc 1.2px, transparent 1.2px);
+      background-size: 20px 20px;
+    }
+    .washi-tape-strip {
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 238, 204, 0.85),
+        rgba(255, 238, 204, 0.85) 8px,
+        rgba(255, 226, 179, 0.85) 8px,
+        rgba(255, 226, 179, 0.85) 16px
+      );
+      box-shadow: 0 1px 3px rgba(60, 106, 88, 0.12);
+    }
+    .paper-shadow {
+      box-shadow: 0 4px 18px rgba(74, 90, 80, 0.06), 0 1px 3px rgba(74, 90, 80, 0.04);
+    }
+    .dashed-craft-border {
+      border: 1.5px dashed rgba(60, 106, 88, 0.55);
+    }
+    .craft-stamp-shadow {
+      box-shadow: 0 6px 16px rgba(60, 106, 88, 0.18);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="stationery-dot-bg min-h-screen text-on-surface antialiased font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Mobile Screen Container Constraint -->
+<div class="relative mx-auto min-h-screen max-w-md pb-28 pt-2">
+<!-- Top Sticky Navigation (Tactile Stationery Bar) -->
+<header class="sticky top-0 z-40 bg-surface/90 px-margin py-space-sm backdrop-blur-md">
+<div class="flex items-center justify-between">
+<!-- Rounded Frosted Back Button -->
+<button aria-label="返回上一级" class="flex h-9 w-9 items-center justify-center rounded-full bg-surface-container-lowest text-primary shadow-sm transition-transform active:scale-95" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back_ios_new">arrow_back_ios_new</span>
+</button>
+<!-- Breadcrumb Title with Folder Touch -->
+<div class="flex flex-col items-center">
+<div class="flex items-center gap-1 font-label-md text-label-md text-outline">
+<span>画库</span>
+<span class="text-[10px]">/</span>
+<span>自设集卷</span>
+</div>
+<div class="flex items-center gap-1.5 font-title-md text-title-md text-on-surface">
+<span>主设企划</span>
+<span class="text-sm">📁</span>
+</div>
+</div>
+<!-- Trailing Action: 批量管理 Pill Button -->
+<button class="flex items-center gap-1 rounded-full bg-surface-container-low px-3 py-1.5 font-label-md text-label-md text-primary transition-all hover:bg-surface-container active:scale-95" type="button">
+<span class="material-symbols-outlined text-[15px]" data-icon="checklist">checklist</span>
+<span>批量管理</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="space-y-space-lg px-margin pt-space-xs">
+<!-- 2. Folder Info & Theme Header Card (Stationery Sleeve / Washi Card) -->
+<section class="relative overflow-hidden rounded-2xl bg-surface-container-lowest p-space-md paper-shadow">
+<!-- Cute decorative washi tape on top header edge -->
+<div class="washi-tape-strip absolute -top-2 left-10 h-4 w-20 rotate-[-2deg] rounded-sm opacity-90"></div>
+<div class="flex items-start gap-space-md pt-1">
+<!-- Left: Folder Thumbnail Preview Image -->
+<div class="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-xl border border-surface-container-highest bg-surface-container shadow-inner">
+<img class="h-full w-full object-cover" data-alt="An adorable hand-drawn pastel anime character portrait in warm creamy stationery tones, featuring soft sage green clothing and whimsical floral accents, photographed with diffused natural morning daylight in a tactile aesthetic planner journal vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8S22gWtB0uIJa02dEUYLjnvZp0DmlEDHKVCgYVeeWKXH1juLiKKgtUffYU4fK26AOVsFOLt7TF9LDAz4GgfuVpW_xm8oNRXNPHP18i1TyDI2YmVTs1cUCnS8sUBhV4KN-NaZKsFCsYlNYwXslMVGzlxJ-sgaljJSfBaOmxuUUMn1JQ1y2vs7ny46m30yxr7ITrcWfwb7dfzrobsoklc-RvTKjOpoE7_MxlEkAt-_alHHj_vYtl1K3OT788LQj41MbmWenfrLzKHM"/>
+<div class="absolute bottom-1 right-1 rounded-md bg-inverse-surface/75 px-1 py-0.5 font-label-md text-[9px] text-inverse-on-surface">
+              封面
+            </div>
+</div>
+<!-- Right: Metadata & Badges -->
+<div class="flex flex-1 flex-col justify-between space-y-1.5">
+<div class="flex items-start justify-between">
+<h1 class="font-headline-md text-headline-md text-on-surface">主设企划 · 专属绘卷</h1>
+</div>
+<div class="flex flex-wrap items-center gap-1.5">
+<!-- Sage Green Pill Badge -->
+<span class="inline-flex items-center gap-1 rounded-full bg-primary-fixed px-2 py-0.5 font-label-md text-label-md text-on-primary-fixed">
+<span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+                鼠尾草绿
+              </span>
+<!-- Metadata Badge -->
+<span class="inline-flex items-center rounded-full bg-surface-container px-2 py-0.5 font-label-md text-label-md text-on-surface-variant">
+                12张画作 · 2个关联设子
+              </span>
+</div>
+</div>
+</div>
+<!-- Bottom: Washi Note / Memo Description Banner -->
+<div class="relative mt-space-md rounded-xl bg-surface-container-low p-space-sm pl-7 text-on-surface-variant">
+<span class="material-symbols-outlined absolute left-2 top-2 text-[16px] text-tertiary" data-icon="push_pin">push_pin</span>
+<p class="font-body-md text-body-md leading-relaxed">
+            收录自设世界观全部高精插画、立绘三视图与色卡 ✨
+          </p>
+</div>
+</section>
+<!-- 3. Filter & Tool Bar -->
+<section class="space-y-space-md">
+<!-- Search Pill -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-[18px] text-outline" data-icon="search">search</span>
+<input class="h-11 w-full rounded-full border border-surface-container-highest bg-surface-container-lowest pl-10 pr-9 font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="搜索本文件夹画作/标签..." type="text"/>
+<button aria-label="清空输入" class="absolute right-3 flex h-5 w-5 items-center justify-center rounded-full bg-surface-container text-outline hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[13px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Horizontal Filter Chips -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+<!-- Active Filter Pill -->
+<button class="inline-flex flex-shrink-0 items-center rounded-full bg-primary-container px-3.5 py-1.5 font-label-md text-label-md text-on-primary shadow-sm craft-stamp-shadow active:scale-95" type="button">
+            全部 (12)
+          </button>
+<!-- Inactive Filter Pills -->
+<button class="inline-flex flex-shrink-0 items-center rounded-full border border-surface-container-highest bg-surface-container-lowest px-3 py-1.5 font-label-md text-label-md text-on-surface-variant transition-colors hover:bg-surface-container active:scale-95" type="button">
+            成稿 (8)
+          </button>
+<button class="inline-flex flex-shrink-0 items-center rounded-full border border-surface-container-highest bg-surface-container-lowest px-3 py-1.5 font-label-md text-label-md text-on-surface-variant transition-colors hover:bg-surface-container active:scale-95" type="button">
+            草稿 (3)
+          </button>
+<button class="inline-flex flex-shrink-0 items-center rounded-full border border-surface-container-highest bg-surface-container-lowest px-3 py-1.5 font-label-md text-label-md text-on-surface-variant transition-colors hover:bg-surface-container active:scale-95" type="button">
+            色卡 (1)
+          </button>
+</div>
+<!-- Quick Action Buttons with Dashed Craft Stationery Border -->
+<div class="grid grid-cols-2 gap-space-sm pt-0.5">
+<button class="dashed-craft-border flex h-11 items-center justify-center gap-1.5 rounded-full bg-surface-container-lowest font-label-lg text-label-lg text-primary transition-all hover:bg-surface-container-low active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add_photo_alternate">add_photo_alternate</span>
+<span>+ 导入画作</span>
+</button>
+<button class="dashed-craft-border flex h-11 items-center justify-center gap-1.5 rounded-full bg-surface-container-lowest font-label-lg text-label-lg text-primary transition-all hover:bg-surface-container-low active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="photo_camera">photo_camera</span>
+<span>拍照录入</span>
+</button>
+</div>
+</section>
+<!-- 4. 2-Column Aesthetic Artwork Grid (Masonry feel Polaroid framing) -->
+<section class="grid grid-cols-2 gap-space-md pt-space-xs">
+<!-- Card 1: Anime illustration -->
+<article class="relative flex flex-col overflow-hidden rounded-2xl bg-surface-container-lowest p-2 paper-shadow transition-transform active:scale-[0.98]">
+<!-- Top Corner Stationery Tape Sticker -->
+<div class="washi-tape-strip absolute -top-1.5 right-6 z-10 h-3.5 w-10 rotate-[4deg] rounded-xs opacity-80"></div>
+<div class="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-surface-container-low">
+<img class="h-full w-full object-cover transition-transform duration-300 hover:scale-105" data-alt="Exquisite anime full-body character design concept art titled morning dawn glow, depicting a gentle character with soft emerald eyes and flowing hair under ethereal morning sunlight, painterly digital illustration style in harmonious pastel and sage green tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKdp_BakCVuE8US38K1lq90fFNmgB0rr-1nyex605Bl24Rt2pHkzDH-ExVPXg9wHCDNddeDrfc3b9cvOQ0F3NkrVYGkxi72CI5b2c_KgT304YLnX1ZRb0KYqboc1TmhudxpyXKAbQh-Y_5VRm-Zy2y3d69N0OZWe8Hb8E9I0RRYs-sB5ZbVnXCMtYY_DxM2ohH2_fOCTdejZC2uUPsqTrgJqRGBhGeR59dDJLq6Y42DJ6wggbSD3NW_X_gykHpMihB9NK0sHRw1r4"/>
+<span class="absolute bottom-1.5 left-1.5 rounded-md bg-inverse-surface/70 px-1.5 py-0.5 font-label-md text-[10px] text-inverse-on-surface">
+              3000x4000
+            </span>
+</div>
+<div class="flex flex-col pt-2">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center rounded-md bg-[#e3e9f5] px-1.5 py-0.5 font-label-md text-label-md text-[#364968]">
+                正比立绘
+              </span>
+<span class="font-label-md text-label-md text-outline">09-24</span>
+</div>
+<h2 class="mt-1 line-clamp-1 font-body-lg text-body-lg text-on-surface">小令民 · 晨曦微光</h2>
+<div class="mt-2 flex items-center justify-end gap-1.5 border-t border-surface-container-high pt-1.5">
+<button aria-label="收藏" class="flex h-7 w-7 items-center justify-center rounded-full text-secondary transition-colors hover:bg-error-container active:scale-90" type="button">
+<span class="material-symbols-outlined text-[17px]" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+<button aria-label="下载原图" class="flex h-7 w-7 items-center justify-center rounded-full text-outline transition-colors hover:bg-surface-container active:scale-90" type="button">
+<span class="material-symbols-outlined text-[17px]" data-icon="download">download</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2: Chibi art -->
+<article class="relative flex flex-col overflow-hidden rounded-2xl bg-surface-container-lowest p-2 paper-shadow transition-transform active:scale-[0.98]">
+<!-- Top Corner Stationery Tape Sticker -->
+<div class="washi-tape-strip absolute -top-1.5 left-5 z-10 h-3.5 w-10 rotate-[-5deg] rounded-xs opacity-80"></div>
+<div class="relative aspect-square w-full overflow-hidden rounded-xl bg-surface-container-low">
+<img class="h-full w-full object-cover transition-transform duration-300 hover:scale-105" data-alt="Cute chibi anime avatar portrait illustration featuring peach soda pastel aesthetics, round expressive eyes, whimsical bubble decorations, and cozy warm light on ivory textured paper background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJcNl9p70YfwMNtsSy5hXx3hJgWp9vF00ytul3gu6rJidpXHrQWZTopEiIATy_HLeNl9Y_hzVGBofBTlMYPvH7_FXFoIxs1TIokWPARYwArWSQgyo72gJfe2kMamrJJvDUQdDlY4xUeonqr-O2DTaR4TWjk9C4Gtl39HayS46qLiXzTCprMvYjV-Fyi1oN-jvH0b7M8UvsuJ2_lSGWm7NB37Z4A5sioP-drQAxkYlqdwleC17QnDemfCe_29n0i9XIpvWo-y8iGZg"/>
+<span class="absolute bottom-1.5 left-1.5 rounded-md bg-inverse-surface/70 px-1.5 py-0.5 font-label-md text-[10px] text-inverse-on-surface">
+              2000x2000
+            </span>
+</div>
+<div class="flex flex-col pt-2">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center rounded-md bg-[#ffe8e3] px-1.5 py-0.5 font-label-md text-label-md text-[#9e3a2b]">
+                Q版
+              </span>
+<span class="font-label-md text-label-md text-outline">09-20</span>
+</div>
+<h2 class="mt-1 line-clamp-1 font-body-lg text-body-lg text-on-surface">桃桃气泡水 · 头像</h2>
+<div class="mt-2 flex items-center justify-end gap-1.5 border-t border-surface-container-high pt-1.5">
+<button aria-label="收藏" class="flex h-7 w-7 items-center justify-center rounded-full text-outline transition-colors hover:bg-error-container active:scale-90" type="button">
+<span class="material-symbols-outlined text-[17px]" data-icon="favorite">favorite</span>
+</button>
+<button aria-label="下载原图" class="flex h-7 w-7 items-center justify-center rounded-full text-outline transition-colors hover:bg-surface-container active:scale-90" type="button">
+<span class="material-symbols-outlined text-[17px]" data-icon="download">download</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3: Color palette sheet -->
+<article class="relative flex flex-col overflow-hidden rounded-2xl bg-surface-container-lowest p-2 paper-shadow transition-transform active:scale-[0.98]">
+<!-- Top Corner Stationery Tape Sticker -->
+<div class="washi-tape-strip absolute -top-1.5 right-5 z-10 h-3.5 w-9 rotate-[3deg] rounded-xs opacity-80"></div>
+<div class="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-surface-container-low">
+<img class="h-full w-full object-cover transition-transform duration-300 hover:scale-105" data-alt="Character model sheet orthographic three-view blueprint with harmonious color swatch palette bars, minimalist botanical stationery graphic design style, elegant hand-drawn sketch details on creamy off-white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl5J0sCQrwHqtgOudMGC9EhfNcd5B5uZEHhy1-M770aEgmMU9aC2AgzmWdnzSkzDJuhAdhSMJ7MW7LbQAJayBHrYulufiIAybF3F60FT8QlV0KUTApYQzZ3hXhPKoLM9uzyQBeoXFASK7TY1OmEc4Yo7mEIrqHBITc7eYgYDWKVa4tSyqbZh5VoUym_Jn5T2zTshoTPWlfT_HgN6ErM86uiRnySy3hjGDgs_l-c2ngZlh9ahXbFtO8mys-JVxS0VGGR_83bO1OkfQ"/>
+<span class="absolute bottom-1.5 left-1.5 rounded-md bg-inverse-surface/70 px-1.5 py-0.5 font-label-md text-[10px] text-inverse-on-surface">
+              1800x2400
+            </span>
+</div>
+<div class="flex flex-col pt-2">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center rounded-md bg-[#e3efe8] px-1.5 py-0.5 font-label-md text-label-md text-[#235241]">
+                设定集
+              </span>
+<span class="font-label-md text-label-md text-outline">09-15</span>
+</div>
+<h2 class="mt-1 line-clamp-1 font-body-lg text-body-lg text-on-surface">三视图与配色色板</h2>
+<div class="mt-2 flex items-center justify-end gap-1.5 border-t border-surface-container-high pt-1.5">
+<button aria-label="收藏" class="flex h-7 w-7 items-center justify-center rounded-full text-secondary transition-colors hover:bg-error-container active:scale-90" type="button">
+<span class="material-symbols-outlined text-[17px]" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+<button aria-label="下载原图" class="flex h-7 w-7 items-center justify-center rounded-full text-outline transition-colors hover:bg-surface-container active:scale-90" type="button">
+<span class="material-symbols-outlined text-[17px]" data-icon="download">download</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 4: Wallpaper illustration -->
+<article class="relative flex flex-col overflow-hidden rounded-2xl bg-surface-container-lowest p-2 paper-shadow transition-transform active:scale-[0.98]">
+<!-- Top Corner Stationery Tape Sticker -->
+<div class="washi-tape-strip absolute -top-1.5 left-7 z-10 h-3.5 w-11 rotate-[-3deg] rounded-xs opacity-80"></div>
+<div class="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-surface-container-low">
+<img class="h-full w-full object-cover transition-transform duration-300 hover:scale-105" data-alt="Lush fantasy botanical illustration with warm sunbeams, depicting character in bridal flower wreath surrounded by delicate wildflowers and butterflies, high resolution digital painting in gold amber and soft sage tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk9VIVitjk-sJiEWt6IrLYbiYFISr7lLGTVxjJBn2eFYOn0gCFkf4zS5tg-RkElUJ2IXl2ipjgysT-rTohzlpSwWJ2kYravNwA2FgxCtdWCKMuhFcWnVA38eoavjaWkRkkO5Ch1eF7pk2jRXIGELmY2dMDxVpVKD6qq6qfkxqu_aiMzRN6AlijBkqBtTEZ8uTxFz7Ra17PPeOa0CS8PLaDfXRSE6_ChF4jmQ-uFl8e10dHVYxy7qQCX19N-Q5USTGD0QnBYZ41qAU"/>
+<span class="absolute bottom-1.5 left-1.5 rounded-md bg-inverse-surface/70 px-1.5 py-0.5 font-label-md text-[10px] text-inverse-on-surface">
+              4000x2250
+            </span>
+</div>
+<div class="flex flex-col pt-2">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center rounded-md bg-[#fcf2d9] px-1.5 py-0.5 font-label-md text-label-md text-[#785918]">
+                商业成稿
+              </span>
+<span class="font-label-md text-label-md text-outline">09-10</span>
+</div>
+<h2 class="mt-1 line-clamp-1 font-body-lg text-body-lg text-on-surface">梦幻花嫁 · 最终成品</h2>
+<div class="mt-2 flex items-center justify-end gap-1.5 border-t border-surface-container-high pt-1.5">
+<button aria-label="收藏" class="flex h-7 w-7 items-center justify-center rounded-full text-outline transition-colors hover:bg-error-container active:scale-90" type="button">
+<span class="material-symbols-outlined text-[17px]" data-icon="favorite">favorite</span>
+</button>
+<button aria-label="下载原图" class="flex h-7 w-7 items-center justify-center rounded-full text-outline transition-colors hover:bg-surface-container active:scale-90" type="button">
+<span class="material-symbols-outlined text-[17px]" data-icon="download">download</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- 5. Bottom Floating Storage Pill -->
+<div class="fixed bottom-4 left-0 z-30 flex w-full justify-center px-margin pointer-events-none">
+<div class="pointer-events-auto flex items-center gap-2 rounded-full border border-surface-container-highest/70 bg-surface-container-lowest/90 px-4 py-2 paper-shadow backdrop-blur-md">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-label-md text-on-surface-variant">共 12 张高质画作 · 本地离线 24.6 MB</span>
+<span class="h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>稿条价目表 - 妖画集</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Font: Nunito Sans & Noto Sans SC -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..900;1,6..12,300..900&amp;family=Noto+Sans+SC:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary": "#685e38",
+            "on-secondary-container": "#751d19",
+            "on-tertiary-container": "#483f1c",
+            "primary-fixed": "#bbedd7",
+            "on-secondary-fixed": "#410002",
+            "on-background": "#191c1a",
+            "primary-fixed-dim": "#a0d1bb",
+            "inverse-surface": "#2d312e",
+            "background": "#f7faf5",
+            "on-tertiary-fixed": "#221b00",
+            "on-error-container": "#93000a",
+            "surface": "#f7faf5",
+            "on-primary-fixed-variant": "#204f3e",
+            "secondary-container": "#ff857a",
+            "on-tertiary": "#ffffff",
+            "tertiary-container": "#b8ab7e",
+            "surface-dim": "#d8dbd6",
+            "on-surface": "#191c1a",
+            "secondary-fixed-dim": "#ffb4ab",
+            "surface-container-highest": "#e0e3df",
+            "secondary-fixed": "#ffdad6",
+            "error-container": "#ffdad6",
+            "primary-container": "#3c6a58",
+            "on-primary-container": "#b6e8d1",
+            "surface-tint": "#396755",
+            "error": "#ba1a1a",
+            "secondary": "#a13e37",
+            "on-secondary": "#ffffff",
+            "on-surface-variant": "#414944",
+            "tertiary-fixed": "#f1e2b2",
+            "on-primary-fixed": "#002116",
+            "on-primary": "#ffffff",
+            "surface-container-high": "#e6e9e4",
+            "surface-bright": "#f7faf5",
+            "outline": "#717974",
+            "on-secondary-fixed-variant": "#822622",
+            "tertiary-fixed-dim": "#d4c697",
+            "inverse-primary": "#a0d1bb",
+            "on-error": "#ffffff",
+            "outline-variant": "#c0c8c3",
+            "surface-variant": "#e0e3df",
+            "primary": "#235241",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f1f4f0",
+            "inverse-on-surface": "#eff2ed",
+            "surface-container": "#ecefea",
+            "on-tertiary-fixed-variant": "#4f4622"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-md": "0.75rem",
+            "space-lg": "1rem",
+            "gutter": "0.75rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "label-md": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "headline-lg": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "display-lg": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "title-md": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "headline-md": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "body-md": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "label-lg": ["Nunito Sans", "Noto Sans SC", "sans-serif"],
+            "stat-counter": ["Nunito Sans", "Noto Sans SC", "sans-serif"]
+          },
+          "fontSize": {
+            "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "label-md": ["11px", { "lineHeight": "14px", "fontWeight": "600" }],
+            "headline-lg": ["22px", { "lineHeight": "30px", "fontWeight": "800" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "fontWeight": "800" }],
+            "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "700" }],
+            "headline-md": ["18px", { "lineHeight": "26px", "fontWeight": "700" }],
+            "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "label-lg": ["13px", { "lineHeight": "18px", "fontWeight": "700" }],
+            "stat-counter": ["26px", { "lineHeight": "32px", "fontWeight": "800" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Handcrafted Dotted Stationery Grid Pattern */
+    .bg-journal-pattern {
+      background-color: #f7faf5;
+      background-image: radial-gradient(#c0c8c3 1.2px, transparent 1.2px);
+      background-size: 16px 16px;
+    }
+    /* Washi Tape styling */
+    .washi-tape {
+      background: rgba(220, 235, 226, 0.85);
+      border-left: 2px dashed rgba(60, 106, 88, 0.4);
+      border-right: 2px dashed rgba(60, 106, 88, 0.4);
+      box-shadow: 0 1px 3px rgba(35, 82, 65, 0.08);
+    }
+    .washi-tape-sand {
+      background: rgba(241, 226, 178, 0.85);
+      border-left: 2px dashed rgba(104, 94, 56, 0.4);
+      border-right: 2px dashed rgba(104, 94, 56, 0.4);
+    }
+    /* Perforated edge effect */
+    .perforated-border {
+      border: 1.5px dashed #3c6a58;
+    }
+    /* Subtle tactile shadow */
+    .journal-card-shadow {
+      box-shadow: 0 4px 18px rgba(74, 90, 80, 0.06), 0 1px 3px rgba(74, 90, 80, 0.04);
+    }
+    .stamp-badge-shadow {
+      box-shadow: 0 3px 10px rgba(60, 106, 88, 0.15);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-journal-pattern text-on-surface antialiased min-h-screen pb-36 font-body-md text-body-md flex justify-center">
+<!-- Mobile Frame Container (Max Width 430px) -->
+<div class="w-full max-w-md mx-auto relative min-h-screen flex flex-col px-margin pt-14">
+<!-- 1. Sticky Top Navigation Shell (Shared Components Blueprint compliant) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin max-w-md mx-auto h-14 bg-surface shadow-sm transition-transform duration-150">
+<!-- Back Action Button -->
+<button aria-label="返回" class="w-9 h-9 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm border border-outline-variant/40 active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back_ios_new</span>
+</button>
+<!-- Center Title -->
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h1 class="text-headline-md font-headline-md text-on-surface tracking-tight">稿条价目表</h1>
+</div>
+<!-- Right Action: 导出长图 -->
+<button class="flex items-center gap-1 bg-primary text-on-primary px-3 py-1.5 rounded-full text-label-md font-label-md stamp-badge-shadow active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[15px]">ios_share</span>
+<span>导出长图</span>
+</button>
+</header>
+<!-- Poster Content Canvas Wrapper -->
+<main class="w-full flex flex-col gap-space-lg mt-3">
+<!-- 2. Artist Masthead Banner Card -->
+<section class="relative bg-surface-container-lowest rounded-xl p-4 journal-card-shadow border border-outline-variant/50 pt-5">
+<!-- Washi Tape Accent at Top Center -->
+<div class="absolute -top-2.5 left-1/2 -translate-x-1/2 washi-tape px-5 py-0.5 rounded-sm text-[10px] text-primary font-bold tracking-widest uppercase">
+          ARTIST PORTFOLIO • 2026
+        </div>
+<div class="flex items-start gap-3 mt-1">
+<!-- Artist Avatar with double border ring -->
+<div class="relative flex-shrink-0">
+<div class="w-16 h-16 rounded-full p-0.5 border-2 border-dashed border-primary-container">
+<img class="w-full h-full object-cover rounded-full" data-alt="A charming pastel anime illustrator character avatar wearing cozy studio headphones with a soft green beret and holding a stylus pen, bathed in warm gentle morning sketchbook lighting, painted in creamy gouache texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_DY6PE2-QRgy3PYbM2CyrDAeJg6CwBP9Vps80BKmlD5_bTFuT_8m3xMh5y-S4ocuUYxJIRtWQgTUo-NnbbBAC0I4EEMxA0OxQMK2WPagBCbVeBcaGN6w44hU7cNLq9RBsPhyI-2hBjbNydPhXitGvssDVQ_2DfIpmJhK9low1CiisFPbFovvDYLUZ9NVyice_OvljNKd4_TKNrRrVH3z4d6bA8mYYfsbRARXHtWyUACUrl4eOmW8Kv5YiBUUUaPzyCdlRZt2ZSJY"/>
+</div>
+<!-- Verification Seal Tag -->
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary rounded-full w-5 h-5 flex items-center justify-center text-[12px] shadow-sm">
+<span class="material-symbols-outlined text-[13px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<!-- Artist Details -->
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-1 mb-1">
+<div class="flex items-center gap-1.5">
+<span class="text-headline-md font-headline-md text-on-surface font-bold">妖芝</span>
+<span class="text-label-md font-label-md bg-surface-container-high text-on-surface-variant px-1.5 py-0.5 rounded text-[10px]">独立画师</span>
+</div>
+<!-- Status Pill Badge -->
+<span class="inline-flex items-center gap-1 bg-primary-fixed text-on-primary-fixed-variant px-2 py-0.5 rounded-full text-label-md font-label-md border border-primary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span>档期开放 · 接单中</span>
+</span>
+</div>
+<!-- Slogan -->
+<p class="text-body-md font-body-md text-on-surface-variant italic mb-2">
+              “ 一纸一笔，皆是山河与卿卿 ”
+            </p>
+</div>
+</div>
+<!-- Metric Chips (Paper Tag Style) -->
+<div class="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-dashed border-outline-variant/60">
+<div class="bg-surface-container-low rounded-lg p-2 text-center border border-outline-variant/30">
+<div class="text-label-md font-label-md text-outline">好评率</div>
+<div class="text-title-md font-title-md text-primary font-bold">100%</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-2 text-center border border-outline-variant/30">
+<div class="text-label-md font-label-md text-outline">已完成作品</div>
+<div class="text-title-md font-title-md text-primary font-bold">28 单</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-2 text-center border border-outline-variant/30">
+<div class="text-label-md font-label-md text-outline">准时交付率</div>
+<div class="text-title-md font-title-md text-primary font-bold">99%</div>
+</div>
+</div>
+</section>
+<!-- 3. Price List Section Cards (Editorial Poster Style) -->
+<!-- CATEGORY 01 CARD: Q版与头像 -->
+<section class="relative bg-surface-container-lowest rounded-xl p-4 journal-card-shadow border border-outline-variant/50">
+<!-- Section Header with Pin Icon -->
+<div class="flex items-start justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-[12px]">01</span>
+<div>
+<h2 class="text-title-md font-title-md text-on-surface">Q版与精致头像</h2>
+<p class="text-label-md font-label-md text-outline">Chibi &amp; Avatar Commission</p>
+</div>
+</div>
+<!-- Price Pill -->
+<div class="bg-primary text-on-primary px-3 py-1 rounded-full text-title-md font-title-md tracking-tight stamp-badge-shadow">
+            ¥150 - ¥300
+          </div>
+</div>
+<!-- Turnaround Specs Ribbon -->
+<div class="flex items-center gap-2 bg-surface-container-low px-2.5 py-1.5 rounded-lg mb-3 border border-outline-variant/40">
+<span class="material-symbols-outlined text-primary text-[16px]">schedule</span>
+<span class="text-label-md font-label-md text-on-surface-variant">1-3天出草稿 • 2000×2000px 300DPI</span>
+</div>
+<!-- 3-Column Sample Artwork Grid -->
+<div class="grid grid-cols-3 gap-2">
+<!-- Thumbnail 1 -->
+<div class="flex flex-col items-center">
+<div class="w-full aspect-square rounded-lg p-1 bg-surface-container-high border border-outline-variant/60 shadow-xs relative overflow-hidden group">
+<img class="w-full h-full object-cover rounded-md" data-alt="A super cute pastel chibi anime character holding a matcha roll cake, smiling warmly with large sparkling eyes, surrounded by dainty botanical stationery stickers on clean off-white parchment paper." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG4PNqnLwYoPfH6DVFQuUx-tQLK15EVLw6k7nn9MeiaijOd_RhCGM9Smdi2RfTCSE1G-RLSr2ZOH0o8pnSwAXN6Y3r4FpG1QdGrQ6-9Qh9_WSfM5O4fz4Xmbvb9pFgK_A_wTZbvUMd522D7zvuRqva3lD45oQwTgdfatBx4YlFfE0QRZL6jyM5ImaiBoIkWLnHfC3AYpzXxAFRuQB9zOXCVMuObEeJQJ_ZFCvlXxaqDUU2GcIZbjEz1h-GZd1tfyhyW2pR2PXGtaA"/>
+</div>
+<span class="mt-1.5 text-label-md font-label-md text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded-full border border-outline-variant/30">头像</span>
+</div>
+<!-- Thumbnail 2 -->
+<div class="flex flex-col items-center">
+<div class="w-full aspect-square rounded-lg p-1 bg-surface-container-high border border-outline-variant/60 shadow-xs relative overflow-hidden group">
+<img class="w-full h-full object-cover rounded-md" data-alt="An adorable illustrated chibi girl with cute fox ears and oversized cozy knit sweater, surrounded by fallen autumn leaves and mini tea cups in charming soft cel-shaded cartoon art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhPBUIc2dBjpPVuBYlJM-2b8XM48rnWwUGOBC5r99nktJEn3dsIjClUHEZjTQRibNnsL9w5NB3cdxHXEOHnd9ptKIMx-eI1HvHwpOSIGkEo1GOdZ8w1QnW66Ao10vYR3jdUHcQOtWHpdQAa_kaqCN1KHnaEmE403Tcb3F24Fz4HBzwQLbDGvnzwsW_2jjvKsEWg_HRJsnRUWZEX7r4pQ1yZL6PPPujlq3CB6ODp9NVG5Wusw02-YOuQIhyV9WjMBLXNONDvAc6XVY"/>
+</div>
+<span class="mt-1.5 text-label-md font-label-md text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded-full border border-outline-variant/30">Q版贴纸</span>
+</div>
+<!-- Thumbnail 3 -->
+<div class="flex flex-col items-center">
+<div class="w-full aspect-square rounded-lg p-1 bg-surface-container-high border border-outline-variant/60 shadow-xs relative overflow-hidden group">
+<img class="w-full h-full object-cover rounded-md" data-alt="A vibrant set of chibi expression stamp icons with funny joyful reactions, designed in cute mobile sticker format with clean bold line art and soothing sage green tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHngtwVvozjDPfuXhxLjNx3LrrrwASs0BopfY9M7dNIxEfyxcg7CmHrfXXUKP86AHiZfeHfdZOau8qnH2yD4w3cYnJ4M8G1thmi0hzqVc1aMu-ktwQLKn_zgbCBYEbnH4lT66dgozS7oSO_kSOvc-QZrPp6XgpnWERasTlDOxV8zTtnSG_umIl6cV5sTVoZ3rtDBQaU6rONhIhrZr0_6bXD9ttGJLR9YCKJ-jUC1fhYe3zmtlQiABjkjVW2X2_xk5sN0nMCTNdiXo"/>
+</div>
+<span class="mt-1.5 text-label-md font-label-md text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded-full border border-outline-variant/30">表情包</span>
+</div>
+</div>
+</section>
+<!-- CATEGORY 02 CARD: 正比立绘与插画 -->
+<section class="relative bg-surface-container-lowest rounded-xl p-4 journal-card-shadow border border-outline-variant/50">
+<!-- Corner Washi Accent -->
+<div class="absolute -top-2.5 right-6 washi-tape-sand px-3 py-0.5 rounded-sm text-[10px] text-tertiary font-bold tracking-wider">
+          POPULAR • 热门推荐
+        </div>
+<!-- Section Header -->
+<div class="flex items-start justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-[12px]">02</span>
+<div>
+<h2 class="text-title-md font-title-md text-on-surface">正比立绘与插画</h2>
+<p class="text-label-md font-label-md text-outline">Illustration &amp; Full Body</p>
+</div>
+</div>
+<!-- Price Pill -->
+<div class="bg-primary text-on-primary px-3 py-1 rounded-full text-title-md font-title-md tracking-tight stamp-badge-shadow">
+            ¥600 - ¥1200
+          </div>
+</div>
+<!-- Turnaround Specs Ribbon -->
+<div class="flex items-center gap-2 bg-surface-container-low px-2.5 py-1.5 rounded-lg mb-3 border border-outline-variant/40">
+<span class="material-symbols-outlined text-primary text-[16px]">layers</span>
+<span class="text-label-md font-label-md text-on-surface-variant">含分层PSD • 300DPI高清无损 • 附赠透明底PNG</span>
+</div>
+<!-- 3-Column Sample Artwork Grid -->
+<div class="grid grid-cols-3 gap-2">
+<!-- Thumbnail 1 -->
+<div class="flex flex-col items-center">
+<div class="w-full aspect-square rounded-lg p-1 bg-surface-container-high border border-outline-variant/60 shadow-xs relative overflow-hidden">
+<img class="w-full h-full object-cover rounded-md" data-alt="A delicate anime half-body character illustration of a young scholar holding an open ancient scroll, glowing soft emerald lanterns in the background, refined clean line art and tactile paper texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAU1ph-PVIIrq33QlaKoro1amgg_tuZPoNNYbHIOFkAOX8ZI1VDlBU57zhDDmC0d_xsT5u17rjj27Zfu_Oinywn6be8JbauMsms2C5iblUOQWK4njLCEmNrK8172nawD_N4DYSmfL_H6mEknGpygml_Qv56i6S0vVaX57r8xD-ocOeS09nCX4MBnDjCNB7Dtk3ajtW6Ed_BYLCxtefCay8SfCxIrJKjZM9QLUfhVSmBj_otxCI1rMtrlf_qfohEDYSlrSxknodCRQ"/>
+</div>
+<span class="mt-1.5 text-label-md font-label-md text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded-full border border-outline-variant/30">正比半身</span>
+</div>
+<!-- Thumbnail 2 -->
+<div class="flex flex-col items-center">
+<div class="w-full aspect-square rounded-lg p-1 bg-surface-container-high border border-outline-variant/60 shadow-xs relative overflow-hidden">
+<img class="w-full h-full object-cover rounded-md" data-alt="A full body fantasy character standing with flowing robes, elegant pose with an ornate magical sword, painted in rich painterly gouache and soft sage green atmospheric shading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcrka-AuOKJ87ruNX-xp_zPH_IMmmr6egh2MdbDgEMCh2lHmlOxc6pg-hByZVRJNLPi2AhwE8-btHicAmfyfge-3AP6iS2mI--qM514Jt4fs5KfQgK8GGdf3jgYleM2YTPxoa_oyGVFasI8ktHfrFrvfxMRpGyRgxNwbuofLgdsnAzVs9OkQQIyPkW9NFqcsUHmotIBBy8HtQ_1F-Cm9xUibF84rZwS1NTmUgqCIUjjEq54tsnqlDGkGqxg1yjr8oDZclFnVzISl4"/>
+</div>
+<span class="mt-1.5 text-label-md font-label-md text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded-full border border-outline-variant/30">厚涂立绘</span>
+</div>
+<!-- Thumbnail 3 -->
+<div class="flex flex-col items-center">
+<div class="w-full aspect-square rounded-lg p-1 bg-surface-container-high border border-outline-variant/60 shadow-xs relative overflow-hidden">
+<img class="w-full h-full object-cover rounded-md" data-alt="A cinematic mood illustration depicting a lone girl resting by a rainy greenhouse window filled with gentle monstera and ferns, dreamy warm lighting filtering through droplets on glass." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaf4WGdvNlgPb_b397VzO_1PCh0o288AI7aubNCsdQEo1eQvv_A_8BmVkozqQoQclKLzV0EgNkvOdoaJ-0jgZHY0BlSZEp9raRklOmCg8ePnLfY0DmbLnZIMoAQqeNUYLILZTnJlSaSTRpwyafIuGP3Ax68dIsVRui8k7D9zwDqW7E5dpdhniF2cwI7CgnZ4wwxBSKMPPs6ZEF8suLpvm1bQdtsE_gfd9pf8RSsQH52S89l2BadK1IAlsV0IZfV26kSW83Fh2jqek"/>
+</div>
+<span class="mt-1.5 text-label-md font-label-md text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded-full border border-outline-variant/30">氛围插画</span>
+</div>
+</div>
+</section>
+<!-- CATEGORY 03 CARD: 角色设定集与商用 -->
+<section class="relative bg-surface-container-lowest rounded-xl p-4 journal-card-shadow border border-outline-variant/50">
+<!-- Section Header -->
+<div class="flex items-start justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-[12px]">03</span>
+<div>
+<h2 class="text-title-md font-title-md text-on-surface">角色设定集与商用</h2>
+<p class="text-label-md font-label-md text-outline">Character Sheet &amp; Commercial</p>
+</div>
+</div>
+<!-- Price Pill -->
+<div class="bg-primary text-on-primary px-3 py-1 rounded-full text-title-md font-title-md tracking-tight stamp-badge-shadow">
+            ¥1500+
+          </div>
+</div>
+<!-- Turnaround Specs Ribbon -->
+<div class="flex items-center gap-2 bg-surface-container-low px-2.5 py-1.5 rounded-lg mb-3 border border-outline-variant/40">
+<span class="material-symbols-outlined text-primary text-[16px]">verified_user</span>
+<span class="text-label-md font-label-md text-on-surface-variant">商业独家授权 • 专属排期通道 • 包含拆分源文件</span>
+</div>
+<!-- 3-Column Sample Artwork Grid -->
+<div class="grid grid-cols-3 gap-2">
+<!-- Thumbnail 1 -->
+<div class="flex flex-col items-center">
+<div class="w-full aspect-square rounded-lg p-1 bg-surface-container-high border border-outline-variant/60 shadow-xs relative overflow-hidden">
+<img class="w-full h-full object-cover rounded-md" data-alt="Professional original character turn-around model sheet showing front, side, and back views of an elegant fantasy alchemist character with annotations and color palette swatches." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN2tOIMXOf5kQpJz8qe17ibicQ5Fw8Zu88YH4qOfpL2unUapKMw7-Ewo9o-0l31i1EbduCAsG-gAKL29496QcC1wL9ShJQFBr4K1a2VcQHdETAGbZ8pNSKpsogtJt_WpmkPRxV1nkckbuiULILy03nwFMF_OkrJx9LrSUZHM9VgTny27mzJdGYB5z7yKuY4fOksYGlHIlz8IBBzhIEcAf3OgvsmKJmO5GS7-MG3LbNoSlJ3mpXnUrTI6-vjKnX17CU6XMSIPPAKpA"/>
+</div>
+<span class="mt-1.5 text-label-md font-label-md text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded-full border border-outline-variant/30">三视图设子</span>
+</div>
+<!-- Thumbnail 2 -->
+<div class="flex flex-col items-center">
+<div class="w-full aspect-square rounded-lg p-1 bg-surface-container-high border border-outline-variant/60 shadow-xs relative overflow-hidden">
+<img class="w-full h-full object-cover rounded-md" data-alt="A detailed digital art layer breakdown showing character armor details, accessory cutouts, and hairstyle variations lined up like a precision fashion sketch on cream paper." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwQuuP23QmmHC1QxPz1DVJkTWpEVoC22YEsxBQ-q6IKTTmJGqwMUvKBOog4vrECh2eTVxDWbsdlBJfjo2h1e5xw1Pg4cWqNf92pgdaHVZwchgHLkSM8SQon47RqubH4EHpd4sySXtR_CVvAYUmE61oNRX5Ut7kMcC98xYv5lQRveMS0zoa_pys9fmU-ZRmWBRyhiDU08JXg1EYOFow1CYaCUl6grzZXLeFevwn9ByT9d61kByehXdOWLtBGZxJ1Pq4FovkIMB8xao"/>
+</div>
+<span class="mt-1.5 text-label-md font-label-md text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded-full border border-outline-variant/30">拆分图</span>
+</div>
+<!-- Thumbnail 3 -->
+<div class="flex flex-col items-center">
+<div class="w-full aspect-square rounded-lg p-1 bg-surface-container-high border border-outline-variant/60 shadow-xs relative overflow-hidden">
+<img class="w-full h-full object-cover rounded-md" data-alt="High magnification detail sheet showing ornate costume embroidery, weapon engravings, and fabric texture swatches for high-end indie game character asset design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0EOnKr5RdNtt9S97wRqVc33lVEDlKQnlpRTEykUt1qIEOt7Xebd09KoToJ8uzMSm-DKAOer-_n54UGSaUDNdWjImkxhpMqIYdghP-bRkPxN5OkMALm_m5_52-RvHzWWdI_H6JldKkWys9o1lSS6l-18gmAyQzlX_QSB0wKQimG_xQuJRHRBgnUydFdsocyTuP6EZL0FUdpfBV3oWL_3FWCcmNHzHSg8Q2TWtZFUve_MehL_dWCihj77HE4WZLmhyCjIXSGUoM1GY"/>
+</div>
+<span class="mt-1.5 text-label-md font-label-md text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded-full border border-outline-variant/30">服饰细部</span>
+</div>
+</div>
+</section>
+<!-- 4. Commission Guidelines / Terms Card (约稿须知 - Sticky Note Style) -->
+<section class="relative bg-surface-container-low rounded-xl p-4.5 journal-card-shadow border border-outline-variant/60 overflow-hidden">
+<!-- Paperclip / Bookmark Accent -->
+<div class="absolute -top-1 left-5 flex items-center justify-center">
+<div class="w-4 h-6 border-2 border-primary rounded-full -rotate-12 bg-surface-container-lowest"></div>
+</div>
+<div class="flex items-center gap-2 mb-3 pl-6">
+<span class="material-symbols-outlined text-primary text-[20px]">sticky_note_2</span>
+<h3 class="text-title-md font-title-md text-on-surface">约稿须知 · 合作约定</h3>
+</div>
+<div class="space-y-2.5">
+<!-- Rule 1 -->
+<div class="flex items-start gap-2.5 bg-surface-container-lowest p-2.5 rounded-lg border border-outline-variant/30">
+<div class="w-5 h-5 rounded-full bg-primary-fixed text-primary flex items-center justify-center text-[11px] font-bold mt-0.5 flex-shrink-0">1</div>
+<p class="text-body-md font-body-md text-on-surface">
+<strong class="font-bold text-primary">草稿阶段免费修改2次</strong>，进入色稿阶段仅支持微调明暗色调。
+            </p>
+</div>
+<!-- Rule 2 -->
+<div class="flex items-start gap-2.5 bg-surface-container-lowest p-2.5 rounded-lg border border-outline-variant/30">
+<div class="w-5 h-5 rounded-full bg-primary-fixed text-primary flex items-center justify-center text-[11px] font-bold mt-0.5 flex-shrink-0">2</div>
+<p class="text-body-md font-body-md text-on-surface">
+<strong class="font-bold text-primary">确认线稿后不支持推倒重画</strong>，如遇重大设定变更需补付30%定金。
+            </p>
+</div>
+<!-- Rule 3 -->
+<div class="flex items-start gap-2.5 bg-surface-container-lowest p-2.5 rounded-lg border border-outline-variant/30">
+<div class="w-5 h-5 rounded-full bg-primary-fixed text-primary flex items-center justify-center text-[11px] font-bold mt-0.5 flex-shrink-0">3</div>
+<p class="text-body-md font-body-md text-on-surface">
+<strong class="font-bold text-primary">默认个人非商用</strong>，商用授权、Vup出道或周边实体印刷按基准价 <span class="text-secondary font-bold">2.0倍</span> 结算。
+            </p>
+</div>
+</div>
+</section>
+<!-- 5. Hand-stamped Signature Seal -->
+<div class="my-3 flex flex-col items-center justify-center text-center">
+<!-- Cute Hand-Stamped Round Seal -->
+<div class="inline-flex flex-col items-center justify-center w-28 h-28 rounded-full border-2 border-dashed border-primary text-primary p-2 relative bg-surface-container-lowest/60 rotate-[-4deg] stamp-badge-shadow">
+<!-- Cat paw icon -->
+<span class="material-symbols-outlined text-[24px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">pets</span>
+<span class="text-[12px] font-bold tracking-tight mt-0.5">妖芝设集</span>
+<span class="text-[9px] font-semibold text-outline tracking-wider">诚意出品 • 盖印为凭</span>
+<div class="text-[8px] font-bold tracking-widest text-primary/80 mt-0.5 border-t border-primary/30 pt-0.5">
+            2026 AUTUMN
+          </div>
+</div>
+<p class="text-label-md font-label-md text-outline mt-2 tracking-wide">
+          — 本价目单由画师本人实时维护认证 —
+        </p>
+</div>
+</main>
+<!-- 6. Bottom Fixed Action Dock -->
+<aside class="fixed bottom-0 left-0 w-full z-40 bg-surface/90 backdrop-blur-md px-margin py-3 border-none flex justify-center">
+<div class="w-full max-w-md flex items-center gap-2.5">
+<!-- Secondary Button: 修改价目配置 -->
+<button class="flex-1 h-12 bg-surface-container-lowest text-primary perforated-border rounded-xl flex items-center justify-center gap-1.5 font-label-lg text-label-lg active:scale-95 transition-transform shadow-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>修改配置</span>
+</button>
+<!-- Primary Button: 一键保存海报至相册 -->
+<button class="flex-[2] h-12 bg-primary text-on-primary rounded-xl flex items-center justify-center gap-2 font-label-lg text-label-lg stamp-badge-shadow active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>一键保存海报至相册</span>
+</button>
+</div>
+</aside>
+</div>
+</body></html>

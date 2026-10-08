@@ -1,0 +1,185 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>角色档案</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sage: {
+              50: '#f4f7f4',
+              100: '#e5ebe5',
+              200: '#cbd7cc',
+              400: '#678d7d',
+              600: '#3e6b57',
+              700: '#345b49',
+              800: '#2b4b3c'
+            },
+            parchment: '#faf8f3',
+            dangerPink: '#d96a68',
+            dangerBg: '#fff7f7'
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"PingFang SC"', '"Hiragino Sans GB"', '"Microsoft YaHei"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="grid-background">
+    /* 手账微点阵（Dot Grid）背景 */
+    body {
+      background-color: #faf9f5;
+      background-image: radial-gradient(#d3dbce 1.2px, transparent 1.2px);
+      background-size: 20px 20px;
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+<style data-purpose="custom-shadows">
+    .card-shadow {
+      box-shadow: 0 4px 18px -2px rgba(62, 107, 87, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-[#2d3a34] antialiased select-none pb-12" style="background-color: rgb(247, 250, 245); background-image: radial-gradient(rgb(211, 219, 209) 1.2px, transparent 1.2px); background-size: 20px 20px;">
+<!-- BEGIN: MobileDeviceContainer -->
+<div class="max-w-[430px] mx-auto min-h-screen px-4 pt-3 flex flex-col justify-between" data-purpose="screen-wrapper">
+<!-- BEGIN: TopArea -->
+<div>
+<!-- BEGIN: NavigationBar -->
+<nav class="flex items-center justify-between py-2 mb-3" data-purpose="top-navigation">
+<!-- 返回按钮 -->
+<button aria-label="返回" class="w-10 h-10 rounded-full bg-[#ebf2ec] flex items-center justify-center text-[#557566] active:scale-95 transition-transform" type="button">
+<svg class="w-5 h-5 -ml-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- 页面标题与图标 -->
+<div class="flex items-center space-x-1.5 font-bold text-lg text-[#2a3c33] tracking-wide">
+<!-- 小熊图标 -->
+<svg class="w-5 h-5 text-[#3e6b57]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<circle cx="12" cy="14" r="7"></circle>
+<circle cx="6.5" cy="7.5" r="2.5"></circle>
+<circle cx="17.5" cy="7.5" r="2.5"></circle>
+<ellipse cx="9.5" cy="13" fill="currentColor" rx="0.8" ry="1.2"></ellipse>
+<ellipse cx="14.5" cy="13" fill="currentColor" rx="0.8" ry="1.2"></ellipse>
+<path d="M11 16c.6.5 1.4.5 2 0" stroke-linecap="round"></path>
+</svg>
+<span class="">角色档案</span>
+</div>
+<!-- 顶部操作按钮 -->
+<button class="px-4 py-1.5 rounded-full bg-[#3e6b57] text-white text-sm font-medium tracking-wide shadow-sm hover:bg-[#345b49] active:scale-95 transition-transform flex items-center space-x-1" type="button">
+<span class="text-base leading-none font-light">+</span>
+<span class="">约稿</span>
+</button>
+</nav>
+<!-- END: NavigationBar -->
+<!-- BEGIN: CharacterProfileCard -->
+<section class="bg-white rounded-2xl p-4 card-shadow mb-3 flex items-center justify-between" data-purpose="character-name-card">
+<div class="flex items-center space-x-3.5">
+<!-- 熊熊头像线框 -->
+<div class="w-8 h-8 rounded-full border-[1.5px] border-[#6b8277] flex items-center justify-center text-[#526a60] relative">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+<circle cx="12" cy="13.5" r="6.5"></circle>
+<circle cx="7" cy="8" r="2.2"></circle>
+<circle cx="17" cy="8" r="2.2"></circle>
+<circle cx="9.5" cy="12.5" fill="currentColor" r="0.75"></circle>
+<circle cx="14.5" cy="12.5" fill="currentColor" r="0.75"></circle>
+<path d="M12 14.2a1.2 1.2 0 0 0-1 0.6c.4.6 1.6.6 2 0a1.2 1.2 0 0 0-1-0.6z" fill="currentColor"></path>
+</svg>
+</div>
+<!-- 角色名 -->
+<span class="text-xl font-bold tracking-tight text-[#213028]">&gt;_&lt;</span>
+</div>
+<!-- 编辑角色名铅笔 -->
+<button aria-label="修改角色名称" class="text-[#889d92] hover:text-[#3e6b57] p-1" type="button">
+<svg class="w-4 h-4 transform rotate-12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</section>
+<!-- END: CharacterProfileCard -->
+<!-- BEGIN: PriceSummaryCard -->
+<section class="bg-[#f0f4ea] bg-opacity-70 rounded-2xl p-4 card-shadow mb-6 flex items-center justify-between border border-[#e6ecde]" data-purpose="total-price-summary">
+<div class="flex items-center space-x-3.5">
+<!-- 钱袋图标 -->
+<div class="w-10 h-10 rounded-full bg-[#e3ecdc] flex items-center justify-center text-[#557766]">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M19 12a7 7 0 1 1-14 0c0-3.87 3.13-7 7-7s7 3.13 7 7z" stroke-linecap="round"></path>
+<path d="M8.5 7.5L12 5l3.5 2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+<circle cx="12" cy="13" r="2.2" stroke-width="1.5"></circle>
+</svg>
+</div>
+<div>
+<h3 class="font-bold text-[#2d3f35] text-[15px] leading-tight">该角色稿价总和</h3>
+<p class="text-xs text-[#7c9487] mt-1 font-medium">5 条约稿 · 自动累加</p>
+</div>
+</div>
+<!-- 统计身价 -->
+<div class="text-right">
+<span class="text-2xl font-black text-[#2e5241] tracking-tight">¥9</span>
+</div>
+</section>
+<!-- END: PriceSummaryCard -->
+<!-- BEGIN: CommissionSection -->
+<section class="mb-5" data-purpose="commission-records-section">
+<!-- 记录标题行 -->
+<div class="flex items-center justify-between mb-3 px-1">
+<div class="flex items-center space-x-2">
+<svg class="w-4 h-4 text-[#527062]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<rect height="16" rx="2" width="16" x="4" y="4"></rect>
+<line x1="8" x2="16" y1="9" y2="9"></line>
+<line x1="8" x2="14" y1="13" y2="13"></line>
+</svg>
+<span class="font-bold text-[#344b40] text-[15px]">约稿记录</span>
+</div>
+<!-- 记录计数 Badge -->
+<span class="w-6 h-6 rounded-full bg-[#e5efe5] text-[#3e6b57] text-xs font-bold flex items-center justify-center">5</span>
+</div>
+<!-- 顶部快捷操作栏 -->
+<div class="grid grid-cols-2 gap-3 mb-4">
+<!-- 添加约稿 -->
+<button class="w-full py-2.5 rounded-xl bg-[#3e6b57] text-white font-medium text-sm flex items-center justify-center space-x-1.5 shadow-sm active:scale-[0.98] transition-transform" type="button">
+<span class="w-4 h-4 rounded-full border border-white/80 flex items-center justify-center text-xs font-bold leading-none">+</span>
+<span class="">添加约稿</span>
+</button>
+<!-- 添加组 -->
+<button class="w-full py-2.5 rounded-xl bg-white border border-[#3e6b57] text-[#3e6b57] font-medium text-sm flex items-center justify-center space-x-1.5 shadow-sm active:scale-[0.98] transition-transform" type="button">
+<svg class="w-4 h-4 text-[#3e6b57]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">添加组</span>
+</button>
+</div>
+<!-- 分组折叠行 -->
+
+</section>
+<!-- END: CommissionSection -->
+<!-- BEGIN: ManagementActions -->
+<section class="space-y-3 mt-4" data-purpose="role-actions-area">
+<!-- 横排双功能卡片 -->
+
+<!-- 危险区：删除角色 -->
+<button class="w-full py-3 rounded-xl bg-white border border-[#f3d3d2] text-[#d96a68] font-medium text-sm flex items-center justify-center space-x-1.5 shadow-sm hover:bg-[#fff9f9] active:scale-[0.98] transition-all" type="button">
+<svg class="w-4 h-4 text-[#d96a68]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">删除角色</span>
+</button>
+</section>
+<!-- END: ManagementActions -->
+</div>
+<!-- END: TopArea -->
+<!-- BEGIN: iOSHomeIndicator -->
+<div class="w-32 h-1 bg-[#1a2b22] opacity-20 rounded-full mx-auto my-2" data-purpose="home-indicator"></div>
+<!-- END: iOSHomeIndicator -->
+</div>
+<!-- END: MobileDeviceContainer -->
+
+
+
+
+</body></html>

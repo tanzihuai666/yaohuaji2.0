@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>妖画集 - 存储空间与数据备份</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed-variant": "#204f3e",
+            "tertiary-fixed": "#f1e2b2",
+            "surface-container-high": "#e6e9e4",
+            "inverse-on-surface": "#eff2ed",
+            "on-tertiary-container": "#483f1c",
+            "on-secondary-container": "#751d19",
+            "surface-container-highest": "#e0e3df",
+            "secondary": "#a13e37",
+            "tertiary-fixed-dim": "#d4c697",
+            "on-primary-fixed": "#002116",
+            "outline-variant": "#c0c8c3",
+            "inverse-primary": "#a0d1bb",
+            "error": "#ba1a1a",
+            "inverse-surface": "#2d312e",
+            "tertiary-container": "#b8ab7e",
+            "surface": "#f7faf5",
+            "on-tertiary-fixed": "#221b00",
+            "on-tertiary": "#ffffff",
+            "primary": "#235241",
+            "outline": "#717974",
+            "on-secondary-fixed": "#410002",
+            "secondary-container": "#ff857a",
+            "surface-tint": "#396755",
+            "secondary-fixed-dim": "#ffb4ab",
+            "surface-variant": "#e0e3df",
+            "surface-bright": "#f7faf5",
+            "surface-container": "#ecefea",
+            "surface-container-low": "#f1f4f0",
+            "background": "#f7faf5",
+            "on-error-container": "#93000a",
+            "on-secondary": "#ffffff",
+            "primary-fixed": "#bbedd7",
+            "on-background": "#191c1a",
+            "on-primary-container": "#b6e8d1",
+            "primary-container": "#3c6a58",
+            "on-surface": "#191c1a",
+            "tertiary": "#685e38",
+            "surface-dim": "#d8dbd6",
+            "on-secondary-fixed-variant": "#822622",
+            "error-container": "#ffdad6",
+            "secondary-fixed": "#ffdad6",
+            "on-tertiary-fixed-variant": "#4f4622",
+            "on-error": "#ffffff",
+            "primary-fixed-dim": "#a0d1bb",
+            "on-surface-variant": "#414944",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.5rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "0.75rem",
+            "space-lg": "1rem",
+            "space-xl": "1.5rem",
+            "gutter": "0.75rem",
+            "margin": "1rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Nunito Sans"],
+            "body-md": ["Nunito Sans"],
+            "label-lg": ["Nunito Sans"],
+            "title-md": ["Nunito Sans"],
+            "body-lg": ["Nunito Sans"],
+            "display-lg": ["Nunito Sans"],
+            "label-md": ["Nunito Sans"],
+            "headline-md": ["Nunito Sans"],
+            "stat-counter": ["Nunito Sans"]
+          },
+          "fontSize": {
+            "headline-lg": ["22px", { "lineHeight": "30px", "fontWeight": "800" }],
+            "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "label-lg": ["13px", { "lineHeight": "18px", "fontWeight": "700" }],
+            "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "700" }],
+            "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "600" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "fontWeight": "800" }],
+            "label-md": ["11px", { "lineHeight": "14px", "fontWeight": "600" }],
+            "headline-md": ["18px", { "lineHeight": "26px", "fontWeight": "700" }],
+            "stat-counter": ["26px", { "lineHeight": "32px", "fontWeight": "800" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Journal micro-dot stationery pattern */
+    .stationery-paper-pattern {
+      background-color: #F7FAF5;
+      background-image: radial-gradient(#CBD5C8 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+    
+    /* Tactile paper card gentle shadow */
+    .paper-shadow {
+      box-shadow: 0 4px 18px rgba(74, 90, 80, 0.05), 0 1px 3px rgba(74, 90, 80, 0.03);
+    }
+    
+    .stamp-press:active {
+      transform: scale(0.97);
+      transition: transform 0.15s ease-out;
+    }
+
+    /* Dashed cut-out sticker outline */
+    .sticker-dashed-border {
+      border: 1.5px dashed rgba(60, 106, 88, 0.4);
+    }
+    
+    .danger-dashed-border {
+      border: 1.5px dashed rgba(186, 26, 26, 0.35);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="stationery-paper-pattern text-on-surface antialiased min-h-screen pb-12 selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Mobile Container Mockup / Phone Shell -->
+<div class="max-w-md mx-auto min-h-screen relative flex flex-col">
+<!-- Top App Bar (Stationery Header) -->
+<header class="sticky top-0 z-40 bg-surface/90 backdrop-blur-md px-margin py-3 flex items-center justify-between border-b border-surface-container-high/60 transition-all">
+<button aria-label="返回" class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm stamp-press border border-surface-container-high focus:outline-none" onclick="history.back()">
+<span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+</button>
+<div class="flex flex-col items-center">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">存储与备份管理</h1>
+</div>
+<span class="font-label-md text-label-md text-outline">妖画集 · 本地手账离线仓库</span>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary shadow-sm stamp-press border border-surface-container-high focus:outline-none" id="btn-refresh" title="重新计算存储占用">
+<span class="material-symbols-outlined text-[22px]">sync</span>
+</button>
+</header>
+<!-- Main Content Container -->
+<main class="flex-1 px-margin py-space-lg space-y-space-lg">
+<!-- 1. Local Storage Usage Meter Card -->
+<section class="bg-surface-container-lowest rounded-3xl p-5 paper-shadow border border-surface-container relative overflow-hidden">
+<!-- Cute craft washi tape decor top right -->
+<div class="absolute -top-1.5 right-8 w-16 h-5 bg-tertiary-container/30 rotate-2 rounded-sm pointer-events-none border border-tertiary/20"></div>
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5 text-primary mb-1">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+<span class="font-label-lg text-label-lg">存储概况</span>
+</div>
+<div class="flex items-baseline gap-1.5 mt-0.5">
+<span class="font-stat-counter text-stat-counter text-primary tracking-tight" id="stat-total-val">38.6</span>
+<span class="font-headline-md text-headline-md text-primary">MB</span>
+</div>
+<p class="font-body-md text-body-md text-outline mt-0.5">本地已用空间 · 离线纯净存储</p>
+</div>
+<!-- Decorative Hand-drawn stamp / badge -->
+<div class="w-14 h-14 rounded-full bg-surface-container-low border border-surface-container-high flex flex-col items-center justify-center p-1 text-center rotate-3">
+<span class="material-symbols-outlined text-primary-container text-[18px]">eco</span>
+<span class="font-label-md text-[10px] text-on-surface-variant leading-tight">安全无云</span>
+</div>
+</div>
+<!-- Segmented visual bar -->
+<div class="mt-5">
+<div class="h-3.5 w-full bg-surface-container-high rounded-full overflow-hidden flex p-0.5 gap-0.5">
+<!-- 84% Gallery -->
+<div class="h-full rounded-l-full bg-primary-container transition-all duration-500" style="width: 84%;" title="画库原图与作品"></div>
+<!-- 12% Character/Commission -->
+<div class="h-full bg-secondary-container transition-all duration-500" style="width: 12%;" title="设子档案与约稿数据"></div>
+<!-- 4% Config/Theme -->
+<div class="h-full rounded-r-full bg-tertiary-fixed-dim transition-all duration-500" style="width: 4%;" title="自定义配置与主题"></div>
+</div>
+</div>
+<!-- Breakdown Details List -->
+<div class="mt-4 pt-3 border-t border-surface-container-high/60 space-y-2.5">
+<!-- Item 1 -->
+<div class="flex items-center justify-between font-body-md text-body-md">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="text-on-surface font-label-lg text-label-lg">画库原图与作品</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-outline">84%</span>
+<span class="font-label-lg text-label-lg text-on-surface">32.4 MB</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between font-body-md text-body-md">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-container"></span>
+<span class="text-on-surface font-label-lg text-label-lg">设子档案与约稿数据</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-outline">12%</span>
+<span class="font-label-lg text-label-lg text-on-surface">4.8 MB</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between font-body-md text-body-md">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="text-on-surface font-label-lg text-label-lg">自定义配置与主题手账贴</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-outline">4%</span>
+<span class="font-label-lg text-label-lg text-on-surface">1.4 MB</span>
+</div>
+</div>
+</div>
+<div class="mt-3.5 bg-surface-container-low/70 rounded-2xl px-3 py-2 flex items-center justify-between text-outline">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span class="font-label-md text-label-md">沙盒独立存储，卸载前请务必备份</span>
+</div>
+<span class="font-label-md text-label-md bg-surface-container-highest px-2 py-0.5 rounded-full text-on-surface-variant">SQLite + IndexedDB</span>
+</div>
+</section>
+<!-- 2. Backup & Export Section Card -->
+<section class="bg-surface-container-lowest rounded-3xl p-5 paper-shadow border border-surface-container relative">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">folder_zip</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">ZIP 离线完整打包备份</h2>
+</div>
+<span class="font-label-md text-label-md text-primary bg-primary-fixed/40 px-2.5 py-0.5 rounded-full border border-primary/20">
+            无损导出
+          </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-4">
+          分块流式写入防崩溃，一键将所有画作、设子档案及账目打包导出至手机本地目录或随心分享。
+        </p>
+<!-- Actions -->
+<div class="space-y-3">
+<!-- Primary Backup Button -->
+<button class="w-full h-12 bg-primary-container hover:bg-primary text-on-primary rounded-2xl font-label-lg text-label-lg flex items-center justify-center gap-2 stamp-press shadow-sm transition-all focus:outline-none" id="btn-export">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>打包导出备份 ZIP</span>
+</button>
+<!-- Secondary Import Button with Dashed cut-out styling -->
+<button class="w-full h-12 bg-surface-container-lowest sticker-dashed-border text-primary hover:bg-surface-container-low rounded-2xl font-label-lg text-label-lg flex items-center justify-center gap-2 stamp-press transition-all focus:outline-none" id="btn-import">
+<span class="material-symbols-outlined text-[20px]">drive_folder_upload</span>
+<span>导入 ZIP 备份合并 (不覆盖已有数据)</span>
+</button>
+</div>
+<!-- Last Backup Pill -->
+<div class="mt-4 flex items-center justify-center">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-low rounded-full border border-surface-container">
+<span class="material-symbols-outlined text-[15px] text-primary">schedule</span>
+<span class="font-label-md text-label-md text-outline" id="timestamp-text">上次备份时间：2026-09-28 14:30</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+</div>
+</div>
+</section>
+<!-- 3. Cache Management Card -->
+<section class="bg-surface-container-lowest rounded-3xl p-5 paper-shadow border border-surface-container">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined text-[20px]">mop</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">临时缓存管理</h2>
+</div>
+<div class="bg-surface-container-low/60 rounded-2xl p-3.5 flex items-center justify-between border border-surface-container">
+<div class="pr-2">
+<div class="font-label-lg text-label-lg text-on-surface">清理临时缩略图缓存</div>
+<div class="font-body-md text-body-md text-outline mt-0.5">释放约 <span class="text-secondary font-bold">4.2 MB</span>，不影响原图画作及稿单</div>
+</div>
+<button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container text-primary font-label-lg text-label-lg border border-primary/20 stamp-press shadow-sm transition-all" id="btn-clean-cache">
+            立即清理
+          </button>
+</div>
+</section>
+<!-- 4. Danger Zone Card -->
+<section class="bg-secondary-fixed/40 danger-dashed-border rounded-3xl p-5 relative overflow-hidden">
+<div class="flex items-center gap-2 mb-2 text-on-secondary-container">
+<span class="material-symbols-outlined text-[22px] text-secondary">warning</span>
+<h2 class="font-headline-md text-headline-md">危险操作 · 重置数据</h2>
+</div>
+<p class="font-body-md text-body-md text-on-secondary-fixed-variant leading-relaxed mb-4">
+          重置后将清除当前设备上的所有设子档案、稿单记录及本地图片缓存，此操作不可逆，请提前确认已完成 ZIP 打包。
+        </p>
+<button class="w-full h-11 rounded-2xl border border-secondary text-secondary hover:bg-secondary/10 bg-surface-container-lowest/80 font-label-lg text-label-lg flex items-center justify-center gap-2 stamp-press transition-all focus:outline-none" id="btn-reset">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+<span>清空本机全部手账数据 (双重防误触确认)</span>
+</button>
+</section>
+<!-- 5. Privacy & Offline Seal (Footer) -->
+<section class="pt-2 pb-6 flex flex-col items-center justify-center text-center">
+<!-- Postal Stamp Seal Graphic -->
+<div class="relative p-4 rounded-full border-2 border-dashed border-outline-variant/80 bg-surface-container-lowest/70 w-32 h-32 flex flex-col items-center justify-center mb-3 rotate-[-2deg] shadow-sm">
+<span class="material-symbols-outlined text-[30px] text-primary mb-1">shield_lock</span>
+<span class="font-label-md text-[11px] font-bold text-primary-container leading-tight">妖画集 · 隐私</span>
+<span class="font-label-md text-[9px] text-outline leading-tight mt-0.5">NO CLOUD LEAK</span>
+<div class="absolute inset-1 rounded-full border border-primary/10 pointer-events-none"></div>
+</div>
+<p class="font-label-lg text-label-lg text-on-surface mb-1">
+          纯本地离线存盘 · 零服务器上传
+        </p>
+<p class="font-body-md text-body-md text-outline max-w-xs">
+          手账与约稿数据百分之百保存在手机内部沙盒中，未获得你手动授权绝不传输。
+        </p>
+</section>
+</main>
+</div>
+<!-- Interactive toast notification -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-4 py-2 rounded-full font-label-lg text-label-lg shadow-lg flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-300 z-50" id="toast">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed" id="toast-icon">check_circle</span>
+<span id="toast-msg">已成功刷新存储统计</span>
+</div>
+<!-- Inline scripts for tactile micro-interactions -->
+<script>
+    function showToast(message, icon = 'check_circle') {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      const toastIcon = document.getElementById('toast-icon');
+      
+      toastMsg.innerText = message;
+      toastIcon.innerText = icon;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100', 'translate-y-[-8px]');
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+        toast.classList.remove('opacity-100', 'translate-y-[-8px]');
+      }, 2400);
+    }
+
+    // Refresh simulation
+    document.getElementById('btn-refresh').addEventListener('click', function() {
+      const icon = this.querySelector('.material-symbols-outlined');
+      icon.classList.add('animate-spin');
+      setTimeout(() => {
+        icon.classList.remove('animate-spin');
+        showToast('已更新本地存储使用量分析');
+      }, 600);
+    });
+
+    // Export simulation
+    document.getElementById('btn-export').addEventListener('click', function() {
+      const btn = this;
+      btn.innerHTML = `<span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span><span>正在分块流式打包 ZIP...</span>`;
+      setTimeout(() => {
+        btn.innerHTML = `<span class="material-symbols-outlined text-[20px]">download</span><span>打包导出备份 ZIP</span>`;
+        const now = new Date();
+        const dateStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        document.getElementById('timestamp-text').innerText = `上次备份时间：${dateStr}`;
+        showToast('备份已打包保存至 Downloads/妖画集_备份.zip', 'verified');
+      }, 1200);
+    });
+
+    // Import simulation
+    document.getElementById('btn-import').addEventListener('click', function() {
+      showToast('请选择合并备份文件 (*.zip)', 'folder_open');
+    });
+
+    // Clean cache simulation
+    document.getElementById('btn-clean-cache').addEventListener('click', function() {
+      const statTotal = document.getElementById('stat-total-val');
+      statTotal.innerText = '34.4';
+      this.innerText = '已清理';
+      this.disabled = true;
+      this.classList.add('opacity-50', 'cursor-not-allowed');
+      showToast('缩略图缓存已清除，释放 4.2 MB', 'auto_delete');
+    });
+
+    // Reset alert confirm
+    document.getElementById('btn-reset').addEventListener('click', function() {
+      if (confirm('⚠️ 警告：这将永久清空当前设备上的所有设子数据与原图！确定要继续执行重置吗？')) {
+        showToast('已取消重置（演示安全拦截）', 'security');
+      }
+    });
+  </script>
+</body></html>
