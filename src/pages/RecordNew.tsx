@@ -7,7 +7,7 @@ import GroupDialog from '../components/GroupDialog'
 import { Sheet, useUI } from '../components/ui'
 import { Back, Brush, Picture, Camera, Upload, Coin, Calendar, Chevron, FolderY, Note, Save } from '../components/RecordIcons'
 import { db, uid, type CommissionRecord } from '../lib/db'
-import { pickImagesSafe, deleteImages } from '../lib/images'
+import { pickImagesSafe, deleteImages, deleteImagesIfOrphan } from '../lib/images'
 import { today } from '../lib/format'
 
 const inputCls = 'w-full h-12 bg-white/95 border border-[#e4ded0] rounded-xl px-4 text-base font-normal text-text-main shadow-soft focus:bg-white'
@@ -62,7 +62,7 @@ export default function RecordNew() {
   }
   const remove = async () => {
     if (!(await ui.confirm({ title: '删除这条约稿？', message: '图片将一并删除，无法恢复。', danger: true, okText: '删除' }))) return
-    await deleteImages(rec.images); await db.records.delete(rec.id); ui.toast('已删除'); nav(-1)
+    await db.records.delete(rec.id); await deleteImagesIfOrphan(rec.images); ui.toast('已删除'); nav(-1)
   }
   const batchTotal = batch?.reduce((s, b) => s + (Number(b.amount) || 0), 0) || 0
 

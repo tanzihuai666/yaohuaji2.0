@@ -53,6 +53,36 @@ export async function takePhoto(): Promise<string | null> {
   return f[0] ? saveImage(f[0], f[0].name) : null
 }
 export async function deleteImages(ids: (string | undefined)[]) { const v = ids.filter(Boolean) as string[]; if (v.length) await db.images.bulkDelete(v) }
+
+/** Every image id currently referenced by any entity (orders/characters/folders/artworks/records/prices/settings/drafts). */
+export async function referencedImages(): Promise<Set<string>> {
+  const s = new Set<string>(); const add = (...ids: (string | undefined)[]) => ids.forEach(i => i && s.add(i))
+  const [orders, characters, records, folders, artworks, prices, kv] = await Promise.all([
+    db.orders.toArray(), db.characters.toArray(), db.records.toArray(), db.folders.toArray(),
+    db.artworks.toArray(), db.prices.toArray(), db.kv.toArray(),
+  ])
+  orders.forEach(o => add(...o.refImages, ...o.deliverImages))
+  characters.forEach(c => add(c.avatar, ...c.refImages))
+  records.forEach(r => add(...r.images))
+  folders.forEach(f => add(f.cover))
+  artworks.forEach(a => add(a.image))
+  prices.forEach(p => add(...p.samples))
+  for (const k of kv) {
+    const v = k.value as Record<string, unknown> | null
+    if (v && typeof v === 'object') { add(v.avatar as string, v.bgImage as string); if (Array.isArray(v.refImages)) add(...(v.refImages as string[])) }
+  }
+  return s
+}
+/** Delete only the ids that nothing references anymore. Call AFTER the owning entity is deleted/updated. Returns deleted ids. */
+export async function deleteImagesIfOrphan(ids: (string | undefined)[]): Promise<string[]> {
+  const list = [...new Set(ids.filter(Boolean) as string[])]
+  if (!list.length) return []
+  const used = await referencedImages()
+  const orphan = list.filter(id => !used.has(id))
+  if (orphan.length) await db.images.bulkDelete(orphan)
+  return orphan
+}
+
 /** Pick + save images, but never throws: decode/save failures surface as a toast
  *  instead of a silent no-op (user taps, picks a photo, nothing happens). */
 export async function pickImagesSafe(multiple = true, toast?: (m: string) => void): Promise<string[]> {

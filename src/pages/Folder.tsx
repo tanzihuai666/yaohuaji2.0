@@ -7,7 +7,7 @@ import Viewer from '../components/Viewer'
 import FormSheet from '../components/FormSheet'
 import { Sheet, useUI } from '../components/ui'
 import { db, uid, type Artwork } from '../lib/db'
-import { pickImagesSafe, takePhoto, deleteImages } from '../lib/images'
+import { pickImagesSafe, takePhoto, deleteImagesIfOrphan } from '../lib/images'
 import { shareBlob } from '../lib/share'
 import { bytes, mdDate, today } from '../lib/format'
 import { FOLDER_COLORS } from './FolderNew'
@@ -57,8 +57,9 @@ export default function Folder() {
     await db.folders.update(f.id, { updatedAt: t }); ui.toast(`已导入 ${ids.length} 张画作`)
   }
   const removeArts = async (as: Artwork[]) => {
-    const keep = new Set([f.cover]); await deleteImages(as.map(a => a.image).filter(i => !keep.has(i)))
+    const imgs = as.map(a => a.image)
     await db.artworks.bulkDelete(as.map(a => a.id))
+    await deleteImagesIfOrphan(imgs)
   }
   const download = async (a: Artwork) => { const r = await db.images.get(a.image); if (r) await shareBlob(r.blob, r.name || `${a.title || '画作'}.jpg`) }
   const toggleSel = (aid: string) => setSel(s => { const n = new Set(s); if (n.has(aid)) n.delete(aid); else n.add(aid); return n })
@@ -78,7 +79,7 @@ export default function Folder() {
   }
   const delFolder = async () => {
     if (!(await ui.confirm({ title: `删除文件夹「${f.name}」？`, message: `其中 ${arts.length} 张画作将一并永久删除。`, danger: true, okText: '删除' }))) return
-    await removeArts(arts); await deleteImages([f.cover]); await db.characters.where('folderId').equals(f.id).modify({ folderId: undefined }); await db.folders.delete(f.id)
+    await removeArts(arts); await db.characters.where('folderId').equals(f.id).modify({ folderId: undefined }); await db.folders.delete(f.id); await deleteImagesIfOrphan([f.cover])
     ui.toast('文件夹已删除'); nav('/gallery', { replace: true })
   }
 

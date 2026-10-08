@@ -1,6 +1,7 @@
 import JSZip from 'jszip'
 import { db, TABLES } from './db'
-import { imageCache } from '../hooks/useImage'
+import { pruneImageCache } from '../hooks/useImage'
+import { referencedImages } from './images'
 
 const DATA_TABLES = TABLES.filter(t => t !== 'images')
 const ext = (type: string) => (type.includes('png') ? 'png' : type.includes('webp') ? 'webp' : type.includes('gif') ? 'gif' : 'jpg')
@@ -16,26 +17,12 @@ export async function usage() {
   return { images: imgBytes, imageCount: imgs.length, data, conf, total: imgBytes + data + conf, orphanBytes: orphans.reduce((s, i) => s + i.blob.size + i.thumb.size, 0), orphanIds: orphans.map(i => i.id) }
 }
 
-export async function referencedImages() {
-  const s = new Set<string>(); const add = (...ids: (string | undefined)[]) => ids.forEach(i => i && s.add(i))
-  ;(await db.orders.toArray()).forEach(o => add(...o.refImages, ...o.deliverImages))
-  ;(await db.characters.toArray()).forEach(c => add(c.avatar, ...c.refImages))
-  ;(await db.records.toArray()).forEach(r => add(...r.images))
-  ;(await db.folders.toArray()).forEach(f => add(f.cover))
-  ;(await db.artworks.toArray()).forEach(a => add(a.image))
-  ;(await db.prices.toArray()).forEach(p => add(...p.samples))
-  for (const k of await db.kv.toArray()) {
-    const v = k.value as Record<string, unknown> | null
-    if (v && typeof v === 'object') { add(v.avatar as string, v.bgImage as string); if (Array.isArray(v.refImages)) add(...(v.refImages as string[])) }
-  }
-  return s
-}
 
 /** Remove images no longer referenced by any record and drop in-memory object URLs. */
 export async function cleanCache() {
   const { orphanIds, orphanBytes } = await usage()
   if (orphanIds.length) await db.images.bulkDelete(orphanIds)
-  imageCache.forEach(u => URL.revokeObjectURL(u)); imageCache.clear()
+  pruneImageCache()
   try {
     const { Capacitor } = await import('@capacitor/core').then(m => m)
     if (Capacitor.isNativePlatform()) {
@@ -90,6 +77,6 @@ export async function importZip(file: Blob, onProgress?: (p: number) => void) {
 
 export async function wipeAll() {
   await db.transaction('rw', TABLES.map(t => db.table(t)), async () => { for (const t of TABLES) await db.table(t).clear() })
-  imageCache.forEach(u => URL.revokeObjectURL(u)); imageCache.clear()
+  pruneImageCache()
   try { const { LocalNotifications } = await import('@capacitor/local-notifications'); const p = await LocalNotifications.getPending(); if (p.notifications.length) await LocalNotifications.cancel({ notifications: p.notifications.map(n => ({ id: n.id })) }) } catch { /* web */ }
 }

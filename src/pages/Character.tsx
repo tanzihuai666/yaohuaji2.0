@@ -8,7 +8,7 @@ import Viewer from '../components/Viewer'
 import GroupDialog from '../components/GroupDialog'
 import { useUI } from '../components/ui'
 import { db, type CommissionRecord, type Group } from '../lib/db'
-import { deleteImages } from '../lib/images'
+import { deleteImagesIfOrphan } from '../lib/images'
 import { shareBlob } from '../lib/share'
 import { yuan } from '../lib/format'
 
@@ -44,8 +44,9 @@ export default function Character() {
   }
   const delChar = async () => {
     if (!(await ui.confirm({ title: `删除角色「${c.name}」？`, message: `该角色的 ${records.length} 条约稿记录、分组及所有图片将被永久删除。`, okText: '删除角色', danger: true }))) return
-    await deleteImages([c.avatar, ...c.refImages, ...records.flatMap(r => r.images)])
+    const imgs = [c.avatar, ...c.refImages, ...records.flatMap(r => r.images)]
     await db.transaction('rw', db.characters, db.records, db.groups, async () => { await db.records.where('characterId').equals(c.id).delete(); await db.groups.where('characterId').equals(c.id).delete(); await db.characters.delete(c.id) })
+    await deleteImagesIfOrphan(imgs)
     ui.toast('角色已删除'); nav('/gallery', { replace: true })
   }
   const shareCard = async () => {

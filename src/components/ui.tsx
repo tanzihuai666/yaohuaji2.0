@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 
 type ConfirmOpts = { title: string; message?: string; okText?: string; cancelText?: string; danger?: boolean }
@@ -7,15 +7,22 @@ interface UI { toast: (m: string) => void; confirm: (o: ConfirmOpts) => Promise<
 const Ctx = createContext<UI>(null as unknown as UI)
 export const useUI = () => useContext(Ctx)
 
+type Dlg = { id: number; kind: 'confirm'; o: ConfirmOpts; r: (v: boolean) => void } | { id: number; kind: 'prompt'; o: PromptOpts; r: (v: string | null) => void; val: string }
 export function UIProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<{ id: number; m: string }[]>([])
-  const [dlg, setDlg] = useState<null | { kind: 'confirm'; o: ConfirmOpts; r: (v: boolean) => void } | { kind: 'prompt'; o: PromptOpts; r: (v: string | null) => void }>(null)
-  const [val, setVal] = useState('')
+  const [queue, setQueue] = useState<Dlg[]>([])
+  const idRef = useRef(0)
+  const dlg = queue[0] || null
   const toast = useCallback((m: string) => { const id = Date.now() + Math.random(); setToasts(t => [...t, { id, m }]); setTimeout(() => setToasts(t => t.filter(x => x.id !== id)), 2200) }, [])
-  const confirm = useCallback((o: ConfirmOpts) => new Promise<boolean>(r => setDlg({ kind: 'confirm', o, r })), [])
-  const prompt = useCallback((o: PromptOpts) => { setVal(o.defaultValue || ''); return new Promise<string | null>(r => setDlg({ kind: 'prompt', o, r })) }, [])
+  const confirm = useCallback((o: ConfirmOpts) => new Promise<boolean>(r => setQueue(q => [...q, { id: ++idRef.current, kind: 'confirm', o, r }])), [])
+  const prompt = useCallback((o: PromptOpts) => new Promise<string | null>(r => setQueue(q => [...q, { id: ++idRef.current, kind: 'prompt', o, r, val: o.defaultValue || '' }])), [])
   useEffect(() => { const h = (e: Event) => toast((e as CustomEvent).detail); window.addEventListener('yh-toast', h); return () => window.removeEventListener('yh-toast', h) }, [toast])
-  const close = (v: boolean) => { if (!dlg) return; if (dlg.kind === 'confirm') dlg.r(v); else dlg.r(v ? val.trim() : null); setDlg(null) }
+  const setVal = (v: string) => setQueue(q => q.map((d, i) => i === 0 && d.kind === 'prompt' ? { ...d, val: v } : d))
+  const close = (v: boolean) => {
+    if (!dlg) return
+    if (dlg.kind === 'confirm') dlg.r(v); else dlg.r(v ? dlg.val.trim() : null)
+    setQueue(q => q.filter(d => d.id !== dlg.id))
+  }
   return (
     <Ctx.Provider value={{ toast, confirm, prompt }}>
       {children}
@@ -36,7 +43,7 @@ export function UIProvider({ children }: { children: ReactNode }) {
               {dlg.kind === 'confirm' && dlg.o.message && <p className="text-[13px] leading-relaxed text-[#656e67] mb-4 whitespace-pre-line">{dlg.o.message}</p>}
               {dlg.kind === 'prompt' && <>
                 {dlg.o.label && <label className="block text-[12px] font-bold text-[#656e67] mb-1.5">{dlg.o.label}</label>}
-                <input autoFocus type={dlg.o.inputType || 'text'} inputMode={dlg.o.inputType === 'number' ? 'decimal' : undefined} value={val} onChange={e => setVal(e.target.value)} onKeyDown={e => e.key === 'Enter' && close(true)} placeholder={dlg.o.placeholder}
+                <input autoFocus type={dlg.o.inputType || 'text'} inputMode={dlg.o.inputType === 'number' ? 'decimal' : undefined} value={dlg.kind === 'prompt' ? dlg.val : ''} onChange={e => setVal(e.target.value)} onKeyDown={e => e.key === 'Enter' && close(true)} placeholder={dlg.o.placeholder}
                   className="w-full h-11 px-4 rounded-full border border-[#e3dfd2] bg-[#faf8f2] text-[14px] outline-none focus:border-[#3c6a58] focus:ring-2 focus:ring-[#3c6a58]/15 mb-4" />
               </>}
               <div className="grid grid-cols-2 gap-3">

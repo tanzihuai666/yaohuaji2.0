@@ -9,7 +9,7 @@ import { DefaultAvatar } from '../components/Mascots'
 import { useUI } from '../components/ui'
 import { db, uid, type PriceItem } from '../lib/db'
 import { useSettings } from '../lib/settings'
-import { pickImagesSafe, deleteImages } from '../lib/images'
+import { pickImagesSafe, deleteImages, deleteImagesIfOrphan } from '../lib/images'
 import { saveToDocuments, shareBlob } from '../lib/share'
 import { pad, today } from '../lib/format'
 
@@ -76,7 +76,7 @@ export default function PriceSheet() {
   }
   const remove = async (p: PriceItem) => {
     if (!(await ui.confirm({ title: `删除「${p.title}」？`, message: '该稿种及其样图将被移除。', danger: true, okText: '删除' }))) return
-    await deleteImages(p.samples); await db.prices.delete(p.id); setForm(null)
+    await db.prices.delete(p.id); await deleteImagesIfOrphan(p.samples); setForm(null)
   }
   const move = async (i: number, d: number) => {
     const a = items[i], b = items[i + d]; if (!a || !b) return

@@ -18,7 +18,7 @@ const md = (t?: number) => (t ? `${String(new Date(t).getMonth() + 1).padStart(2
 export default function OrderDetail() {
   const { id } = useParams(); const nav = useNavigate(); const ui = useUI()
   const o = useLiveQuery(() => db.orders.get(id!), [id])
-  const coop = useLiveQuery(async () => (o ? (await db.orders.where('createdAt').belowOrEqual(o.createdAt).toArray()).filter(x => x.client.trim() === o.client.trim()).length : 0), [o?.id, o?.client])
+  const coop = useLiveQuery(async () => (o && o.client.trim() ? (await db.orders.where('createdAt').belowOrEqual(o.createdAt).toArray()).filter(x => x.client.trim() === o.client.trim()).length : 0), [o?.id, o?.client])
   const [view, setView] = useState<{ ids: string[]; i: number; del?: boolean } | null>(null)
   if (o === undefined) return <Page name="OrderDetail" />
   if (o === null || !o) return <Page name="OrderDetail"><div className="pt-40 text-center text-outline">稿单不存在或已删除</div></Page>

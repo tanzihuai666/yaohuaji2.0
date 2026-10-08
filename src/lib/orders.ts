@@ -1,5 +1,6 @@
 import { Capacitor } from '@capacitor/core'
 import { db, uid, type Order, type OrderStatus } from './db'
+import { deleteImagesIfOrphan } from './images'
 import { today, parseISO } from './format'
 
 export const STATUS: { key: OrderStatus; label: string; icon: string; color: string }[] = [
@@ -33,8 +34,13 @@ export function blankOrder(): Order {
   }
 }
 export async function nextOrderNo() {
-  const y = new Date().getFullYear(); const n = (await db.orders.count()) + 1
-  return `YHJ-${y}-${String(n).padStart(3, '0')}`
+  const y = new Date().getFullYear(); const prefix = `YHJ-${y}-`
+  let max = 0
+  for (const o of await db.orders.toArray()) {
+    const m = o.no.match(new RegExp(`^${prefix}(\\d+)$`))
+    if (m) max = Math.max(max, parseInt(m[1], 10))
+  }
+  return `${prefix}${String(max + 1).padStart(3, '0')}`
 }
 
 /** Keep wallet in sync with an order's payment state: deposit/balance become income records. */
@@ -53,7 +59,6 @@ export async function syncOrderTxns(o: Order) {
 export async function saveOrder(o: Order) {
   if (!o.no) o.no = await nextOrderNo()
   o.updatedAt = Date.now(); o.stageTimes = { ...(o.stageTimes || {}), [o.status]: o.stageTimes?.[o.status] || Date.now() }
-  if (o.status !== 'pending' && o.deposit > 0 && o.depositPaid === undefined) o.depositPaid = true
   await db.orders.put(o); await syncOrderTxns(o); await scheduleReminders(o)
   return o
 }
@@ -66,9 +71,8 @@ export async function advanceOrder(o: Order) {
 }
 export async function deleteOrder(o: Order) {
   await db.txns.where('orderId').equals(o.id).delete(); await cancelReminders(o)
-  const used = new Set<string>(); (await db.orders.toArray()).filter(x => x.id !== o.id).forEach(x => [...x.refImages, ...x.deliverImages].forEach(i => used.add(i)))
-  await db.images.bulkDelete([...o.refImages, ...o.deliverImages].filter(i => !used.has(i)))
   await db.orders.delete(o.id)
+  await deleteImagesIfOrphan([...o.refImages, ...o.deliverImages])
 }
 
 // ---- local notifications (截稿节点智能推送提醒) ----

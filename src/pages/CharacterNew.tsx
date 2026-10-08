@@ -28,7 +28,11 @@ export default function CharacterNew() {
     if (id) { const x = await db.characters.get(id); if (!x) { ui.toast('角色不存在'); nav(-1); return } setC(x); setOrig([x.avatar, ...x.refImages].filter(Boolean) as string[]); return }
     const d = (await db.kv.get('draft:character'))?.value as Character | undefined
     const n = { ...(d || blank()) }
-    if (!d) n.no = '#' + pad((await db.characters.count()) + 1)
+    if (!d) {
+      let mx = 0
+      for (const ch of await db.characters.toArray()) { const m = ch.no.match(/^#(\d+)$/); if (m) mx = Math.max(mx, parseInt(m[1], 10)) }
+      n.no = '#' + pad(mx + 1)
+    }
     if (d) ui.toast('已恢复上次的草稿')
     setC(n)
   })() }, [id]) // eslint-disable-line react-hooks/exhaustive-deps

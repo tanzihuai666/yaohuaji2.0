@@ -39,7 +39,7 @@ export default function Wallet() {
   const yearInc = sum(inc.filter(t => t.date.startsWith(String(curY))))
   const doneCount = orders.filter(o => o.status === 'done').length
 
-  const years = [...new Set([curY, ...txns.map(t => Number(t.date.slice(0, 4)))])].filter(Boolean).sort()
+  const years = [...new Set([curY, ...txns.map(t => Number(t.date.slice(0, 4)))])].filter(Boolean).sort((a, b) => b - a)
   const months = Array.from({ length: 12 }, (_, i) => { const key = `${year}-${String(i + 1).padStart(2, '0')}`; return sum(inc.filter(t => t.date.startsWith(key))) - sum(out.filter(t => t.date.startsWith(key))) })
   const top = Math.max(1000, ...months.map(m => Math.abs(m)))
   const step = Math.ceil(top / 4 / 500) * 500 || 1000; const axis = step * 4
