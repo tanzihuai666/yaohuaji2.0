@@ -1,0 +1,120 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+    paths-ignore: ['**.md', '.stitch/**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      release:
+        description: '同时发布 GitHub Release（使用 package.json 版本号）'
+        type: boolean
+        default: false
+
+concurrency:
+  group: apk-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      IS_RELEASE: ${{ startsWith(github.ref, 'refs/tags/v') || inputs.release == true }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check & build web
+        run: npm run build
+
+      - name: Read version
+        id: ver
+        run: |
+          V=$(node -p "require('./package.json').version")
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "short_sha=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+
+      - name: Add & sync Android platform
+        run: |
+          [ -d android ] || npx cap add android
+          npx cap sync android
+
+      - name: Decode signing keystore
+        id: sign
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+            echo "path=$RUNNER_TEMP/release.jks" >> "$GITHUB_OUTPUT"
+            echo "✅ 使用 Secrets 中的正式签名"
+          else
+            echo "path=" >> "$GITHUB_OUTPUT"
+            echo "::warning::未配置 KEYSTORE_BASE64，Release 包将使用临时 debug 签名（无法覆盖安装其他构建）"
+          fi
+
+      - name: Customise Android project
+        env:
+          VERSION_CODE: ${{ github.run_number }}
+          YH_KEYSTORE: ${{ steps.sign.outputs.path }}
+        run: node scripts/android-setup.mjs
+
+      - name: Build APK
+        working-directory: android
+        env:
+          YH_KEYSTORE: ${{ steps.sign.outputs.path }}
+          YH_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          YH_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          YH_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          chmod +x gradlew
+          if [ "$IS_RELEASE" = "true" ]; then TASK=assembleRelease; else TASK=assembleDebug; fi
+          ./gradlew "$TASK" --no-daemon --stacktrace -Dorg.gradle.jvmargs=-Xmx3g
+          mkdir -p ../out
+          V=${{ steps.ver.outputs.version }}
+          if [ "$IS_RELEASE" = "true" ]; then
+            cp app/build/outputs/apk/release/app-release.apk "../out/yaohuaji-v$V.apk"
+          else
+            cp app/build/outputs/apk/debug/app-debug.apk "../out/yaohuaji-v$V-${{ steps.ver.outputs.short_sha }}-debug.apk"
+          fi
+          ls -lh ../out
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: yaohuaji-v${{ steps.ver.outputs.version }}-${{ steps.ver.outputs.short_sha }}
+          path: out/*.apk
+          retention-days: 30
+
+      - name: Publish GitHub Release
+        if: env.IS_RELEASE == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || format('v{0}', steps.ver.outputs.version) }}
+          name: 妖画集 v${{ steps.ver.outputs.version }}
+          files: out/*.apk
+          generate_release_notes: true
+          make_latest: true

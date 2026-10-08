@@ -1,0 +1,10 @@
+{
+  "appId": "com.yaohuaji.v2",
+  "appName": "妖画集",
+  "webDir": "dist",
+  "android": { "allowMixedContent": false, "backgroundColor": "#faf9f3" },
+  "plugins": {
+    "LocalNotifications": { "iconColor": "#3C6A58" },
+    "StatusBar": { "overlaysWebView": false, "style": "LIGHT", "backgroundColor": "#faf9f3" }
+  }
+}

@@ -1,0 +1,374 @@
+/* Home */
+
+    .pg-Home {
+      background-color: #faf9f3;
+      background-image: radial-gradient(#dfdbce 0.85px, transparent 0.85px);
+      background-size: 16px 16px;
+      color: #2d332f;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+  
+
+    .pg-Home .journal-card {
+      background: #ffffff;
+      border: 1px solid rgba(226, 230, 222, 0.6);
+      box-shadow: 0 4px 16px -2px rgba(60, 80, 65, 0.03), 0 2px 6px -1px rgba(0, 0, 0, 0.015);
+      border-radius: 18px;
+    }
+    .pg-Home .banner-bubble {
+      background: linear-gradient(135deg, #f5f8f0 0%, #edf2e8 100%);
+      border: 1px solid rgba(215, 226, 214, 0.5);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+  
+/* Orders */
+
+    .pg-Orders {
+      background-color: #fafcf8;
+      background-image: radial-gradient(#d3dbd1 1.25px, transparent 1.25px);
+      background-size: 20px 20px;
+      font-family: 'Nunito Sans', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    /* Hide scrollbars */
+    .pg-Orders ::-webkit-scrollbar {
+      display: none;
+    }
+  
+/* OrderNew */
+.pg-OrderNew,.pg-OrderNew{width:100vw;margin:0;padding:0;min-height:100vh;}.pg-OrderNew{overscroll-behavior:none;}.pg-OrderNew .pb-safe{padding-bottom:var(--sab);}.pg-OrderNew .pt-safe{padding-top:var(--sat);}.pg-OrderNew main>:first-child{margin-top:0!important;}.pg-OrderNew main>:last-child{margin-bottom:0!important;}.pg-OrderNew ::-webkit-scrollbar{display:none;}
+/* OrderDetail */
+
+    .pg-OrderDetail .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .pg-OrderDetail .notebook-dots {
+      background-color: #f7faf5;
+      background-image: radial-gradient(#d3dbd1 1.2px, transparent 1.2px);
+      background-size: 20px 20px;
+    }
+    .pg-OrderDetail .card-shadow {
+      box-shadow: 0 4px 18px rgba(74, 90, 80, 0.05), 0 1px 3px rgba(74, 90, 80, 0.03);
+    }
+    .pg-OrderDetail .stamp-badge {
+      box-shadow: 0 4px 14px rgba(60, 106, 88, 0.18);
+    }
+    .pg-OrderDetail .dashed-craft-border {
+      border: 1.5px dashed rgba(60, 106, 88, 0.45);
+    }
+  
+/* PriceSheet */
+
+    /* Handcrafted Dotted Stationery Grid Pattern */
+    .pg-PriceSheet .bg-journal-pattern {
+      background-color: #f7faf5;
+      background-image: radial-gradient(#c0c8c3 1.2px, transparent 1.2px);
+      background-size: 16px 16px;
+    }
+    /* Washi Tape styling */
+    .pg-PriceSheet .washi-tape {
+      background: rgba(220, 235, 226, 0.85);
+      border-left: 2px dashed rgba(60, 106, 88, 0.4);
+      border-right: 2px dashed rgba(60, 106, 88, 0.4);
+      box-shadow: 0 1px 3px rgba(35, 82, 65, 0.08);
+    }
+    .pg-PriceSheet .washi-tape-sand {
+      background: rgba(241, 226, 178, 0.85);
+      border-left: 2px dashed rgba(104, 94, 56, 0.4);
+      border-right: 2px dashed rgba(104, 94, 56, 0.4);
+    }
+    /* Perforated edge effect */
+    .pg-PriceSheet .perforated-border {
+      border: 1.5px dashed #3c6a58;
+    }
+    /* Subtle tactile shadow */
+    .pg-PriceSheet .journal-card-shadow {
+      box-shadow: 0 4px 18px rgba(74, 90, 80, 0.06), 0 1px 3px rgba(74, 90, 80, 0.04);
+    }
+    .pg-PriceSheet .stamp-badge-shadow {
+      box-shadow: 0 3px 10px rgba(60, 106, 88, 0.15);
+    }
+  
+
+    .pg-PriceSheet {
+      min-height: max(884px, 100dvh);
+    }
+  
+/* GallerySheet */
+
+    .pg-GallerySheet {
+      background-color: #FAF9F3;
+      background-image: radial-gradient(#D6DDD2 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(0); }
+      to { transform: translateY(100%); }
+    }
+
+    .pg-GallerySheet .modal-enter {
+      animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .pg-GallerySheet .modal-exit {
+      animation: fadeOut 0.24s ease-in forwards;
+    }
+
+    .pg-GallerySheet .sheet-enter {
+      animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .pg-GallerySheet .sheet-exit {
+      animation: slideDown 0.24s cubic-bezier(0.4, 0, 1, 1) forwards;
+    }
+  
+/* Gallery */
+
+    .pg-Gallery {
+      background-color: #FAF9F3;
+      background-image: radial-gradient(#D6DDD2 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+  
+/* CharacterNew */
+.pg-CharacterNew,.pg-CharacterNew{width:100vw;margin:0;padding:0;}.pg-CharacterNew{overscroll-behavior:none;background-image:radial-gradient(circle,#c0c8c3 0.8px,transparent 0.8px);background-size:16px 16px;}.pg-CharacterNew .pb-safe{padding-bottom:var(--sab);}.pg-CharacterNew .pt-safe{padding-top:var(--sat);}.pg-CharacterNew main>:first-child{margin-top:0!important;}.pg-CharacterNew main>:last-child{margin-bottom:0!important;}.pg-CharacterNew ::-webkit-scrollbar{display:none;}
+/* Character */
+
+    /* 手账微点阵（Dot Grid）背景 */
+    .pg-Character {
+      background-color: #faf9f5;
+      background-image: radial-gradient(#d3dbce 1.2px, transparent 1.2px);
+      background-size: 20px 20px;
+      -webkit-tap-highlight-color: transparent;
+    }
+  
+
+    .pg-Character .card-shadow {
+      box-shadow: 0 4px 18px -2px rgba(62, 107, 87, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+    }
+  
+/* RecordNew */
+
+    /* Subtle dot grid journal paper background */
+    .pg-RecordNew {
+      background-color: #fbf9f2;
+      background-image: radial-gradient(#dfd9c7 1.1px, transparent 1.1px);
+      background-size: 18px 18px;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+  
+
+    /* Remove default styling subtleties for crisp journal cards */
+    .pg-RecordNew input[type="number"]::-webkit-inner-spin-button,
+    .pg-RecordNew input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .pg-RecordNew textarea:focus, .pg-RecordNew input:focus, .pg-RecordNew select:focus {
+      outline: none !important;
+      box-shadow: 0 0 0 2px rgba(103, 137, 120, 0.25) !important;
+      border-color: #89a997 !important;
+    }
+  
+/* GroupDialog */
+
+    /* Subtle dot grid journal paper background */
+    .pg-GroupDialog {
+      background-color: #fbf9f2;
+      background-image: radial-gradient(#dfd9c7 1.1px, transparent 1.1px);
+      background-size: 18px 18px;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+  
+
+    /* Remove default styling subtleties for crisp journal cards */
+    .pg-GroupDialog input[type="number"]::-webkit-inner-spin-button,
+    .pg-GroupDialog input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .pg-GroupDialog textarea:focus, .pg-GroupDialog input:focus, .pg-GroupDialog select:focus {
+      outline: none !important;
+      box-shadow: 0 0 0 2px rgba(103, 137, 120, 0.25) !important;
+      border-color: #89a997 !important;
+    }
+  
+/* FolderNew */
+.pg-FolderNew,.pg-FolderNew{width:100vw;margin:0;padding:0;}.pg-FolderNew{overscroll-behavior:none;background-image:radial-gradient(circle,#c0c8c3 0.8px,transparent 0.8px);background-size:16px 16px;}.pg-FolderNew .pb-safe{padding-bottom:var(--sab);}.pg-FolderNew .pt-safe{padding-top:var(--sat);}.pg-FolderNew main>:first-child{margin-top:0!important;}.pg-FolderNew main>:last-child{margin-bottom:0!important;}.pg-FolderNew ::-webkit-scrollbar{display:none;}
+/* Folder */
+
+    /* Tactile Micro-dot stationery grid */
+    .pg-Folder .stationery-dot-bg {
+      background-color: #f7faf5;
+      background-image: radial-gradient(#cbd4cc 1.2px, transparent 1.2px);
+      background-size: 20px 20px;
+    }
+    .pg-Folder .washi-tape-strip {
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 238, 204, 0.85),
+        rgba(255, 238, 204, 0.85) 8px,
+        rgba(255, 226, 179, 0.85) 8px,
+        rgba(255, 226, 179, 0.85) 16px
+      );
+      box-shadow: 0 1px 3px rgba(60, 106, 88, 0.12);
+    }
+    .pg-Folder .paper-shadow {
+      box-shadow: 0 4px 18px rgba(74, 90, 80, 0.06), 0 1px 3px rgba(74, 90, 80, 0.04);
+    }
+    .pg-Folder .dashed-craft-border {
+      border: 1.5px dashed rgba(60, 106, 88, 0.55);
+    }
+    .pg-Folder .craft-stamp-shadow {
+      box-shadow: 0 6px 16px rgba(60, 106, 88, 0.18);
+    }
+  
+
+    .pg-Folder {
+      min-height: max(884px, 100dvh);
+    }
+  
+/* Profile */
+
+    /* Subtle journal notebook dot-grid background */
+    .pg-Profile {
+      background-color: #FAF8F2;
+      background-image: radial-gradient(rgba(142, 148, 143, 0.22) 1.15px, transparent 1.15px);
+      background-size: 19px 19px;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    
+    /* Gentle soft paper shadow */
+    .pg-Profile .soft-shadow {
+      box-shadow: 0 4px 18px -2px rgba(60, 75, 65, 0.04), 0 2px 6px -1px rgba(60, 75, 65, 0.02);
+    }
+  
+/* Wallet */
+
+    /* Handcrafted Dotted Grid Paper Texture */
+    .pg-Wallet .stationery-paper-grid {
+      background-color: #F7FAF5;
+      background-image: radial-gradient(#D3DBD1 1.2px, transparent 1.2px);
+      background-size: 20px 20px;
+    }
+    /* Subtle Washi Tape Effect */
+    .pg-Wallet .washi-tape-strip {
+      background: linear-gradient(135deg, rgba(245, 229, 201, 0.85) 0%, rgba(240, 154, 130, 0.7) 100%);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      transform: rotate(-3deg);
+    }
+    /* Die-cut sticker shadow */
+    .pg-Wallet .sticker-shadow {
+      box-shadow: 0 4px 16px rgba(60, 106, 88, 0.06), 0 1px 3px rgba(60, 106, 88, 0.04);
+    }
+  
+
+    .pg-Wallet {
+      min-height: max(884px, 100dvh);
+    }
+  
+/* Theme */
+
+    /* Dot Grid Background Simulation */
+    .pg-Theme .bg-dotted-journal {
+      background-color: #f7faf5;
+      background-image: radial-gradient(#d3dbd1 1.2px, transparent 1.2px);
+      background-size: 18px 18px;
+    }
+    .pg-Theme .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+    }
+    .pg-Theme .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Tape sticker aesthetic */
+    .pg-Theme .washi-tape {
+      background: rgba(220, 235, 226, 0.75);
+      border-left: 2px dashed rgba(60, 106, 88, 0.3);
+      border-right: 2px dashed rgba(60, 106, 88, 0.3);
+    }
+    /* Custom Range Track */
+    .pg-Theme input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      border-radius: 9999px;
+      background: #3c6a58;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(35, 82, 65, 0.35);
+      cursor: pointer;
+      margin-top: -6px;
+    }
+    .pg-Theme input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 8px;
+      cursor: pointer;
+      background: #e0e3df;
+      border-radius: 9999px;
+    }
+  
+
+    .pg-Theme {
+      min-height: max(884px, 100dvh);
+    }
+  
+/* Storage */
+
+    /* Journal micro-dot stationery pattern */
+    .pg-Storage .stationery-paper-pattern {
+      background-color: #F7FAF5;
+      background-image: radial-gradient(#CBD5C8 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+    
+    /* Tactile paper card gentle shadow */
+    .pg-Storage .paper-shadow {
+      box-shadow: 0 4px 18px rgba(74, 90, 80, 0.05), 0 1px 3px rgba(74, 90, 80, 0.03);
+    }
+    
+    .pg-Storage .stamp-press:active {
+      transform: scale(0.97);
+      transition: transform 0.15s ease-out;
+    }
+
+    /* Dashed cut-out sticker outline */
+    .pg-Storage .sticker-dashed-border {
+      border: 1.5px dashed rgba(60, 106, 88, 0.4);
+    }
+    
+    .pg-Storage .danger-dashed-border {
+      border: 1.5px dashed rgba(186, 26, 26, 0.35);
+    }
+  
+
+    .pg-Storage {
+      min-height: max(884px, 100dvh);
+    }
+  

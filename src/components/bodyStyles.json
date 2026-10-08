@@ -1,0 +1,112 @@
+{
+ "Home": {
+  "style": {
+   "backgroundColor": "rgb(247, 250, 245)",
+   "backgroundImage": "radial-gradient(rgb(211, 219, 209) 1.2px, transparent 1.2px)",
+   "backgroundSize": "20px 20px"
+  },
+  "cls": "min-h-screen flex justify-center items-start text-text-main font-sans antialiased selection:bg-primary-light"
+ },
+ "Orders": {
+  "style": {
+   "backgroundColor": "rgb(247, 250, 245)",
+   "backgroundImage": "radial-gradient(rgb(211, 219, 209) 1.2px, transparent 1.2px)",
+   "backgroundSize": "20px 20px"
+  },
+  "cls": "min-h-screen text-theme-text-dark flex flex-col justify-between selection:bg-theme-primary selection:text-white pb-28"
+ },
+ "OrderNew": {
+  "style": {
+   "backgroundColor": "rgb(247, 250, 245)",
+   "backgroundImage": "radial-gradient(rgb(211, 219, 209) 1.2px, transparent 1.2px)",
+   "backgroundSize": "20px 20px"
+  },
+  "cls": "bg-surface font-body-lg text-body-lg text-on-surface antialiased flex flex-col min-h-screen"
+ },
+ "OrderDetail": {
+  "style": {},
+  "cls": "bg-background text-on-surface notebook-dots min-h-screen antialiased flex flex-col justify-between selection:bg-primary-fixed"
+ },
+ "PriceSheet": {
+  "style": {},
+  "cls": "bg-journal-pattern text-on-surface antialiased min-h-screen pb-36 font-body-md text-body-md flex justify-center"
+ },
+ "GallerySheet": {
+  "style": {
+   "backgroundColor": "rgb(247, 250, 245)",
+   "backgroundImage": "radial-gradient(rgb(211, 219, 209) 1.2px, transparent 1.2px)",
+   "backgroundSize": "20px 20px"
+  },
+  "cls": "min-h-screen text-charcoal-title antialiased flex flex-col justify-between selection:bg-sage-light relative"
+ },
+ "Gallery": {
+  "style": {
+   "backgroundColor": "rgb(247, 250, 245)",
+   "backgroundImage": "radial-gradient(rgb(211, 219, 209) 1.2px, transparent 1.2px)",
+   "backgroundSize": "20px 20px"
+  },
+  "cls": "min-h-screen text-charcoal-title antialiased flex flex-col justify-between selection:bg-sage-light"
+ },
+ "CharacterNew": {
+  "style": {
+   "backgroundColor": "rgb(247, 250, 245)",
+   "backgroundImage": "radial-gradient(rgb(211, 219, 209) 1.2px, transparent 1.2px)",
+   "backgroundSize": "20px 20px"
+  },
+  "cls": "bg-surface font-body-md text-on-surface flex flex-col min-h-screen"
+ },
+ "Character": {
+  "style": {
+   "backgroundColor": "rgb(247, 250, 245)",
+   "backgroundImage": "radial-gradient(rgb(211, 219, 209) 1.2px, transparent 1.2px)",
+   "backgroundSize": "20px 20px"
+  },
+  "cls": "min-h-screen text-[#2d3a34] antialiased select-none pb-12"
+ },
+ "RecordNew": {
+  "style": {
+   "backgroundColor": "rgb(247, 250, 245)",
+   "backgroundImage": "radial-gradient(rgb(211, 219, 209) 1.2px, transparent 1.2px)",
+   "backgroundSize": "20px 20px"
+  },
+  "cls": "min-h-screen text-text-main flex flex-col justify-between selection:bg-sage-primary selection:text-white pb-6"
+ },
+ "GroupDialog": {
+  "style": {
+   "backgroundColor": "rgb(247, 250, 245)",
+   "backgroundImage": "radial-gradient(rgb(211, 219, 209) 1.2px, transparent 1.2px)",
+   "backgroundSize": "20px 20px"
+  },
+  "cls": "min-h-screen text-text-main flex flex-col justify-between selection:bg-sage-primary selection:text-white pb-6"
+ },
+ "FolderNew": {
+  "style": {
+   "backgroundColor": "rgb(247, 250, 245)",
+   "backgroundImage": "radial-gradient(rgb(211, 219, 209) 1.2px, transparent 1.2px)",
+   "backgroundSize": "20px 20px"
+  },
+  "cls": "bg-surface font-body-md text-on-surface flex flex-col min-h-screen"
+ },
+ "Folder": {
+  "style": {},
+  "cls": "stationery-dot-bg min-h-screen text-on-surface antialiased font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed"
+ },
+ "Profile": {
+  "style": {
+   "backgroundColor": "rgb(247, 250, 245)"
+  },
+  "cls": "min-h-screen text-darkCharcoal flex justify-center items-start antialiased font-sans"
+ },
+ "Wallet": {
+  "style": {},
+  "cls": "bg-surface text-on-surface font-body-md antialiased stationery-paper-grid selection:bg-primary-fixed min-h-screen pb-28"
+ },
+ "Theme": {
+  "style": {},
+  "cls": "bg-dotted-journal text-on-surface antialiased min-h-full flex flex-col font-body-md select-none"
+ },
+ "Storage": {
+  "style": {},
+  "cls": "stationery-paper-pattern text-on-surface antialiased min-h-screen pb-12 selection:bg-primary-fixed selection:text-on-primary-fixed"
+ }
+}

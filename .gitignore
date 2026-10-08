@@ -1,0 +1,10 @@
+node_modules
+dist
+android
+ios
+*.log
+.DS_Store
+*.keystore
+*.jks
+.stitch/designs/*.png
+.stitch/sheet*.png
