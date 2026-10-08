@@ -6,7 +6,7 @@ import BottomNav from '../components/BottomNav'
 import { DefaultAvatar } from '../components/Mascots'
 import { Modal, Sheet, useUI } from '../components/ui'
 import { saveSettings, useSettings } from '../lib/settings'
-import { pickImagesSafe, deleteImages } from '../lib/images'
+import { pickFiles, saveImage, deleteImages } from '../lib/images'
 import pkg from '../../package.json'
 
 const ic = 'w-5 h-5 stroke-[#4D7162] fill-none stroke-[2] stroke-linecap-round stroke-linejoin-round'
@@ -22,14 +22,26 @@ export default function Profile() {
   const nav = useNavigate(); const ui = useUI(); const s = useSettings()
   const [edit, setEdit] = useState(false); const [about, setAbout] = useState(false)
   const [form, setForm] = useState({ nickname: '', motto: '' }); const [avatar, setAvatar] = useState<string | undefined>()
-  const openEdit = () => { setForm({ nickname: s.nickname, motto: s.motto }); setAvatar(s.avatar); setEdit(true) }
-  const pickAvatar = async () => { const [i] = await pickImagesSafe(false, ui.toast); if (i) { if (avatar && avatar !== s.avatar) await deleteImages([avatar]); setAvatar(i) } }
+  const [preview, setPreview] = useState<string | undefined>(); const [busy, setBusy] = useState(false)
+  const openEdit = () => { setForm({ nickname: s.nickname, motto: s.motto }); setAvatar(s.avatar); setPreview(undefined); setBusy(false); setEdit(true) }
+  const pickAvatar = async () => {
+    if (busy) return
+    const [f] = await pickFiles(false); if (!f) return
+    const temp = URL.createObjectURL(f); setPreview(temp); setBusy(true) // 即时预览，不等存库
+    try {
+      const id = await saveImage(f, f.name)
+      if (avatar && avatar !== s.avatar) await deleteImages([avatar])
+      setAvatar(id)
+    } catch { ui.toast('图片读取失败，请换一张照片试试') }
+    finally { URL.revokeObjectURL(temp); setPreview(undefined); setBusy(false) }
+  }
   const save = async () => {
     if (!form.nickname.trim()) return ui.toast('昵称不能为空')
+    if (busy) return ui.toast('头像处理中，请稍候…')
     if (s.avatar && s.avatar !== avatar) await deleteImages([s.avatar])
     await saveSettings({ nickname: form.nickname.trim(), motto: form.motto.trim(), avatar }); setEdit(false); ui.toast('个人资料已保存')
   }
-  const cancel = async () => { if (avatar && avatar !== s.avatar) await deleteImages([avatar]); setEdit(false) }
+  const cancel = async () => { if (busy) return; if (avatar && avatar !== s.avatar) await deleteImages([avatar]); setEdit(false) }
   const customized = s.nickname !== '妖芝' || s.motto !== '一纸一笔，皆是山河' || !!s.avatar
 
   return (
@@ -83,7 +95,7 @@ export default function Profile() {
           <h3 className="text-[16px] font-extrabold text-[#2A2E2B] mb-4 flex items-center gap-1.5"><User className="w-4 h-4 stroke-[#4D7162] fill-none stroke-[2]" />个人资料</h3>
           <div className="flex flex-col items-center mb-4">
             <button type="button" onClick={pickAvatar} className="relative w-20 h-20 rounded-full p-[2px] bg-gradient-to-tr from-[#98B8A6] via-[#B8D1C3] to-[#8FAFA0] shadow-sm">
-              <div className="w-full h-full rounded-full overflow-hidden border-2 border-white bg-amber-50 flex items-center justify-center"><Img id={avatar} className="w-full h-full object-cover" fallback={<DefaultAvatar />} /></div>
+              <div className="w-full h-full rounded-full overflow-hidden border-2 border-white bg-amber-50 flex items-center justify-center"><Img id={avatar} preview={preview} className="w-full h-full object-cover" fallback={<DefaultAvatar />} />{busy && <div className="absolute inset-0 rounded-full bg-black/25 flex items-center justify-center"><span className="material-symbols-outlined text-white text-[22px] animate-spin">progress_activity</span></div>}</div>
               <span className="absolute -bottom-0.5 -right-0.5 w-7 h-7 rounded-full bg-[#3C6A58] text-white flex items-center justify-center border-2 border-white"><span className="material-symbols-outlined text-[15px]">photo_camera</span></span>
             </button>
             {avatar && <button type="button" onClick={async () => { if (avatar !== s.avatar) await deleteImages([avatar]); setAvatar(undefined) }} className="mt-2 text-[12px] text-[#939A94]">恢复默认头像</button>}
@@ -95,7 +107,7 @@ export default function Profile() {
           <p className="text-[11px] text-[#9DA39E] mt-1.5 pl-1">昵称与标语会显示在首页问候语和价目表海报中</p>
           <div className="grid grid-cols-[1fr_2fr] gap-3 mt-5">
             <button onClick={cancel} className="h-12 rounded-xl border border-[#E3E6E2] bg-white text-[14px] font-bold text-[#6B726D]">取消</button>
-            <button onClick={save} className="h-12 rounded-xl bg-[#3C6A58] text-white text-[14px] font-bold shadow-[0_6px_16px_rgba(60,106,88,0.22)]">保存</button>
+            <button onClick={save} disabled={busy} className="h-12 rounded-xl bg-[#3C6A58] text-white text-[14px] font-bold shadow-[0_6px_16px_rgba(60,106,88,0.22)] disabled:opacity-60">{busy ? '头像处理中…' : '保存'}</button>
           </div>
         </div>
       </Sheet>

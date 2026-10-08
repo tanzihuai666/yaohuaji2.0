@@ -7,7 +7,7 @@ import { useUI } from '../components/ui'
 import { useImageUrl } from '../hooks/useImage'
 import { db } from '../lib/db'
 import { DEFAULT_SETTINGS, getSettings, saveSettings, useSettings } from '../lib/settings'
-import { pickImagesSafe, deleteImages } from '../lib/images'
+import { pickFiles, saveImage, deleteImages } from '../lib/images'
 import { daysLeft } from '../lib/format'
 import { PALETTES } from '../theme/palettes'
 import { applyTheme } from '../theme/apply'
@@ -23,16 +23,25 @@ export default function Theme() {
   // revert live preview when leaving without saving
   useEffect(() => () => { if (!saved.current) { applyTheme(savedTheme.current); deleteImages([...created.current]) } }, [])
   const bgUrl = useImageUrl(d?.bgImage, true)
+  const [bgPreview, setBgPreview] = useState<string | undefined>(); const [bgBusy, setBgBusy] = useState(false)
   if (!d) return <Page name="Theme" />
   const set = (p: Partial<Draft>) => setD(x => ({ ...x!, ...p }))
   const pal = PALETTES.find(p => p.id === d.theme) || PALETTES[0]
   const choose = (id: string) => { set({ theme: id }); applyTheme(id) }
-  const pickBg = async () => { const [i] = await pickImagesSafe(false, ui.toast); if (!i) return; created.current.add(i); set({ bgImage: i }) }
+  const pickBg = async () => {
+    if (bgBusy) return
+    const [f] = await pickFiles(false); if (!f) return
+    const temp = URL.createObjectURL(f); setBgPreview(temp); setBgBusy(true) // 即时预览，不等存库
+    try { const id = await saveImage(f, f.name); created.current.add(id); set({ bgImage: id }) }
+    catch { ui.toast('图片读取失败，请换一张照片试试') }
+    finally { URL.revokeObjectURL(temp); setBgPreview(undefined); setBgBusy(false) }
+  }
   const reset = async () => {
     if (!(await ui.confirm({ title: '重置为默认主题？', message: '将恢复「纸间手账」配色、移除自定义背景并开启点阵纸纹。' }))) return
     choose(DEFAULT_SETTINGS.theme); set({ bgImage: undefined, dotGrid: true, bgOpacity: 70 })
   }
   const save = async () => {
+    if (bgBusy) return ui.toast('背景图处理中，请稍候…')
     const old = s.bgImage
     await saveSettings({ theme: d.theme, bgImage: d.bgImage, dotGrid: d.dotGrid, bgOpacity: d.bgOpacity })
     if (old && old !== d.bgImage) await deleteImages([old])
@@ -125,7 +134,7 @@ export default function Theme() {
             <div className="bg-surface-container-lowest rounded-[1.25rem] p-4 border border-outline-variant/50 shadow-sm space-y-4">
               <div onClick={pickBg} className="relative rounded-2xl border-2 border-dashed border-primary-container/60 bg-surface-container-low/40 p-3.5 flex items-center gap-3.5 hover:bg-surface-container-low transition-colors cursor-pointer">
                 <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-outline-variant/50 relative shadow-xs bg-surface-container">
-                  <Img id={d.bgImage} className="w-full h-full object-cover" fallback={<div className="w-full h-full flex items-center justify-center text-outline"><span className="material-symbols-outlined">wallpaper</span></div>} />
+                  <Img id={d.bgImage} preview={bgPreview} className="w-full h-full object-cover" fallback={<div className="w-full h-full flex items-center justify-center text-outline"><span className="material-symbols-outlined">wallpaper</span></div>} />
                   <div className="absolute bottom-0 inset-x-0 bg-on-surface/50 text-white text-[8px] text-center py-0.5 font-bold">{d.bgImage ? '当前底图' : '默认纸张'}</div>
                 </div>
                 <div className="flex-1 min-w-0">

@@ -15,12 +15,21 @@ async function resize(img: HTMLImageElement, max: number, q: number, type = 'ima
   const ctx = c.getContext('2d')!; ctx.drawImage(img, 0, 0, c.width, c.height)
   return new Promise<Blob>((res, rej) => c.toBlob(b => b ? res(b) : rej(new Error('encode failed')), type, q))
 }
+/** Thumbnail via native decode+scale: much faster and lower-memory on large phone photos. */
+async function nativeThumb(file: Blob): Promise<Blob> {
+  const bmp = await createImageBitmap(file, { resizeWidth: 480, resizeQuality: 'high' })
+  try {
+    const c = document.createElement('canvas'); c.width = bmp.width; c.height = bmp.height
+    c.getContext('2d')!.drawImage(bmp, 0, 0)
+    return await new Promise<Blob>((res, rej) => c.toBlob(b => b ? res(b) : rej(new Error('encode failed')), 'image/jpeg', 0.8))
+  } finally { bmp.close() }
+}
 /** Store original (kept full-res unless huge) + thumbnail. Returns image id. */
 export async function saveImage(file: Blob, name = 'image'): Promise<string> {
   const img = await loadBitmap(file)
   const big = Math.max(img.naturalWidth, img.naturalHeight) > 4096 || file.size > 12 * 1024 * 1024
   const blob = big ? await resize(img, 4096, 0.92) : file
-  const thumb = await resize(img, 480, 0.8)
+  const thumb = await nativeThumb(file).catch(() => resize(img, 480, 0.8))
   const rec: ImageRec = { id: uid(), blob, thumb, w: img.naturalWidth, h: img.naturalHeight, size: blob.size, name, createdAt: Date.now() }
   await db.images.put(rec); return rec.id
 }
